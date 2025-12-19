@@ -11,15 +11,12 @@ DATABASE_URL=f"postgresql+asyncpg://{get_settings().database_owner}:{get_setting
 
 master_async_engine=create_async_engine(DATABASE_URL,echo=False,pool_timeout=30,pool_recycle=1800,pool_size=10,max_overflow=20,pool_pre_ping=True)
 
-#session factory
-async_session_maker=async_sessionmaker(
-    bind=master_async_engine,
-    class_=AsyncSession,
-    expire_on_commit=False
-)
 
+#session factory
+async_session_maker=async_sessionmaker(bind=master_async_engine,class_=AsyncSession,expire_on_commit=False)
 
 #dependency injection
+
 async def get_async_session()->AsyncGenerator[AsyncSession,None]:
 
     async with async_session_maker() as session:
@@ -31,7 +28,9 @@ async def get_async_session()->AsyncGenerator[AsyncSession,None]:
 
 #initialize the db with new tables
 async def init_db():
-
     async with master_async_engine.begin() as conn:
+
         await conn.run_sync(SQLModel.metadata.create_all)
+
+
 

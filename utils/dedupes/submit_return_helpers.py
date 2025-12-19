@@ -1,3 +1,4 @@
+from fastapi import HTTPException,status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text,bindparam
 from sqlalchemy.dialects.postgresql import ARRAY,TEXT
@@ -30,6 +31,7 @@ async def campaign_dedupes_cleaner_helper(key:str,session:AsyncSession)->Optiona
         id_numbers=[row[0] for row in rows]
         if not id_numbers:
             return 0,0,0
+        
         delete_stmt=text(DELETE_LEADS_SQL)
         delete_result=await session.execute(delete_stmt,{"ids":id_numbers})
         update_stmt=text(UPDATE_INFO_TABLE_DEDUPE_SQL)
@@ -54,10 +56,9 @@ async def calculate_ids_campaign_dedupe_with_status_r(session:AsyncSession,code:
         result=await session.execute(stmt)
         result_count:int=result.scalar_one() or 0
         return result_count
-    
     except Exception as e:
-        dedupe_logger.exception(f"an exception occured while calculating the number of rows with key:{code} and status is returned {e}")
-        raise
+        dedupe_logger.exception(f"an exception occured while calculating the number of rows with key:{code},exception:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"an exception occured while calculating the number of rows with key:{code}")
 
 
 #update status dedupe for submit return,return the number of rows returned
@@ -75,8 +76,12 @@ async def update_campaign_dedupe_status(dedupe_ids:list[str],code:str,session:As
         result=await session.execute(stmt,{"code":code,"dedupe_ids":dedupe_ids})
         #commit the transaction
         updated_rows=len(result.scalars().all())
+        #remove this commit
+
         await session.commit()
+
         dedupe_logger.info(f"user:{user.id} with {user.email} committed records of length:{updated_rows}")
+
         return updated_rows
     
     except Exception as e:
@@ -99,16 +104,26 @@ async def fetch_delete_update_pending_campaign_ids(code:str,session:AsyncSession
         if db_list:
 
             delete_stmt=text(DELETE_PENDING_IDS_CAMPAIGN_STATUS_AND_CODE)
+
             delete_result=await session.execute(delete_stmt,{"ids":db_list})
+
             deleted_ids=len(delete_result.scalars().all())
+
             update_stmt=text(UPDATE_PENDING_IDS_ON_THE_INFO_TBL)
+
             update_result=await session.execute(update_stmt,{"ids":db_list})
+
             updated_ids=len(update_result.scalars().all())
+
             delete_campaign_dedupe_stmt=text(DELETE_STMT_ON_CAMPAIGN_DEDUPE)
+
             deleted_campaign_dedupe_result=await session.execute(delete_campaign_dedupe_stmt,{"u_code": "U"})
             deleted_campaign_dedupe_ids=len(deleted_campaign_dedupe_result.scalars().all())
-            #commit all the changes at once
+
+            #commit all the changes at once,remove this commit, this is one session anyway
+
             await session.commit()
+
             dedupe_logger.info(f"user:{user.id} with email:{user.email} deleted:{deleted_ids} ids,updated:{updated_ids},and deleted:{deleted_campaign_dedupe_ids} ids")
 
             return {
@@ -128,6 +143,7 @@ async def fetch_delete_update_pending_campaign_ids(code:str,session:AsyncSession
                 "deleted_stmt_from_campaign_dedupe":0
                 }
     
+
     except Exception as e:
         dedupe_logger.exception(f"An exception occurred while requesting ids from the db by {user.id} with email {user.email}:{e}")
         await session.rollback()

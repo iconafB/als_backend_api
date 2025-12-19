@@ -14,14 +14,13 @@ practice_rule_router=APIRouter(prefix="/practice-rule",tags=["Practice Rule"])
 
 @practice_rule_router.post("/rules",status_code=status.HTTP_200_OK,description="Create Rule",response_model=RuleResponseModel)
 
-async def create_rule(campaign_code:str,status:str,rule:RuleSchema,session:AsyncSession=Depends(get_async_session)):
+async def create_rule(campaign_code:str,rule:RuleSchema,session:AsyncSession=Depends(get_async_session)):
     db_rule=rules_tbl(rule_name=campaign_code,status=status,rule_json=rule.model_dump())
     session.add(db_rule)
     await session.commit()
     await session.refresh(db_rule)
     rule_json=db_rule.rule_json
     response=RuleResponseModel(
-        status=db_rule.status,
         id=db_rule.id,
         rule_name=db_rule.rule_name,
         salary=NumericConditionResponse.from_condition(rule_json["salary"]),
@@ -40,6 +39,7 @@ async def create_rule(campaign_code:str,status:str,rule:RuleSchema,session:Async
     return response
 
 @practice_rule_router.put("/rules/{name}",status_code=status.HTTP_200_OK,description="Update the rule name")
+
 async def update_rule(name:str,updated:RuleSchema,session:AsyncSession=Depends(get_async_session)):
     result=await get_rule_by_name_db(name,session)
     if result is None:
@@ -49,12 +49,16 @@ async def update_rule(name:str,updated:RuleSchema,session:AsyncSession=Depends(g
     return True
 
 @practice_rule_router.get("/persons/{rule_name}")
+
 async def get_persons_by_rule_name(rule_name:str,session:AsyncSession=Depends(get_async_session)):
     result=await get_rule_by_name_db(rule_name,session)
     if result==None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested rule does not exist")
     stmt,params=build_dynamic_rule_engine(result[0].rule_json)
     rows=(await session.execute(stmt,params)).all()
+
+    print("print the leads fetched from the master database")
+    print(rows)
 
     return rows
 

@@ -5,25 +5,25 @@ from typing import Annotated
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import timedelta
 from models.users import users_table
-from schemas.auth import LoginUser,RegisterUser,RegisterUserResponse,ForgotPassword,Token,GetUserResponse
-from utils.auth import verify_password,get_current_active_user,create_access_token,hash_password
-from crud.users import (create_user,login_user)
+from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse
+from utils.auth import verify_password,get_current_active_user,create_access_token
+from crud.users import (create_user)
 from settings.Settings import get_settings
-from database.database import get_session
 from database.master_db_connect import get_async_session
 from utils.logger import define_logger
-
 auth_logger=define_logger("als auth logger","logs/auth_route.log")
+
 auth_router=APIRouter(tags=["Authentication"],prefix="/auth")
 
 @auth_router.post("/register",status_code=status.HTTP_201_CREATED,response_model=RegisterUserResponse,description="Register user to the als by providing email,password, and full name")
 
-async def register_user(req:Request,user:RegisterUser,session:AsyncSession=Depends(get_async_session)):
+async def register_user(user:RegisterUser,session:AsyncSession=Depends(get_async_session)):
     new_user=await create_user(user,session)
     auth_logger.info(f"user:{new_user.email} successfully registered")
     return new_user
 
 @auth_router.post("/login",status_code=status.HTTP_200_OK,response_model=Token,description="Login to the als by providing a password and email")
+
 async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session:AsyncSession=Depends(get_async_session)):
     login_query=select(users_table).where(users_table.email==user.username)
     result=await session.execute(login_query)
@@ -34,7 +34,6 @@ async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session
     if not login_user.email == user.username:
         auth_logger.info(f"user with email:{user.username} does not exist")
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Invalid Credentials")
-    
     #verify the password and return an error if the password is wrong
     if not verify_password(user.password,login_user.password):
         auth_logger.info(f"user password:{user.password} does not exist")
@@ -47,41 +46,9 @@ async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session
     auth_logger.info(f"username:{user.username} successfully logged in")
     return Token(access_token=token,token_type='Bearer')
 
-#reset password
-@auth_router.post("/forgot-password",response_model=RegisterUserResponse,description="Please provide your email and new password to reset your password")
-async def forgot_password(data:ForgotPassword,session:Session=Depends(get_session)):
-    #find the user resource using the email
-    user=session.exec(select(users_table).where(users_table.email==data.email)).first()
-    #return an error if the user does not exist
-    if not user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"user with email:{data.email} does not exist")
-    
-    #if the email exist send an OTP to the email provided and delay the system for 120 seconds
-    
-
-    #else the user does not exist than show the necessary response
-
-    # find the user using the otp than hash the password and store it again
-
-    #wait for verification
-
-    #hash the new password
-    user.password=hash_password(data.new_password)
-    #save the new password
-    session.add(user)
-    #commit the user
-    session.commit()
-    #refresh the session object
-    session.refresh(user)
-    #return the success message
-    return user
-
-#get current user and build proper authentication
 
 @auth_router.get("/user",response_model=GetUserResponse)
 async def get_the_current_user(user=Depends(get_current_active_user)):
     return user
-
-#deactivate a user
 
 

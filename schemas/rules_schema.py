@@ -15,6 +15,7 @@ class Operator(str,Enum):
  #lower' and 'upper' must not be provided for operator 'equal'
 
 class NumericCondition(BaseModel):
+
     operator: Literal[
         "equal", "not_equal",
         "less_than", "less_than_equal",
@@ -37,7 +38,7 @@ class NumericCondition(BaseModel):
             if lower is None or upper is None:
                 raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"Operator requires both lower and upper values")
             if upper < lower:
-                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail="upper must be greater than or equal to lower")
+                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail="upper limit value must be greater than lower")
             if value!=0 and op == 'between':
                 raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail="'value' must not be provided when using 'between'.")
             
@@ -55,6 +56,7 @@ class NumericCondition(BaseModel):
 
 
 #checked
+
 class LastUsedCondition(BaseModel):
     operator:Literal["less_than","less_than_equal","equal","greater_than","greater_than_equal"]
     value:int
@@ -75,13 +77,15 @@ class RecordsLoadedCondition(BaseModel):
             raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"Invalid type for 'value'. Expected 'int', got '{type(value).__name__}'.")
         
         return values
-        
+
+    
 #checked
 
 class TypeDataCondition(BaseModel):
 
     operator: Literal["equal","not_equal"]
     value: Literal["Status","Enriched","None"]
+
     @model_validator(mode="before")
     def validate_typedata(cls, values):
         # Allowed keys
@@ -387,5 +391,9 @@ class ComparisonRule(BaseModel):
 class GenderRule(BaseModel):
     operator:Literal["equal"]
     value:Literal["MALE","FEMALE","NULL"]
+
+
+class CampaignRulesTotal(BaseModel):
+    total_number_of_rules:int
 
 

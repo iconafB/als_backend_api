@@ -1,5 +1,4 @@
-import sqlalchemy as sa
-from sqlalchemy import func
+from sqlalchemy import func,Column,DateTime,String,ForeignKey
 from sqlmodel import SQLModel,Field,Relationship
 from typing import Optional,List,TYPE_CHECKING
 from datetime import datetime
@@ -12,11 +11,11 @@ if TYPE_CHECKING:
 
 class campaign_rule_tbl(SQLModel,table=True):
     cr_code:Optional[int]=Field(primary_key=True,nullable=False,default=None)
-    camp_code:str=Field(nullable=False,foreign_key="campaign_tbl.camp_code")
-    rule_code:int=Field(nullable=False,foreign_key="rules_tbl.rule_code")
+    camp_code:str=Field(sa_column=Column(String,ForeignKey("campaign_tbl.camp_code",ondelete="CASCADE"),nullable=False,index=True))
+    rule_code:int=Field(sa_column=Column(ForeignKey("rules_tbl.rule_code",ondelete="CASCADE"),nullable=False,unique=True,index=True))
     date_rule_created:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False)
     is_active:bool=Field(nullable=False)
-    #rules_tbl:Optional["rules_tbl"]=Relationship(back_populates="campaign rules")
-    #campaign:Optional["campaign_tbl"]=Relationship(back_populates="rules")
+    # rules:Optional["rules_tbl"]=Relationship(back_populates="campaign_rules",sa_relationship_kwargs={"lazy":"selectin"})
+
 
     

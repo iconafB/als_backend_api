@@ -13,7 +13,6 @@ async def create_person_db(person:PersonCreate,session:AsyncSession):
 
 async def get_rule_by_name_db(name:str,session:AsyncSession):
     db_person_query=select(rules_tbl).where(rules_tbl.rule_name==name)
-    print("query formulated")
     db_person=await session.execute(db_person_query)
     result=db_person.first()
     if result==None:

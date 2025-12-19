@@ -1,8 +1,13 @@
-from sqlmodel import select,func
-from sqlalchemy import text
+from fastapi import HTTPException,status
+from sqlmodel import select
+from sqlalchemy import text,func
+import re
+
 from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import List,Optional,Sequence,Dict,Tuple
 from models.campaigns import dedupe_campaigns_tbl
+from models.dedupe_history_tracker import Dedupe_History_Tracker
+from schemas.dedupes import PaginatedAggregatedDedupeResult,PaginatedResultsResponse
 from models.dedupe_keys_table import manual_dedupe_key_tbl
 from schemas.dedupe_campaigns import CreateDedupeCampaign
 from utils.logger import define_logger
@@ -542,8 +547,145 @@ async def create_manual_dedupe_key(session:AsyncSession,rule_name:str,dedupe_key
         await session.commit()
         await session.refresh(record)
         dedupe_logger.info(f"manual dedupe key:{dedupe_key} committed to the db by user:{user.id} with email:{user.email}")
+        
         return record
     
     except Exception:
         dedupe_logger.exception("An exception occurred while committing dedupe key to the table")
         raise
+
+
+
+async def get_dedupe_campaigns_aggregated_count_db(page:int,page_size:int,session:AsyncSession,user):
+
+    try:
+        #calculate the offset for pagination
+        offset=(page - 1)*page_size
+        #query building the query to get all campaign names and the count of associated records
+        query=select(Dedupe_History_Tracker.campaign_name,func.count(Dedupe_History_Tracker.pk).label("record_count")).group_by(Dedupe_History_Tracker.campaign_name)
+        #Apply pagination by limiting the number of results
+        query=query.limit(page_size).offset(offset)
+        #execute the query
+        result=await session.execute(query)
+        records=result.all()
+        if not records:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No records found")
+        count_query=select([func.count()]).select_from(Dedupe_History_Tracker)
+        total_count=await session.execute(count_query)
+        total_count=total_count.scalar()
+        #calculate total pages
+        total_pages=(total_count + page_size -1) // page_size
+        dedupe_logger.info(f"user:{user.id} with email:{user.email} fetch an aggregated count for dedupe campaigns")
+        return PaginatedAggregatedDedupeResult(page=page,page_size=page_size,total=total_count,total_pages=total_pages,records=records)
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        dedupe_logger.exception(f"an exception occurred while fetching dedupe campaigns aggregated count:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while fetching an aggregated count for dedupe campaigns")
+    
+
+
+async def search_cell_number_history_db(cell:str,page:int,page_size:int,session:AsyncSession,user,campaign_name:Optional[str]=None):
+    try:
+
+        if not re.match(r'^\d{10}$',cell):
+
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"cell number:{cell} is invalid, cell number must have 10-digit")
+        offset=(page - 1)*page_size
+        query_count=select([func.count()]).select_from(Dedupe_History_Tracker).where(Dedupe_History_Tracker.cell==cell)
+        #if the campaign name is provided add it as a filter to the query
+        if campaign_name:
+            query_count=query_count.where(Dedupe_History_Tracker.campaign_name==campaign_name)
+        total_count=await session.execute(query_count)
+        total_count=total_count.scalar()
+        total_pages=(total_count + page_size -1) // page_size
+        query=select(Dedupe_History_Tracker).where(Dedupe_History_Tracker.cell==cell)
+        if campaign_name:
+            query=query.where(Dedupe_History_Tracker.campaign_name==campaign_name)
+        query=query.limit(page_size).offset(offset)
+        result=await session.execute(query)
+        records=result.scalars().all()
+
+        if not records:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Cell number:{cell} has no history")
+        dedupe_logger.info(f"user:{user.id} with email:{user.email} fetch an aggregated count for dedupe campaigns")
+        return PaginatedResultsResponse(page=page,page_size=page_size,total=total_pages,records=records)
+    
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        dedupe_logger.exception(f"an exception occurred while searching for the history of cell number:{cell},{str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while search for cell number:{cell} history")
+    
+
+async def search_id_number_history_db(id_number:str,page:int,page_size:int,session:AsyncSession,user):
+
+    try:
+        if not re.match(r'^\d{13}$',id_number):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Invalid South African ID Number. It must be a 13-digit numeric string")
+        
+        offset=(page-1)*page_size
+
+        query_count=select([func.count()]).select_from(Dedupe_History_Tracker).where(Dedupe_History_Tracker.id==id_number)
+        total_count=await session.execute(query_count)
+        total_count=total_count.scalar()
+        total_pages=(total_count + page_size - 1) // page_size 
+        query=select(Dedupe_History_Tracker).where(Dedupe_History_Tracker.id==id_number)
+        query = query.limit(page_size).offset(offset)
+        result = await session.execute(query)
+        records = result.scalars().all()
+        if not records:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No records found for this id number:{id_number}")  
+        
+        dedupe_logger.info(f"user:{user.id} with email:{user.email} retrieved id number history:{id_number}")
+        
+        return PaginatedResultsResponse(
+            page=page,
+            page_size=page_size,
+            total=total_count,
+            total_pages=total_pages,
+            records=records
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        dedupe_logger.exception(f"an exception occurred while searching for the history of cell number:{id_number},{str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while search for cell number:{id_number} history")
+
+
+
+async def search_dedupe_campaign_by_campaign_name_db(campaign_name:str,page:int,page_size:int,session:AsyncSession)->PaginatedResultsResponse:
+    try:
+        #calculate the offset based on the page number and page size
+        offset=(page-1)*page_size
+        #Query to count the total number of records
+        query_count=select([func.count()]).select_from(Dedupe_History_Tracker).where(Dedupe_History_Tracker.campaign_name.ilike(f"%{campaign_name}%"))
+        total_count=await session.execute(query_count)
+        total_count=total_count.scalar()
+        #calculate total pages based on total count and page_size
+        total_pages=(total_count + page_size -1) // page_size
+        #query to fetch paginated results
+        query=select(Dedupe_History_Tracker)
+        if campaign_name:
+            query=query.where(Dedupe_History_Tracker.campaign_name.ilike(f"%{campaign_name}%"))
+
+        query=query.limit(page_size).offset(offset)
+        result=await session.execute(query)
+        records=result.scalars().all()
+        
+        if not records:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No records found for campaign:{campaign_name}")
+        
+        return PaginatedResultsResponse(
+            page=page,
+            page_size=page_size,
+            total=total_pages,
+            total_pages=total_pages,
+            records=records
+        )
+    
+    except Exception as e:
+        dedupe_logger.exception(f"an exception occurred while fetching all records associated:{campaign_name}:{str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while fetch records for campaign:{campaign_name}")

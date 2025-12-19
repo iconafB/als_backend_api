@@ -7,9 +7,11 @@ if TYPE_CHECKING:
     from models.campaign_rules_table import campaign_rule_tbl
     from models.lead_history_table import lead_history_tbl
 class campaign_tbl(SQLModel,table=True):
-    camp_code:str=Field(primary_key=True,index=True)
+    pk:int=Field(primary_key=True,nullable=False)
+    camp_code:str=Field(default=None,nullable=False,unique=True,index=True)
     campaign_name:Optional[str]=None
     branch:Optional[str]=None
+    
     #rules:List["campaign_rule_tbl"]=Relationship(back_populates="campaign")
     #lead_history_tbl:List["lead_history_tbl"]=Relationship(back_populates="campaign")
 

@@ -21,17 +21,14 @@ async def dnc_list_numbers():
             # SQL query to fetch all numbers from the global_dnc table
             await cursor.execute("SELECT Number FROM global_dnc")
             records = await cursor.fetchall()
-            
             # List comprehension to populate the DNC list
             new_dnc_list = [row[0] for row in records]
             
     except Exception as e:
         # Log the error
         dnc_logger.error(f"Error fetching DNC numbers: {str(e)}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Error fetching DNC numbers"
-        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="Error fetching DNC numbers")
+    
     finally:
         # Close the connection if it exists
         if conn:

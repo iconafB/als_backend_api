@@ -13,7 +13,7 @@ from schemas.rules_schema import ResponseRuleSchema,RuleSchema,RuleResponseModel
 from database.master_db_connect import get_async_session
 from utils.logger import define_logger
 from utils.auth import get_current_active_user
-from crud.campaign_rules import (create_campaign_rule_db,assign_campaign_rule_to_campaign_db,get_all_campaign_rules_db, get_rule_by_rule_code_db, get_campaign_rule_by_rule_name_db,update_campaign_name_db,deactivate_campaign_db,activate_campaign_db,update_salary_for_campaign_rule_db,update_derived_income_for_campaign_rule_db,search_for_a_campaign_rule_db,fetch_campaign_code_from_campaign_tbl_db,fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db,update_campaign_rule_and_insert_rule_code_db,insert_new_campaign_rule_on_campaign_rule_tbl_db,update_number_of_leads_db,update_campaign_rule_age_db,remove_campaign_rule_db)
+from crud.campaign_rules import (create_campaign_rule_db,assign_campaign_rule_to_campaign_db,get_all_campaign_rules_db, get_rule_by_rule_code_db, get_campaign_rule_by_rule_name_db,update_campaign_name_db,deactivate_campaign_db,activate_campaign_db,update_salary_for_campaign_rule_db,update_derived_income_for_campaign_rule_db,search_for_a_campaign_rule_db,fetch_campaign_code_from_campaign_tbl_db,fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db,update_campaign_rule_and_insert_rule_code_db,insert_new_campaign_rule_on_campaign_rule_tbl_db,update_number_of_leads_db,update_campaign_rule_age_db,remove_campaign_rule_db,total_campaign_rules_db)
 from utils.campaigns import (load_campaign_query_builder)
 from utils.campaign_rules_helper import transform_rule_json
 #from utils.parse_validation_methods import parse_and_validate_rule
@@ -23,12 +23,15 @@ campaign_rule_router=APIRouter(tags=["Campaign Rules"],prefix="/campaign_rules")
 campaign_rules_logger=define_logger("als campaign rules","logs/campaign_rules_logs")
 
 @campaign_rule_router.post("",status_code=status.HTTP_200_OK,description="Create a campaign rule by the necessary info",response_model=RuleResponseModel)
-
 async def create_campaign_rule(rule:RuleSchema,campaign_code:str=Query(...,description="Enter the campaign code associated with this rule"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
-    print("Enter the create rule route")
     create_rule=await create_campaign_rule_db(campaign_code=campaign_code,rule=rule,session=session,user=user)
     campaign_rules_logger.info(f"user :{user.id} with email: {user.email} created campaign rule:{create_rule.rule_name}")
     return create_rule
+
+
+@campaign_rule_router.get("/total",status_code=status.HTTP_200_OK,description="Get the total number of campaign rules")
+async def get_total_campaign_rules(session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+    return await total_campaign_rules_db(session,user)
 
 
 #fetch all the rules on the database ,add pagination and search
@@ -42,13 +45,52 @@ async def search_for_campaign_rule(page:int=Query(1,ge=1,description="Current pa
     print("enter the search route")
     return await search_for_a_campaign_rule_db(page,page_size,session,user,rule_name,salary,derived_income,sort_by="created_at",sort_order="desc")
 
+
 # @campaign_rule_router.put("/change_rule",status_code=status.HTTP_200_OK,description="Assign campaign rule to an existing campaign if the campaign does not exist create it",response_model=AssignCampaignRuleResponse)
 # async def change_rule(rule:AssignCampaignRuleToCampaign,session:AsyncSession=Depends(get_async_session)):
 #     return await assign_campaign_rule_to_campaign_db(rule,session)
 
 
+
+@campaign_rule_router.put("/als/change_rule",status_code=status.HTTP_200_OK,response_model=ChangeRuleResponse)
+
+async def change_rule(rule_code: int,camp_code: str,session: AsyncSession = Depends(get_async_session),user=Depends(get_current_active_user)):
+   
+    print(f"the rule code is:{rule_code} and the rule_name:{camp_code}")
+    try: 
+       campaign_code=await fetch_campaign_code_from_campaign_tbl_db(camp_code,session)
+       print("print campaign code inside the route")
+       print(campaign_code)
+       if campaign_code==None:
+           raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f'{camp_code} does not exist, create campaign before assigning a rule for it')
+       
+       rule_code_query=await fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db(campaign_code,session)
+
+       print("print inside the route again")
+
+       if rule_code_query!=None:
+           print("print the value provide the rule exists")
+           result=await update_campaign_rule_and_insert_rule_code_db(rule_code,camp_code,session)
+           message=f"rule number {rule_code_query} was found active, deactivated and {rule_code} is now active for campaign:{result}"
+           return ChangeRuleResponse(success=True,message=message)
+       
+       result_code=await insert_new_campaign_rule_on_campaign_rule_tbl_db(camp_code,rule_code,session)
+       
+       not_active_messge= f'NO ACTIVE RULE was found active for campaign {result_code} but rule {rule_code} was made active for it'
+       
+       return ChangeRuleResponse(success=True,message=not_active_messge)
+    
+    except HTTPException:
+        raise
+
+    except Exception:
+        await session.rollback()
+        campaign_rules_logger.exception(f"an exception occurred while changing the campaigning rules")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"An internal server error occurred while changing the campaign rule")
+    
 #calculate the number of leads for a rule
 #Questionable check again
+
 
 @campaign_rule_router.get("/campaign_spec",description="Provide a rule name or campaign code to get the number of leads for that spec. The rule name is the spec name",status_code=status.HTTP_200_OK)
 async def check_number_of_leads_for_campaign_rule(rule_name:str,user=Depends(get_current_active_user),session:AsyncSession=Depends(get_async_session)):
@@ -75,6 +117,7 @@ async def check_number_of_leads_for_campaign_rule(rule_name:str,user=Depends(get
 
 #assign campaign rule to a campaign
 @campaign_rule_router.post("/assign/{rule_code}",description="assign a campaign rule to an existing campaign")
+
 async def assign_active_rule_to_campaign(rule_code:int,camp_code:str,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
     try:
         campaign_code_query=select(campaign_tbl).where(campaign_tbl.camp_code==camp_code)
@@ -110,10 +153,8 @@ async def assign_active_rule_to_campaign(rule_code:int,camp_code:str,session:Asy
         campaign_rules_logger.info(f"Campaign rule:{rule_code} activated")
         session.close()
         return UpdateCampaignRulesResponse(message=message,update_date=todaysdate)
-    
     except HTTPException:
         raise
-
     except Exception as e:
         campaign_rules_logger(f"{str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="internal server error occurred")
@@ -191,38 +232,6 @@ async def update_number_of_leads(number_of_leads:UpdateNumberOfLeads,rule_code:i
     except Exception:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="An internal server error occurred")
 
-
-@campaign_rule_router.put("/als/change_rule",status_code=status.HTTP_200_OK,response_model=ChangeRuleResponse)
-
-async def change_rule(rule_code: int,camp_code: str,session: AsyncSession = Depends(get_async_session),user=Depends(get_current_active_user)):
-    print(f"the rule code is:{rule_code} and the rule_name:{camp_code}")
-    try: 
-       campaign_code=await fetch_campaign_code_from_campaign_tbl_db(camp_code,session)
-       print("print campaign code inside the route")
-       print(campaign_code)
-       if campaign_code==None:
-           raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f'{camp_code} does not exist, create campaign before setting rule for it')
-       rule_code_query=await fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db(camp_code,session)
-       print("print inside the route")
-       if rule_code_query!=None:
-           await update_campaign_rule_and_insert_rule_code_db(rule_code,camp_code,session)
-           message=f"rule number {rule_code_query} was found active, deactivated and {rule_code} is now active for campaign:{camp_code}"
-           return ChangeRuleResponse(success=True,message=message)
-       
-       await insert_new_campaign_rule_on_campaign_rule_tbl_db(camp_code,rule_code,session)
-
-       not_active_messge= f'NO ACTIVE RULE was found active for campaign {camp_code} but rule {rule_code} was made active for it'
-
-       return ChangeRuleResponse(success=True,message=not_active_messge)
-    
-    except HTTPException:
-        raise
-
-    except Exception:
-        await session.rollback()
-        campaign_rules_logger.exception(f"an exception occurred while changing the campaigning rules")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"An internal server error occurred while changing the campaign rule")
-    
 
 @campaign_rule_router.delete("/delete/{rule_code}",status_code=status.HTTP_202_ACCEPTED,description="Delete the campaign rule completely from the system",response_model=DeleteCampaignRuleResponse)
 async def delete_campaign_rule(rule_code:int,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):

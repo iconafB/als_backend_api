@@ -10,7 +10,8 @@ if TYPE_CHECKING:
 
    
 class finance_tbl(SQLModel,table=True):
-    cell:str=Field(primary_key=True,foreign_key="info_tbl.cell")
+    pk:int=Field(primary_key=True,default=None,nullable=False)
+    cell:str=Field(foreign_key="info_tbl.cell",index=True)
     cipro_reg:Optional[bool]=None
     deed_office_reg:Optional[bool]=None
     vehicle_owner:Optional[bool]=None
@@ -33,4 +34,4 @@ class finance_tbl(SQLModel,table=True):
     has_judgements:Optional[bool]=None
     bank:Optional[str]=None
     bal:Optional[float]=None
-    #info_tbl:Optional["info_tbl"]=Relationship(back_populates="finance_tbl")
+    # info_location:info_tbl=Relationship(back_populates="finance")

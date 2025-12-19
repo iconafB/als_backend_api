@@ -59,7 +59,20 @@ class LoadCampaignResponse(BaseModel):
     list_name:str
     audit_id:str
     records_processed:int
+    
     model_config={
         "from_attributes":True
     }
 
+
+
+class CampaignSpecLevelResponse(BaseModel):
+    rule_name:str
+    number_of_leads_available:int
+    model_config={
+        "from_attributes":True
+    }
+
+
+class CampaignsTotal(BaseModel):
+    total_number_of_campaigns:int

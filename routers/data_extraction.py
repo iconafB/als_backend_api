@@ -15,6 +15,7 @@ chunk_size = 1000  # number of rows per flush
 @data_extraction_router.get("/data/txt",status_code=status.HTTP_200_OK,description="Download data in text files")
 
 async def download_data_into_text_file(session:AsyncSession=Depends(get_async_master_test_session)):
+    
     filename = f"data_export_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.txt"
     async def txt_stream():
         buffer=StringIO()
@@ -82,6 +83,7 @@ async def download_data_into_csv_file(session: AsyncSession = Depends(get_async_
             "line_one", "line_two", "line_three", "line_four",
             "postal_code", "province", "suburb", "city"
         ])
+
         yield buffer.getvalue()
         buffer.seek(0)
         buffer.truncate(0)

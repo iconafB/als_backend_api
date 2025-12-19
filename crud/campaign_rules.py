@@ -1,20 +1,27 @@
 from fastapi import HTTPException,status,Depends
-from sqlmodel import select,update
+from sqlmodel import select,update,delete
 from typing import Annotated
 from datetime import datetime
 from sqlalchemy import update, func, cast
 from sqlalchemy import text,func,or_
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.dialects.postgresql import ARRAY, TEXT
+from sqlalchemy.exc import IntegrityError
 from schemas.campaign_rules import CreateCampaignRule
 from utils.auth import get_current_active_user
 from utils.logger import define_logger
 from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import List,Optional
+from sqlalchemy.exc import IntegrityError
 from models.rules_table import rules_tbl
+from models.campaign_rules_table import campaign_rule_tbl
+
 from crud.campaigns import (get_campaign_by_code_db)
 from models.campaigns_table import campaign_tbl
+from models.campaign_rules_table import campaign_rule_tbl
+
 from schemas.campaign_rules import RuleCreate,AssignCampaignRuleToCampaign,AssignCampaignRuleResponse,CreateCampaignRuleResponse,PaginatedCampaignRules
-from schemas.rules_schema import RuleSchema,ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse,DeactivateRuleResponseModel,ActivateCampaignRuleResponse,GetCampaignRuleResponse,UpdateCampaignRule,UpdatingSalarySchema,UpdatingDerivedIncomeSchema,UpdateAgeSchema,GetAllCampaignRulesResponse,ActivateRuleResponseModel,UpdateNumberOfLeads,DeleteCampaignRuleResponse
+from schemas.rules_schema import RuleSchema,ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse,DeactivateRuleResponseModel,ActivateCampaignRuleResponse,GetCampaignRuleResponse,UpdateCampaignRule,UpdatingSalarySchema,UpdatingDerivedIncomeSchema,UpdateAgeSchema,GetAllCampaignRulesResponse,ActivateRuleResponseModel,UpdateNumberOfLeads,DeleteCampaignRuleResponse,CampaignRulesTotal
 from utils.campaign_rules_helper import extract_numeric_rule
 
 #rules logger
@@ -57,7 +64,6 @@ async def create_campaign_rule_db(campaign_code:str,rule:RuleSchema,session:Asyn
 
 #search rule_code by rule_name
 async def get_campaign_rule_by_rule_name_db(rule_name:str,session:AsyncSession,user):
-    print("enter the method for fetch rules by name")
     rule_query=await session.exec(select(rules_tbl).where(rules_tbl.rule_name==rule_name))
     rule=rule_query.first()
     if not rule:
@@ -92,18 +98,27 @@ async def update_campaign_name_db(rule_code:str,update_name:str,session:AsyncSes
 async def deactivate_campaign_db(rule_code,session:AsyncSession,user)->DeactivateRuleResponseModel:
     try:
         rule=await session.get(rules_tbl,rule_code)
+
         if not rule:
-            campaign_rules_logger.info(f"user:{user.id} with email:{user.email} attempted to update campaign rule:{rule_code}")
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested campaign rules")
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested campaign rule does not exist on the campaign rules table")
+        
+        campaign_rule_tbl_query=await session.exec(select(campaign_rule_tbl).where(campaign_rule_tbl.rule_code==rule_code))
+        campaign_rule_tbl_result=campaign_rule_tbl_query.one_or_none()
+
+        if campaign_rule_tbl_result==None:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"rule:{rule_code} does not exist on the campaign rule table")
+        campaign_rule_tbl_result.is_active=False
         rule.is_active=False
-        session.add(rule)
         await session.commit()
         await session.refresh(rule)
+        campaign_rules_logger.info(f"user:{user.id} with email:{user.email} deactivaed campaign rule:{rule.rule_code}")
         return DeactivateRuleResponseModel(rule_code=rule_code,rule_name=rule.rule_name,message=f"Campaign rule with rule code:{rule_code} has been deactivated")
     
-    except Exception:
+    
+    except HTTPException:
         raise
     except Exception as e:
+
         campaign_rules_logger.exception(f"an internal server error occurred while updating campaign rule:{rule_code},{str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while updating campaign rule:{rule_code}")
 
@@ -114,9 +129,14 @@ async def activate_campaign_db(rule_code,session:AsyncSession,user)->ActivateRul
         rule=await session.get(rules_tbl,rule_code)
         if not rule:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Camapign rule:{rule_code} does not exist")
+        campaign_rule_tbl_query=await session.exec(select(campaign_rule_tbl).where(campaign_rule_tbl.rule_code==rule_code))
+        campaign_rule_tbl_result=campaign_rule_tbl_query.one_or_none()
+
+        if not campaign_rule_tbl_result:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Campaign rule is alraedy active, or it is not assigned to anything")
         
+        campaign_rule_tbl_result.is_active=True
         rule.is_active=True
-        session.add(rule)
         await session.commit()
         await session.refresh(rule)
         return ActivateRuleResponseModel(rule_code=rule_code,rule_name=rule.rule_name,message=f"campaign rule:{rule_code} has been activated",is_active=True)
@@ -157,7 +177,11 @@ async def assign_campaign_rule_to_campaign_db(rule:AssignCampaignRuleToCampaign,
         #find campaign, exit and raise an exception if it's does not exist
         rule_code=rule.rule_code
         camp_code=rule.camp_code
-        campaign=await get_campaign_by_code_db(rule.camp_code)
+        print("print the incoming payload")
+        print(rule)
+
+        campaign=await get_campaign_by_code_db(rule.camp_code,session)
+        print()
         if campaign==None:
             campaign_rules_logger.info(f"user with user id:{user.id} with email:{user.email} requested campaign with code:{rule.rule_code} and it does not exist")
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Campaign:{rule.camp_code} does not exist, create it and than assign to rule code:{rule.rule_code}")
@@ -171,6 +195,9 @@ async def assign_campaign_rule_to_campaign_db(rule:AssignCampaignRuleToCampaign,
                   AND c.is_active = TRUE
                 """
         )
+
+        print("print the sql query")
+        print(query)
 
         result=await session.execute(query,{"camp_code":camp_code})
         rows=result.fetchall()
@@ -304,19 +331,8 @@ ALLOWED_SORT_FIELDS = {
 
 
 #search for campaign rule
-async def search_for_a_campaign_rule_db(
-    page: int,
-    page_size: int,
-    session: AsyncSession,
-    user,
-    rule_name: Optional[str] = None,
-    salary: Optional[int] = None,
-    derived_income: Optional[int] = None,
-    sort_by: str = "created_at",
-    sort_order: str = "desc"
-):
+async def search_for_a_campaign_rule_db(page: int,page_size: int,session: AsyncSession,user,rule_name: Optional[str] = None,salary: Optional[int] = None,derived_income: Optional[int] = None,sort_by: str = "created_at",sort_order: str = "desc"):
     try:
-        print("enter search method")
         query = select(rules_tbl)
         if rule_name:
             query = query.where(rules_tbl.rule_name.ilike(f"%{rule_name}%"))
@@ -343,23 +359,17 @@ async def search_for_a_campaign_rule_db(
         sort_col = ALLOWED_SORT_FIELDS.get(sort_by)
 
         if not sort_col:
-            raise HTTPException(
-                status_code=400,
-                detail=f"sort_by must be one of {list(ALLOWED_SORT_FIELDS.keys())}"
-            )
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"sort_by must be one of {list(ALLOWED_SORT_FIELDS.keys())}")
 
         if sort_order.lower() == "asc":
+
             query = query.order_by(sort_col.asc())
         else:
             query = query.order_by(sort_col.desc())
 
-        total = await session.scalar(
-            select(func.count()).select_from(query.subquery())
-        )
-
+        total = await session.scalar(select(func.count()).select_from(query.subquery()))
         offset = (page - 1) * page_size
         query = query.offset(offset).limit(page_size)
-
         result = await session.exec(query)
         rows = result.all()
         rules_list = []
@@ -368,7 +378,6 @@ async def search_for_a_campaign_rule_db(
 
             rules_list.append(
                 GetCampaignRuleResponse(
-                    status=r.status,
                     rule_code=r.rule_code,
                     rule_name=r.rule_name,
                     is_active=r.is_active,
@@ -382,21 +391,11 @@ async def search_for_a_campaign_rule_db(
                 )
             )
 
-        return GetAllCampaignRulesResponse(
-            total=total or 0,
-            page=page,
-            page_size=page_size,
-            rules=rules_list
-        )
+        return GetAllCampaignRulesResponse(total=total or 0,page=page,page_size=page_size,rules=rules_list)
 
     except Exception as e:
-        campaign_rules_logger.exception(
-            f"error while searching rules by user {user.id}, email:{user.email}: {str(e)}"
-        )
-        raise HTTPException(
-            status_code=500,
-            detail="Internal server error while searching campaign rules"
-        )
+        campaign_rules_logger.exception(f"error while searching rules by user {user.id}, email:{user.email}: {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="Internal server error while searching campaign rules")
 
 
 #get rules within a salary range
@@ -540,23 +539,27 @@ async def fetch_campaign_code_from_campaign_tbl_db(camp_code:str,session:AsyncSe
 
     print(f"the campaign code:{camp_code}")
 
+    print("enter the first crud method")
+
     stmt_campaign = text("""
         SELECT camp_code 
         FROM campaign_tbl 
         WHERE camp_code = :camp_code
     """)
-    campaign_query=await session.exec(select(campaign_tbl.camp_code).where(campaign_tbl.camp_code==camp_code))
+    campaign_query=await session.exec(select(campaign_tbl).where(campaign_tbl.camp_code==camp_code))
     campaign_result=campaign_query.first()
+    if campaign_result==None:
+        return None
     # params={"camp_code": camp_code}
     # result_campaign = await session.execute(stmt_campaign,params)
     # campaign = result_campaign.scalar_one_or_none()
-    print("print what is returned what is database")
+    print("print what is returned from the database")
     print(campaign_result)
-    return campaign_result
+    return campaign_result.camp_code
+
 
 
 async def fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db(camp_code:str,session:AsyncSession):
-        
         stmt_campaign=text("""
             SELECT r.rule_code
             FROM campaign_rule_tbl c
@@ -564,96 +567,145 @@ async def fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db(camp_code:str
             WHERE c.camp_code = :camp_code
               AND c.is_active = TRUE
         """)
-
-        print(f"print the campaign code:{camp_code} inside the crud method")
-
-        result=await session.exec(stmt_campaign,{"camp_code":camp_code})
-
-        rule_code=result.scalar_one_or_none()
-
+        result=await session.execute(stmt_campaign,{"camp_code":camp_code})
+        rule_code=result.scalars().first()
         return rule_code
     
 
+async def update_campaign_rule_and_insert_rule_code_db(
+    rule_code: int,
+    camp_code: str,
+    session: AsyncSession
+):
+   
+    todaysdate = datetime.utcnow().strftime('%Y-%m-%d')
 
-async def update_campaign_rule_and_insert_rule_code_db(rule_code:int,camp_code:str,session:AsyncSession):
+    # deactivate_stmt = text("""
+    #     UPDATE campaign_rule_tbl
+    #     SET is_active = FALSE
+    #     WHERE camp_code = :camp_code
+    #       AND is_active = TRUE
+    # """)
     
-    todaysdate=datetime.today().strftime('%Y-%m-%d')
 
-    rule_stmt=text("""UPDATE campaign_rule_tbl SET is_active = False WHERE camp_code = :camp_code""")
-        
-
-    insert_rule_stmt=text("""
-        INSERT INTO campaign_rule_tbl (camp_code, rule_code, date_rule_created, is_active)
-        VALUES (:camp_code, :rule_code, :date_rule_created, True)
-    """)
-
-    update_params={
-        "camp_code":camp_code
-    }
+    # insert_stmt = text("""
+    #     INSERT INTO campaign_rule_tbl (camp_code, rule_code, date_rule_created, is_active)
+    #     VALUES (:camp_code, :rule_code, :date_rule_created, TRUE)
+    #     RETURNING camp_code, rule_code, date_rule_created, is_active
+    # """)
 
 
-    params={
-        "camp_code":camp_code,
-        "rule_code":rule_code,
-        "date_rule_created":todaysdate
-    }
 
-  
-      
-    await session.execute(rule_stmt,update_params)
-    await session.execute(insert_rule_stmt,params)
-    await session.commit()
+    try:
+        # # Deactivate current active rule (if any)
+        # await session.execute(deactivate_stmt, {"camp_code": camp_code})
 
-    return
+        # # Insert the new active rule
+        # result = await session.execute(
+        #     insert_stmt,
+        #     {
+        #         "camp_code": camp_code,
+        #         "rule_code": rule_code,
+        #         "date_rule_created": todaysdate
+        #     }
+        # )
+
+        # row=result.fetchone()
+        # await session.commit()
+        # # Return the newly inserted record
+        print(f"print inside update AND insert rule code:{rule_code}")
+        stmt_deactivate=(select(campaign_rule_tbl).where(campaign_rule_tbl.camp_code==camp_code,campaign_rule_tbl.is_active==True))
+        result=await session.exec(stmt_deactivate)
+        active_rules=result.all()
+        for rule in active_rules:
+            rule.is_active=False
+            session.add(rule) # Mark for update
+
+
+        new_rule=campaign_rule_tbl(camp_code=camp_code,rule_code=rule_code,is_active=True)
+        session.add(new_rule)
+        await session.commit()
+        await session.refresh(new_rule)
+        return new_rule.camp_code
+    
+    except IntegrityError as e:
+        # Handles duplicate rule insertion attempts
+        await session.rollback()
+        raise ValueError(f"Duplicate entry: (camp_code={camp_code}, rule_code={rule_code}) must be unique.") from e
+
+    except Exception as e:
+        # Catch any other SQL/database error
+        await session.rollback()
+        raise
 
 
 async def insert_new_campaign_rule_on_campaign_rule_tbl_db(camp_code:str,rule_code:int,session:AsyncSession):
     try:
-        todaysdate = datetime.today().strftime("%Y-%m-%d")
+        todaysdate = datetime.strptime("2025-12-08", "%Y-%m-%d").date()
 
-        insert_stmt = text("""
-            INSERT INTO campaign_rule_tbl
-                (camp_code, rule_code, date_rule_created, is_active)
-            VALUES
-                (:camp_code, :rule_code, :date_rule_created, True)
-        """)
+        # insert_stmt = text("""
+        #     INSERT INTO campaign_rule_tbl (camp_code, rule_code,is_active)
+        #     VALUES (:camp_code, :rule_code,TRUE)
+        #     RETURNING camp_code, rule_code, date_rule_created, is_active
+        # """
+        # )
 
-        params={
-            "camp_code":camp_code,
-            "rule_code":rule_code,
-            "date_rule_created":todaysdate
-        }
+        # params={
+        #     "camp_code":camp_code,
+        #     "rule_code":rule_code
+        # }
 
-        async with session.begin():
-            await session.exec(insert_stmt,params)
-            await session.commit()
-        
-        return
+        new_rule=campaign_rule_tbl(camp_code=camp_code,rule_code=rule_code,is_active=True)
+        session.add(new_rule)
+        await session.commit()
+        await session.refresh(new_rule)
+        # await session.execute(insert_stmt,params)
+        # await session.commit()
+        #return camp_code for confirmation
+        return new_rule.camp_code
+    
+    
+    except IntegrityError:
+          raise ValueError(
+            f"Duplicate entry: (camp_code={camp_code}, rule_code={rule_code})"
+        )
     except Exception:
         campaign_rules_logger.exception(f"an exception occurred insert a new rule on campaign_rule_tbl")
         raise
 
 
-
-
 async def remove_campaign_rule_db(rule_code:int,session:AsyncSession,user)->DeleteCampaignRuleResponse:
     try:
-        rule_query=await session.exec(select(rules_tbl).where(rules_tbl.rule_code==rule_code))
-        rule=rule_query.one_or_none()
-        if rule==None:
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"campaign rule with rule code:{rule_code} does not exist")
-        #delete rule
-        await session.delete(rule)
+        stmt_rule=select(rules_tbl).where(rules_tbl.rule_code==rule_code)
+        result_obj=await session.exec(stmt_rule)
+        result=result_obj.one_or_none()
+        if not result:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No rule found with rule_code:{rule_code}")
+        if result.is_active==True:
+            print("print the test before raising an exception")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"The request rule cannot be deleted since it is still active and potentially assigned to a campaign")
+        await session.delete(result)
         await session.commit()
         campaign_rules_logger.info(f"user:{user.id} with email {user.email} deleted rule with rule code:{rule_code}")
-        return DeleteCampaignRuleResponse(message=f"campaign rule with rule code:{rule_code} has been deleted from the database",success=True)
-    
+        return DeleteCampaignRuleResponse(message=f"all resources with with rule code:{rule_code} have been deleted from the database",success=True)
     except HTTPException:
-        await session.rollback()
         raise
-
+    except SQLAlchemyError as e:
+        campaign_rules_logger.exception(f"an exception occurred while deleting resource with rule code:{rule_code}:{str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"Database error while deleting rule with rule code:{rule_code}")
     except Exception:
-        await session.rollback()
         campaign_rules_logger.exception("an exception occurred while deleting a rule")
         raise
 
+
+
+async def total_campaign_rules_db(session:AsyncSession,user)->CampaignRulesTotal:
+    try:
+        result=await session.exec(select(func.count()).select_from(rules_tbl))
+        campaign_rules_total=result.one()
+        campaign_rules_logger.info(f"user:{user.id} with email:{user.email} retrieved a total of {campaign_rules_total} rules")
+        
+        return CampaignRulesTotal(total_number_of_rules=campaign_rules_total)
+    except Exception as e:
+        campaign_rules_logger.exception(f"an exception occurred while retrieving campaign rules total:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while fetching the total number of campaign rules on the system")

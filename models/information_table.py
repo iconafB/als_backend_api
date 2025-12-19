@@ -16,8 +16,9 @@ if TYPE_CHECKING:
     from models.lead_history_table import lead_history_tbl
 
 class info_tbl(SQLModel,table=True):
-    cell:Optional[str]=Field(primary_key=True,index=True)
-    id:str=Field(default=None)
+    pk:Optional[int]=Field(primary_key=True,default=None)
+    cell:str=Field(default=None,index=True,unique=True)
+    id:str=Field(default=None,unique=True,index=True)
     title:Optional[str]=None
     fore_name:Optional[str]=None
     last_name:Optional[str]=None
@@ -28,9 +29,15 @@ class info_tbl(SQLModel,table=True):
     salary:Optional[float]=None
     status:Optional[str]=None
     derived_income:Optional[float]=None
-    type_data:Optional[str]=None
+    typedata:Optional[str]=None
     last_used:Optional[datetime]=None
     extra_info:Optional[str]=None
+
+    # finance:location_tbl=Relationship(back_populates="info_location")
+    # contact:contact_tbl=Relationship(back_populates="info_contact")
+    # info_car:car_tbl=Relationship(back_populates="car_info")
+    # blacklist_record:blacklist_tbl=Relationship(back_populates="blacklist_info")
+    # cell_employment:employment_tbl=Relationship(back_populates="employment_cell")
 
     #created_at:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False,default=None)
     

@@ -29,300 +29,142 @@ def apply_numeric_condition(sql_field_name:str,rule_obj,sql:str,params:dict):
 
 
 
+def build_dynamic_rule_engine(rule: dict):
 
-def build_dynamic_rule_engine(rule: RuleSchema):
-    sql = """
-    SELECT id, fore_name, last_name, cell
-    FROM info_tbl
-    WHERE 1=1
-    """
+    SQL = "SELECT id, fore_name, last_name, cell FROM info_tbl WHERE 1=1"
     params = {}
-    # SALARY (always include IS NULL)
-    salary_rule = rule['salary']
-    salary_op = salary_rule['operator']
+    salary_rule = rule.get('salary', {})
+    salary_op = salary_rule.get('operator')
     salary_conditions = ["salary IS NULL"]
 
     if salary_op == "between":
-        salary_conditions.append("salary BETWEEN :salary_lower AND :salary_upper")
-        params["salary_lower"] = salary_rule['lower']
-        params["salary_upper"] = salary_rule['upper']
+        lower = salary_rule.get('lower')
+        upper = salary_rule.get('upper')
+        if lower is not None and upper is not None:
+            salary_conditions.append("salary BETWEEN :salary_lower AND :salary_upper")
+            params["salary_lower"] = lower
+            params["salary_upper"] = upper
     else:
-        op_map = {
-            "equal": "=",
-            "not_equal": "!=",
-            "less_than": "<",
-            "less_than_equal": "<=",
-            "greater_than": ">",
-            "greater_than_equal": ">="
-        }
-        salary_conditions.append(f"salary {op_map[salary_op]} :salary_value")
+        value = salary_rule.get('value')
+        if value is not None:
+            op_map = {
+                "equal": "=", "not_equal": "!=", "less_than": "<",
+                "less_than_equal": "<=", "greater_than": ">", "greater_than_equal": ">="
+            }
+            salary_conditions.append(f"salary {op_map.get(salary_op, '=')} :salary_value")
+            params["salary_value"] = value
 
-        params["salary_value"] = salary_rule['value']
+    SQL += " AND (" + " OR ".join(salary_conditions) + ")"
 
-    sql += " AND (" + " OR ".join(salary_conditions) + ")"
-
-    # GENDER optional
-
-    if rule['gender']['value']!="NULL":
-        op_map_gender = {"equal": "=", "not_equal": "!="}
-        gender_op = op_map_gender[rule['gender']['operator']]
-        sql += f" AND (gender {gender_op} :gender_value)"
-        params["gender_value"] = rule['gender']['value']
-    
-    # TYPEDATA
-    typedata_rule = rule["typedata"]
-    typedata_value=rule["typedata"]["value"]
-    op_map_typedata = {"equal": "=", "not_equal": "!="}
-    typedata_op = op_map_typedata[typedata_rule["operator"]]
-    sql += f" AND (typedata {typedata_op} :typedata_value)"
-    params["typedata_value"]=typedata_value
-
-    # # DERIVED INCOME
-
-    if  rule["derived_income"]['value']!=0.0 or rule['derived_income']['upper']!=0.0 or rule['derived_income']['lower']!=0.0:
-
+   
+    if 'derived_income' in rule:
         income_rule = rule["derived_income"]
-        
-        income_op = income_rule["operator"]
+        income_op = income_rule.get("operator")
+
         if income_op == "between":
-            sql += " AND (derived_income BETWEEN :income_lower AND :income_upper)"
-            params["income_lower"] = income_rule["lower"]
-            params["income_upper"] = income_rule["upper"]
-        else:
-            op_map_income = {"equal": "=", "not_equal": "!=","less_than": "<","less_than_equal": "<=","greater_than": ">","greater_than_equal": ">="}
-            sql += f" AND (derived_income {op_map_income[income_op]} :income_value)"
-            print("print the income value from the sql query builder")
-            print(income_rule['value'])
-            params["income_value"] = income_rule["value"]
+            lower = income_rule.get("lower")
+            upper = income_rule.get("upper")
+            if lower is not None and upper is not None:
+                SQL += " AND (derived_income BETWEEN :income_lower AND :income_upper)"
+                params["income_lower"] = lower
+                params["income_upper"] = upper
+        elif income_rule.get("value") not in (None, 0.0):
+            value = income_rule.get("value")
+            if value is not None:
+                op_map = {
+                    "equal": "=", "not_equal": "!=", "less_than": "<",
+                    "less_than_equal": "<=", "greater_than": ">", "greater_than_equal": ">="
+                }
+                SQL += f" AND (derived_income {op_map.get(income_op, '=')} :income_value)"
+                params["income_value"] = value
 
+  
+    if 'gender' in rule:
+        gender_rule = rule["gender"]
+        gender_value = gender_rule.get("value")
+        if gender_value not in (None, "", "NULL"):
+            gender_str = str(gender_value).strip().upper()
+            if gender_str != "BOTH":
+                op_map = {"equal": "=", "not_equal": "!="}
+                op = op_map.get(gender_rule.get("operator"), "=")
+                SQL += f" AND (gender {op} :gender_value)"
+                params["gender_value"] = str(gender_value).strip()
 
-    # #AGE calculated from SA ID number
-    if rule["age"]["value"] is not None or rule["age"]["lower"] is not None or rule["age"]["upper"] is not None:
+  
 
-        age_rule = rule["age"]
-        age_op = age_rule["operator"]
-        # Base age calculation with SA ID validation
-          # Expression to calculate age from SA ID
-        # age_expr = f"""
-        # EXTRACT(YEAR FROM AGE(
-        #     CURRENT_DATE,
-        #     MAKE_DATE(
-        #         CASE
-        #             WHEN CAST(SUBSTRING(id,1,2) AS INT) <= CAST(TO_CHAR(CURRENT_DATE,'YY') AS INT)
-        #                 THEN 2000 + CAST(SUBSTRING(id,1,2) AS INT)
-        #             ELSE 1900 + CAST(SUBSTRING(id,1,2) AS INT)
-        #         END,
-        #         CAST(SUBSTRING(id,3,2) AS INT),
-        #         CAST(SUBSTRING(id,5,2) AS INT)
-        #     )
-        # ))
-        # """
+    last_used_value = rule.get("last_used", {}).get("value")
+    if last_used_value is not None:
+        SQL += " AND (last_used IS NULL OR DATE_PART('day', NOW() - last_used) > :last_used)"
+        params["last_used"] = last_used_value
+
+   
+    age_rule = rule.get("age", {})
+    age_op = age_rule.get("operator")
+
+    if age_op and (
+        age_rule.get("value") is not None or
+        (age_rule.get("lower") is not None and age_rule.get("upper") is not None)
+    ):
+        yy = "CAST(SUBSTRING(id, 1, 2) AS INTEGER)"
+        mm = "CAST(SUBSTRING(id, 3, 2) AS INTEGER)"
+        dd = "CAST(SUBSTRING(id, 5, 2) AS INTEGER)"
+        current_yy = "EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER % 100"
+
+        birth_year = f"""
+            CASE 
+                WHEN {yy} <= {current_yy} THEN 2000 + {yy}
+                ELSE 1900 + {yy}
+            END
+        """
+
+        is_leap = f"""
+            ({birth_year} % 4 = 0 AND ({birth_year} % 100 != 0 OR {birth_year} % 400 = 0))
+        """
+
+        max_days = f"""
+            CASE {mm}
+                WHEN 1 THEN 31 WHEN 3 THEN 31 WHEN 5 THEN 31 WHEN 7 THEN 31
+                WHEN 8 THEN 31 WHEN 10 THEN 31 WHEN 12 THEN 31
+                WHEN 4 THEN 30 WHEN 6 THEN 30 WHEN 9 THEN 30 WHEN 11 THEN 30
+                WHEN 2 THEN CASE WHEN {is_leap} THEN 29 ELSE 28 END
+                ELSE 0
+            END
+        """
+
+        sa_id_valid = f"{mm} BETWEEN 1 AND 12 AND {dd} BETWEEN 1 AND {max_days}"
 
         age_expr = f"""
-                EXTRACT(YEAR FROM AGE(
-                    CURRENT_DATE,
-                    MAKE_DATE(
-                        CASE
-                            WHEN CAST(SUBSTRING(id,1,2) AS INT) <= CAST(TO_CHAR(CURRENT_DATE,'YY') AS INT)
-                                THEN 2000 + CAST(SUBSTRING(id,1,2) AS INT)
-                            ELSE 1900 + CAST(SUBSTRING(id,1,2) AS INT)
-                        END,
-                        CAST(SUBSTRING(id,3,2) AS INT),
-                        LEAST(CAST(SUBSTRING(id,5,2) AS INT),
-                              CASE CAST(SUBSTRING(id,3,2) AS INT)
-                                  WHEN 1 THEN 31
-                                  WHEN 2 THEN CASE WHEN EXTRACT(YEAR FROM CURRENT_DATE)::int % 4 = 0 THEN 29 ELSE 28 END
-                                  WHEN 3 THEN 31
-                                  WHEN 4 THEN 30
-                                  WHEN 5 THEN 31
-                                  WHEN 6 THEN 30
-                                  WHEN 7 THEN 31
-                                  WHEN 8 THEN 31
-                                  WHEN 9 THEN 30
-                                  WHEN 10 THEN 31
-                                  WHEN 11 THEN 30
-                                  WHEN 12 THEN 31
-                              END
-                        )
-                    )
-                ))
+            EXTRACT(YEAR FROM AGE(
+                CURRENT_DATE,
+                MAKE_DATE({birth_year}, {mm}, {dd})
+            ))
         """
-        
-        # Always validate month/day of SA ID
-        #sa_id_valid = "(SUBSTRING(id,3,2)::int BETWEEN 1 AND 12 AND SUBSTRING(id,5,2)::int BETWEEN 1 AND 31)"
 
-        # Wrap age_expr with month/day validation
+       
 
-        # op_map_age = {
-        #     "equal": "=",
-        #     "less_than": "<",
-        #     "less_than_equal": "<=",
-        #     "greater_than": ">",
-        #     "greater_than_equal": ">=",
-        #     "between": "BETWEEN"
-        # }
+        if age_op == "between":
+            lower = age_rule.get("lower")
+            upper = age_rule.get("upper")
+            if lower is not None and upper is not None:
+                SQL += f" AND ({sa_id_valid} AND {age_expr} BETWEEN :age_lower AND :age_upper)"
+                params["age_lower"] = lower
+                params["age_upper"] = upper
+        else:
+            value = age_rule.get("value")
+            if value is not None:
+                op_map = {
+                    "equal": "=", "less_than": "<", "less_than_equal": "<=",
+                    "greater_than": ">", "greater_than_equal": ">="
+                }
+                op = op_map.get(age_op, '=')
+                SQL += f" AND ({sa_id_valid} AND {age_expr} {op} :age_value)"
+                params["age_value"] = value
     
-    sa_id_valid = "(SUBSTRING(id,3,2)::int BETWEEN 1 AND 12 AND SUBSTRING(id,5,2)::int BETWEEN 1 AND 31)"
+    num_records = rule.get("number_of_records", {}).get("value")
+    if num_records is not None:
+        SQL += " LIMIT :number_of_records"
+        params["number_of_records"] = num_records
 
-    op_map_age = {
-        "equal": "=",
-        "less_than": "<",
-        "less_than_equal": "<=",
-        "greater_than": ">",
-        "greater_than_equal": ">=",
-        "between": "BETWEEN"
-    }
+   
+    return text(SQL), params
 
-
-    if age_op == "between":
-
-        sql += f" AND ({sa_id_valid} AND ({age_expr} BETWEEN :age_lower AND :age_upper))"
-        params["age_lower"] = age_rule["lower"]
-        params["age_upper"] = age_rule["upper"]
-    
-    else:
-        sql += f" AND ({sa_id_valid} AND ({age_expr} {op_map_age[age_op]} :age_value))"
-        params["age_value"] = age_rule["value"]
-        
-    # # date last used records
-    if rule["last_used"]["value"] is not None:
-        last_used_days = rule["last_used"]["value"]
-        sql += " AND (last_used IS NULL OR DATE_PART('day', now() - last_used) > :last_used)"
-        params["last_used"] = last_used_days
-    
-    if rule['number_of_records'] is not None:
-        number_of_records=rule["number_of_records"]["value"]
-        params["number_of_records"]=number_of_records
-        sql += " LIMIT :number_of_records"
-    
-    return text(sql), params
-
-
-
-
-
-
-
-
-# """Refactored dynamic SQL rule engine.
-
-# Features:
-# - Clean, modular helpers for numeric and enum conditions
-# - Robust SA ID -> date validation using TO_DATE to avoid invalid dates (prevents DatetimeFieldOverflowError)
-# - Uses a list of SQL clauses and parameter dict
-# - Well-documented functions and types
-
-# Assumes:
-# - RuleSchema is the dict-like structure you provided earlier (keeps flexible access)
-# - `text` from sqlalchemy.sql is used for returning the statement
-
-# You can drop this file into your project and import `build_dynamic_rule_engine`.
-# """
-# from typing import Dict, Tuple, Any, List, Optional
-# from sqlalchemy.sql import text
-# from typing import Optional
-
-# from schemas.rules_schema import RuleSchema, NumericCondition, GenderCondition, TypeDataCondition, AgeCondition, LastUsedCondition, RecordsLoadedCondition
-
-# # If you have an explicit RuleSchema dataclass or pydantic model, import it.
-# # from schemas.rules_schema import RuleSchema
-
-
-# def apply_numeric_condition(
-#     sql_field: str,
-#     rule_obj: Dict[str, Any],
-#     clauses: List[str],
-#     params: Dict[str, Any],
-#     prefix: Optional[str] = None,
-# ) -> None:
-#     """Append a numeric condition for a given field to clauses and params in-place.
-
-#     Supports operator values: equal, not_equal, less_than, less_than_equal,
-#     greater_than, greater_than_equal, between.
-
-#     If prefix is supplied it will be used for parameter names (helps reuse for multiple fields).
-#     """
-#     if prefix is None:
-#         prefix = sql_field
-
-#     op_map = {
-#         "equal": "=",
-#         "not_equal": "!=",
-#         "less_than": "<",
-#         "less_than_equal": "<=",
-#         "greater_than": ">",
-#         "greater_than_equal": ">=",
-#     }
-
-#     operator = (rule_obj.get("operator") or "").lower()
-
-#     if operator == "between":
-#         clauses.append(f"{sql_field} BETWEEN :{prefix}_lower AND :{prefix}_upper")
-#         params[f"{prefix}_lower"] = rule_obj.get("lower")
-#         params[f"{prefix}_upper"] = rule_obj.get("upper")
-#         return
-
-#     # For single-value operators
-#     if operator in op_map:
-#         clauses.append(f"{sql_field} {op_map[operator]} :{prefix}_value")
-#         params[f"{prefix}_value"] = rule_obj.get("value")
-#         return
-
-#     # Unknown operator -> do nothing (could raise if you prefer)
-
-
-# def apply_enum_condition(
-#     sql_field: str,
-#     rule_obj: Dict[str, Any],
-#     clauses: List[str],
-#     params: Dict[str, Any],
-#     null_string_handling: Optional[str] = None,
-#     param_name: Optional[str] = None,
-# ) -> None:
-#     """Append an enum/string equality condition. Handles 'NULL' sentinel if desired.
-
-#     - null_string_handling: if set to 'skip_on_NULL' then a rule_obj value of the string 'NULL'
-#       will cause the condition to be skipped.
-#     """
-#     value = rule_obj.get("value")
-#     if value is None:
-#         return
-
-#     if null_string_handling == "skip_on_NULL" and isinstance(value, str) and value.upper() == "NULL":
-#         return
-
-#     op_map = {"equal": "=", "not_equal": "!="}
-#     operator = (rule_obj.get("operator") or "").lower()
-#     if operator not in op_map:
-#         return
-
-#     param_name = param_name or sql_field
-#     clauses.append(f"{sql_field} {op_map[operator]} :{param_name}")
-#     params[param_name] = value
-
-
-# def sa_id_to_age_expression() -> Tuple[str, str]:
-#     """Return SQL fragments for validating SA ID and extracting age safely.
-
-#     Uses TO_DATE(SUBSTRING(id,1,6),'YYMMDD') which returns NULL for invalid dates.
-#     Returns a tuple (validation_expression, age_expression).
-#     """
-#     sa_id_valid = "TO_DATE(SUBSTRING(id,1,6), 'YYMMDD') IS NOT NULL"
-
-#     age_expr = (
-#         "EXTRACT(YEAR FROM AGE(CURRENT_DATE, TO_DATE(SUBSTRING(id,1,6), 'YYMMDD')))"
-#     )
-
-#     return sa_id_valid, age_expr
-
-
-# def build_dynamic_rule_engine(rule:RuleSchema):
-#     base_select = (
-#             "SELECT id, fore_name, last_name, cell\n"
-#             "FROM info_tbl\n"
-#                 "WHERE 1=1"
-#                 )
-#     clauses: List[str] = []
-#     params: Dict[str, Any] = {}
-
-#     return True

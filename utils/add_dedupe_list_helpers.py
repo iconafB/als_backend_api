@@ -8,15 +8,17 @@ from utils.add_dedupe_list_helpers_sql_queries import INSERT_INTO_CAMPAIGN_DEDUP
 
 dedupe_logger=define_logger("als_dedupe_campaign_logs","logs/dedupe_route.log")
 
+
 async def add_dedupe_list_helper(session:AsyncSession,tuple_list:list[tuple],batch_size:int=1000):
     total_inserted=0
     total_batches=0
     batch_times=[]
     start_total=time.perf_counter()
+
     for i in range(0,len(tuple_list),batch_size):
         batch=tuple_list[i:i + batch_size]
         campaign_dedupe_list=[{"id":d[0],"cell":d[1],"camp_code":d[2],"status":d[3],"key":d[4]} for d in batch]
-        info_table_list=[(t[1],'DEDUPE')for t in batch]
+        info_table_list=[(t[1],'DEDUPE') for t in batch]
         start_batch=time.perf_counter() # start batch timer
         insert_data_to_campaign_dedupe_tbl=text(INSERT_INTO_CAMPAIGN_DEDUPE_TABLE_QUERY)
         insert_data_to_info_tbl=text(INSERT_INTO_INFO_TABLE_QUERY)

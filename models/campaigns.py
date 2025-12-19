@@ -14,6 +14,7 @@ class Deduped_Campaigns(SQLModel,table=True):
     #camp_rule:Rule=Field(default_factory=Rule,sa_column=Column(JSON))
     #created_at:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False,default=None)
 
+
 class dedupe_campaigns_tbl(SQLModel,table=True):
     camp_id:Optional[int]=Field(primary_key=True,nullable=False,default=None)
     branch:str=Field(nullable=False,default=None)

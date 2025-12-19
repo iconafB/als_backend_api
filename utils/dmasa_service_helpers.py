@@ -1,6 +1,5 @@
 from fastapi import HTTPException,status,Depends
 from sqlmodel import select
-import requests
 from sqlalchemy.ext.asyncio.session import AsyncSession
 import json
 from settings.Settings import get_settings
@@ -44,6 +43,7 @@ class DMAClassHelper:
             data = resp.json()
             return data['Credits'] 
         
+        
         except httpx.HTTPStatusError as exc:
            dma_logger.error(f"DMASA credit check failed [{exc.response.status_code}]: {exc.response.text}")
            raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail="Failed to connect to DMASA credit check service")
@@ -69,17 +69,11 @@ class DMAClassHelper:
         }
 
         try:
-            # response=requests.post(
-            #     url=self.submit_dedupes_dmasa_url,
-            #     headers=headers,
-            #     data=json.dumps(payload),  
-            #     verify=False,
-            #     timeout=5400
-            # )
+          
             resp = await self.client.post(
                 self.submit_dedupes_dmasa_url,
                 json=payload,
-                timeout=httpx.Timeout(5400.0)  # 90 minutes
+                timeout=httpx.Timeout(540.0)  # 90 minutes
             )
             resp.raise_for_status()
             result = resp.json()
@@ -126,6 +120,7 @@ class DMAClassHelper:
         try:
             record_query=await session.execute(select(dma_audit_id_table).where(dma_audit_id_table.audit_id==audit_id))
             record=record_query.scalars().one_or_none()
+
             if not record:
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"An invalid or unknwon audit id submitted")
                 
@@ -142,6 +137,7 @@ class DMAClassHelper:
                 await session.commit()
                 dma_logger.info(f"Dedupe complete for AuditID: {audit_id}")
                 return True
+            
             return False
         
         except httpx.RequestError as exc:
@@ -177,16 +173,12 @@ class DMAClassHelper:
             #result = response.json()
 
             errors = result.get("Errors", [])
-            if errors and errors != [] and errors != "":
+            if errors:
                 dma_logger.error(f"DMASA read output errors for {audit_id}: {errors}")
                 raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,detail=f"DMASA returned errors: {errors}")
             
            # Handle possible key variations
-            return (
-                result.get("ReadOutput")
-                or result.get("Output")
-                or result.get("ReadOuput")
-            )
+            return (result.get("ReadOutput") or result.get("Output")or result.get("ReadOuput"))
             
         except httpx.RequestError as exc:
             #need better return or exception propagation
@@ -206,7 +198,6 @@ class DMAClassHelper:
             if dedupe_status in ('Download Ready', 'Dedupe Complete'):
                 return True
             await asyncio.sleep(delay)
-
         return False
 
 #Factory function for dependency injection,fool

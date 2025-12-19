@@ -7,7 +7,6 @@ from utils.auth import get_current_user
 from utils.logger import define_logger
 from schemas.dnc_schemas import DNCNumberResponse
 from utils.dnc_util import send_dnc_list_to_db
-from utils.auth import get_current_active_user
 
 dnc_logger=define_logger("als dnc logs","logs/dnc_route.log")
 
@@ -24,9 +23,7 @@ dnc_router=APIRouter(tags=["DNC Enpoints"],prefix="/dnc")
 
 def _extract_numbers(iterable):
     for raw in iterable:
-
         val=str(raw).strip()
-
         if TEN_DIGIT_PATTERN.match(val):
             yield val
 
@@ -79,16 +76,13 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
                     for chunk in pl.read_csv(csv_io,has_header=False,separator=",",dtypes=[pl.Utf8],batch_size=100_000):
                         column_name=chunk.columns[0]
                         dnc_list.extend(_extract_numbers(chunk.get_column(column_name)))    
-
                 except Exception as e:
                     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Invalid CSV format:{str(e)}")
-
             elif filename.endswith((".xls", ".xlsx")):
                 bio=io.BytesIO(contents)
                 try:
                     with pd.ExcelFile(bio,engine="openpyxl") as excel_file:
                         for sheet_name in excel_file.sheet_names:
-
                             for chunk_df in pd.read_excel(excel_file,sheet_name=sheet_name,header=None,dtype=str,engine="openpyxl",chunksize=100_000):
                                 dnc_list.extend(_extract_numbers(chunk_df.iloc[:,0]))
                 except ImportError:
@@ -106,14 +100,12 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
         else:
             process_status=False
             result='No valid 10-digit records were added to the dnc'
-
         dnc_logger.info(f"user:{user.id} with email:{user.email} added {len(dnc_list)} numbers to the dnc list")
-
         return DNCNumberResponse(status=process_status,message=result)
     
     except HTTPException:
         raise
 
     except Exception as e:
-        dnc_logger.error(f"{str(e)}")
+        dnc_logger.exception(f"exception occurred while adding number to dnc:{str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"error reading file")

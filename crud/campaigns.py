@@ -4,11 +4,13 @@ from sqlalchemy import func,or_
 from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import List,Annotated,Tuple,Dict,Optional
 from models.campaigns_table import campaign_tbl
-from schemas.campaigns import CreateCampaign,UpdateCampaignName,CreateCampaignResponse,InfiniteResponseSchema
+from schemas.campaigns import CreateCampaign,UpdateCampaignName,CreateCampaignResponse,InfiniteResponseSchema,CampaignsTotal
 from utils.logger import define_logger
 from models.campaigns_table import campaign_tbl
+from schemas.campaigns import CampaignSpecLevelResponse
 from models.rules_table import rules_tbl
-
+from crud.rule_engine_db import get_rule_by_name_db
+from utils.check_spec_levels_helper import spec_level_query_builder
 #create campaign on the master db
 
 campaigns_logger=define_logger("als campaign logs","logs/campaigns_route.log")
@@ -111,7 +113,6 @@ async def get_all_campaigns_db(session:AsyncSession,page:int,page_size:int,user)
     }
 
 
-
 async def get_all_campaigns_infinite_scroll_db(
     session: AsyncSession,
     page: int,
@@ -207,3 +208,34 @@ async def get_active_campaign_to_load(camp_code:str,session:AsyncSession):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred")
     
 
+async def get_total_campaigns_on_the_db(session:AsyncSession,user)->CampaignsTotal:
+    try:
+        result=await session.exec(select(func.count()).select_from(campaign_tbl))
+        campaigns_total=result.one()
+        campaigns_logger.info(f"user:{user.id} with email:{user.email} fetched a total of:{campaigns_total} campaigns")
+        return CampaignsTotal(total_number_of_campaigns=campaigns_total)
+    
+    except Exception as e:
+        campaigns_logger.exception(f"exception occurred while fetching the total number of campaigns:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while fetching the total number of campaigns")
+
+
+async def get_spec_level_campaign_name_db(rule_name:str,session:AsyncSession,user)->CampaignSpecLevelResponse:
+    try:
+        result=await get_rule_by_name_db(rule_name,session)
+
+        if result==None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"campaign rule:{rule_name} does not exist")
+        #builder the sql query and return it
+        stmt,params=spec_level_query_builder(result[0].rule_json)
+        #This returns a list of dictionaries
+        rows=await session.execute(stmt,params)
+        #count the number of entries
+        number_of_row_entries=len(rows.mappings().all())
+        campaigns_logger.info(f"user:{user.id} with email:{user.email} check the specific level for rule name:{rule_name}")
+        
+        return CampaignSpecLevelResponse(rule_name=rule_name,number_of_leads_available=number_of_row_entries)
+    
+    except Exception as e:
+        campaigns_logger.exception(f"An exception occurred while fetching the spec level for campaign rule name:{rule_name}, {str(e)}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while checking the specification level for campaign rule:{rule_name}")

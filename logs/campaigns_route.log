@@ -1480,3 +1480,890 @@ AttributeError: 'ScalarResult' object has no attribute 'scalar'
 2025-12-05 11:21:18,929 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
 2025-12-05 11:32:01,707 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
 2025-12-05 11:32:01,707 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 18:34:27,912 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 18:34:27,912 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 18:34:32,527 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 18:34:32,527 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 18:34:41,663 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-07 18:34:41,663 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-07 18:35:39,696 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 18:35:39,696 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 18:36:01,421 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TELESURE_DEDUPE from branch:HQ
+2025-12-07 18:36:01,421 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TELESURE_DEDUPE from branch:HQ
+2025-12-07 18:36:21,552 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 18:36:21,552 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 18:46:45,034 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 18:46:45,034 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 18:57:09,599 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 18:57:09,599 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:08:51,239 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:08:51,239 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:17:55,626 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:17:55,626 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:18:23,834 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:18:23,834 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-07 19:18:41,884 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MARETE from branch:HQ
+2025-12-07 19:18:41,884 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MARETE from branch:HQ
+2025-12-07 19:18:41,896 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-07 19:18:41,896 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-07 19:20:19,536 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TONY DAYIMANE from branch:INVTNTDBN
+2025-12-07 19:20:19,536 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TONY DAYIMANE from branch:INVTNTDBN
+2025-12-07 19:20:19,548 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-07 19:20:19,548 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-07 19:22:42,338 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-07 19:22:42,338 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-07 19:23:00,128 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CASSPER from branch:P3
+2025-12-07 19:23:00,128 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CASSPER from branch:P3
+2025-12-07 19:23:00,138 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-07 19:23:00,138 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-07 19:23:15,926 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:mamelodi_sundowns from branch:P3
+2025-12-07 19:23:15,926 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:mamelodi_sundowns from branch:P3
+2025-12-07 19:23:15,935 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:23:15,935 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:29:32,859 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:29:32,859 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:29:55,220 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KWESTA from branch:P3
+2025-12-07 19:29:55,220 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KWESTA from branch:P3
+2025-12-07 19:29:55,231 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-07 19:29:55,231 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-07 19:31:13,827 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MNQOBI_YAZO from branch:INVTNTDBN
+2025-12-07 19:31:13,827 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MNQOBI_YAZO from branch:INVTNTDBN
+2025-12-07 19:31:13,842 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 19:31:13,842 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 19:32:54,859 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 19:32:54,859 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 19:36:18,305 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 19:36:18,305 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 19:37:41,902 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:37:41,902 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 19:37:43,562 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-07 19:37:43,562 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-07 19:37:45,211 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 19:37:45,211 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:06:08,685 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 20:06:08,685 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-07 20:06:27,280 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ORLANDO_PIRATES from branch:P3
+2025-12-07 20:06:27,280 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ORLANDO_PIRATES from branch:P3
+2025-12-07 20:06:27,301 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-07 20:06:27,301 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-07 20:06:35,577 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:06:35,577 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:06:57,476 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER_CHIEFS from branch:HQ
+2025-12-07 20:06:57,476 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER_CHIEFS from branch:HQ
+2025-12-07 20:06:57,493 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:06:57,493 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:07:00,419 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-07 20:07:00,419 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-07 20:10:16,571 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-07 20:10:16,571 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-07 20:10:34,318 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:mamelodi_sundowns_fc from branch:P3
+2025-12-07 20:10:34,318 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:mamelodi_sundowns_fc from branch:P3
+2025-12-07 20:10:34,333 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 20:10:34,333 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 20:10:44,148 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 20:10:44,148 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 20:10:47,434 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 20:10:47,434 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-07 20:10:48,724 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:10:48,724 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-07 20:55:34,224 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 20:55:34,224 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 21:00:58,134 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-07 21:00:58,134 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-08 04:30:11,376 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-08 04:30:11,376 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-08 04:40:16,885 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-08 04:40:16,885 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-08 04:42:58,415 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 04:42:58,415 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 04:43:27,906 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MAMELODI_SUNDOWNS from branch:P3
+2025-12-08 04:43:27,906 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MAMELODI_SUNDOWNS from branch:P3
+2025-12-08 04:43:27,935 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 04:43:27,935 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 06:02:51,518 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 06:02:51,518 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 06:03:08,608 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER CHIEFS from branch:HQ
+2025-12-08 06:03:08,608 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER CHIEFS from branch:HQ
+2025-12-08 06:03:08,618 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 06:03:08,618 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 06:20:05,166 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 06:20:05,166 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 06:20:37,843 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_5 from branch:HQ
+2025-12-08 06:20:37,843 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_5 from branch:HQ
+2025-12-08 06:20:37,853 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 06:20:37,853 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 06:25:58,345 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 06:25:58,345 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 06:26:15,212 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_4 from branch:INVTNTDBN
+2025-12-08 06:26:15,212 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_4 from branch:INVTNTDBN
+2025-12-08 06:26:15,222 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-08 06:26:15,222 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-08 06:30:23,736 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_6X from branch:P3
+2025-12-08 06:30:23,736 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_6X from branch:P3
+2025-12-08 06:30:23,749 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 06:30:23,749 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 06:34:08,449 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_7X from branch:HQ
+2025-12-08 06:34:08,449 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_7X from branch:HQ
+2025-12-08 06:34:08,458 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 06:34:08,458 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 06:44:49,275 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 06:44:49,275 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 08:31:35,690 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 08:31:35,690 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-08 08:32:04,455 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_8X from branch:INVTNTDBN
+2025-12-08 08:32:04,455 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCE_8X from branch:INVTNTDBN
+2025-12-08 08:32:04,466 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-08 08:32:04,466 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-08 08:32:08,284 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:32:08,284 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:38:10,995 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-08 08:38:10,995 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-08 08:38:15,454 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:38:15,454 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:38:19,569 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:38:19,569 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:38:20,708 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 08:38:20,708 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 08:38:21,964 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:38:21,964 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:38:53,849 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TELESURE_CAMP from branch:HQ
+2025-12-08 08:38:53,849 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TELESURE_CAMP from branch:HQ
+2025-12-08 08:38:53,864 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:38:53,864 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:39:03,551 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 08:39:03,551 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 08:39:17,180 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 08:39:17,180 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 08:47:01,152 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 08:47:01,152 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 08:48:37,909 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:48:37,909 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:48:41,637 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:48:41,637 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 08:48:42,930 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 08:48:42,930 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 08:48:44,023 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 08:48:44,023 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 09:01:22,476 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:01:22,476 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:01:25,298 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 09:01:25,298 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-08 09:01:27,058 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 09:01:27,058 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 09:01:28,099 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 09:01:28,099 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 09:03:22,637 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 09:03:22,637 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 09:15:32,687 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:15:32,687 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:27:57,672 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:27:57,672 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-08 09:28:15,327 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TEST_5_CAMPAIGN from branch:INVTNTDBN
+2025-12-08 09:28:15,327 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TEST_5_CAMPAIGN from branch:INVTNTDBN
+2025-12-08 09:28:15,344 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 09:28:15,344 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 11:04:02,879 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 11:04:02,879 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 11:16:54,558 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 11:16:54,558 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-08 11:18:38,722 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 11:18:38,722 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 11:19:02,515 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:FIRST_CAMPAIGN from branch:P3
+2025-12-08 11:19:02,515 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:FIRST_CAMPAIGN from branch:P3
+2025-12-08 11:19:02,530 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:19:02,530 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:33:29,722 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:33:29,722 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:34:48,602 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:34:48,602 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:45:03,410 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:45:03,410 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:50:23,458 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 11:50:23,458 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 12:09:00,942 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 12:09:00,942 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 1 campaigns
+2025-12-08 12:11:27,494 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MAMELODI_SUNDOWNS from branch:HQ
+2025-12-08 12:11:27,494 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MAMELODI_SUNDOWNS from branch:HQ
+2025-12-08 12:11:27,504 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:11:27,504 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:23:00,257 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:23:00,257 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:28:14,134 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:28:14,134 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:36:17,342 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 12:36:17,342 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 14:59:05,299 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 14:59:05,299 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:05:17,068 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:05:17,068 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:05:18,688 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 15:05:18,688 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-08 15:14:49,547 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:14:49,547 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:22:43,895 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:22:43,895 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-08 15:24:07,450 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN RULE from branch:P3
+2025-12-08 15:24:07,450 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN RULE from branch:P3
+2025-12-08 15:24:07,460 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 15:24:07,460 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-08 15:24:36,969 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:never campaign group from branch:HQ
+2025-12-08 15:24:36,969 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:never campaign group from branch:HQ
+2025-12-08 15:24:36,978 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-08 15:24:36,978 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-09 08:31:00,232 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-09 08:31:00,232 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-09 08:33:20,617 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MIWAY_GROUP_WHAT_WHAT from branch:HQ
+2025-12-09 08:33:20,617 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MIWAY_GROUP_WHAT_WHAT from branch:HQ
+2025-12-09 08:33:20,629 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:33:20,629 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:35:22,476 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-09 08:35:22,476 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-09 08:43:40,770 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:43:40,770 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:46:38,235 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:46:38,235 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:59:26,257 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 08:59:26,257 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-09 09:00:25,783 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:timmy from branch:INVTNTDBN
+2025-12-09 09:00:25,783 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:timmy from branch:INVTNTDBN
+2025-12-09 09:00:25,794 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:00:25,794 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:06:57,630 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:06:57,630 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:14:03,413 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:14:03,413 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:42:32,612 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 09:42:32,612 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 10:56:15,728 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-09 10:56:15,728 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 15:37:31,665 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 15:37:31,665 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:02:27,818 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:02:27,818 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:07:28,990 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:07:28,990 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:13:10,294 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:13:10,294 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-10 16:13:26,334 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:flow_test from branch:INVTNTDBN
+2025-12-10 16:13:26,334 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:flow_test from branch:INVTNTDBN
+2025-12-10 16:13:26,346 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:13:26,346 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:22:53,176 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:22:53,176 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:22:54,361 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:22:54,361 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:22:55,974 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-10 16:22:55,974 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-10 16:22:57,075 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-10 16:22:57,075 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-10 16:22:58,156 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:22:58,156 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:23:03,797 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:23:03,797 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:28:27,183 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:28:27,183 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:30:38,960 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-10 16:30:38,960 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-10 16:30:40,208 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-10 16:30:40,208 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 2 campaigns
+2025-12-10 16:35:26,674 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:35:26,674 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:38:22,549 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:38:22,549 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:44:30,527 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:44:30,527 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-10 16:45:02,659 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:FLOW TEST 1 from branch:P3
+2025-12-10 16:45:02,659 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:FLOW TEST 1 from branch:P3
+2025-12-10 16:45:02,674 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:45:02,674 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:46:38,271 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:46:38,271 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:46:43,852 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:46:43,852 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:46:46,787 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:46:46,787 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-10 16:51:22,445 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:51:22,445 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 8 campaigns
+2025-12-10 16:52:01,175 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:RESPONSE from branch:HQ
+2025-12-10 16:52:01,175 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:RESPONSE from branch:HQ
+2025-12-10 16:52:01,188 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-10 16:52:01,188 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-11 06:47:46,180 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-11 06:47:46,180 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 9 campaigns
+2025-12-11 06:48:13,700 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN_ONE from branch:HQ
+2025-12-11 06:48:13,700 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN_ONE from branch:HQ
+2025-12-11 06:48:13,728 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 06:48:13,728 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 06:55:09,719 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 06:55:09,719 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 06:55:55,738 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:YELLOWS_CAMPANY_2 from branch:HQ
+2025-12-11 06:55:55,738 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:YELLOWS_CAMPANY_2 from branch:HQ
+2025-12-11 06:55:55,757 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 06:55:55,757 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:01:58,399 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:01:58,399 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:50:25,279 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:50:25,279 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:51:02,237 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN_TEST_THREE from branch:INVTNTDBN
+2025-12-11 07:51:02,237 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CAMPAIGN_TEST_THREE from branch:INVTNTDBN
+2025-12-11 07:51:02,252 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:51:02,252 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:54:29,395 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:54:29,395 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:54:50,913 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCER_1_CAMPAIGN from branch:P3
+2025-12-11 07:54:50,913 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:DANCER_1_CAMPAIGN from branch:P3
+2025-12-11 07:54:50,923 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:54:50,923 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:57:51,445 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TESTING_TWO from branch:HQ
+2025-12-11 07:57:51,445 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:TESTING_TWO from branch:HQ
+2025-12-11 07:57:51,456 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 07:57:51,456 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:00:48,890 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-11 08:00:48,890 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 4 campaigns
+2025-12-11 08:00:49,972 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 08:00:49,972 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 08:00:50,984 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 08:00:50,984 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 08:02:13,421 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MATERIAL_UI from branch:HQ
+2025-12-11 08:02:13,421 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MATERIAL_UI from branch:HQ
+2025-12-11 08:02:13,430 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:02:13,430 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:04:29,548 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:GIANTS_TELESURE from branch:P3
+2025-12-11 08:04:29,548 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:GIANTS_TELESURE from branch:P3
+2025-12-11 08:04:29,558 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:04:29,558 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:09:49,029 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:09:49,029 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:10:28,007 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:10:28,007 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:17:51,820 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:17:51,820 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:27:09,070 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:27:09,070 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:37:07,913 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:37:07,913 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:37:09,633 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-11 08:37:09,633 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 6 campaigns
+2025-12-11 08:44:57,347 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:44:57,347 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:45:17,288 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER_CHIEFS_ONE from branch:HQ
+2025-12-11 08:45:17,288 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:KAIZER_CHIEFS_ONE from branch:HQ
+2025-12-11 08:45:17,299 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:45:17,299 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:51:10,975 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 08:51:10,975 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:17:18,124 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:17:18,124 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:17:40,562 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ORLANDO_PIRATES from branch:HQ
+2025-12-11 09:17:40,562 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ORLANDO_PIRATES from branch:HQ
+2025-12-11 09:17:40,571 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:17:40,571 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:21:32,899 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:21:32,899 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:21:59,027 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SENIOR_OATS from branch:P3
+2025-12-11 09:21:59,027 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SENIOR_OATS from branch:P3
+2025-12-11 09:21:59,037 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:21:59,037 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:27:07,149 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:27:07,149 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:37:10,276 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:37:10,276 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:37:48,084 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SECOND_CAMPAIGN from branch:P3
+2025-12-11 09:37:48,084 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SECOND_CAMPAIGN from branch:P3
+2025-12-11 09:37:48,096 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:37:48,096 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:40:40,456 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:40:40,456 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:41:08,810 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ARSENAL_FOOTBALL_CLUB from branch:HQ
+2025-12-11 09:41:08,810 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ARSENAL_FOOTBALL_CLUB from branch:HQ
+2025-12-11 09:41:08,822 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:41:08,822 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:53:11,400 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:53:11,400 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:54:01,724 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ICON_AF from branch:HQ
+2025-12-11 09:54:01,724 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ICON_AF from branch:HQ
+2025-12-11 09:54:01,735 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 09:54:01,735 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:00:35,605 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:00:35,605 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:09:25,742 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:09:25,742 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:20:13,163 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:20:13,163 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:20:38,676 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:20:38,676 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:20:40,442 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:40,442 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:42,010 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:42,010 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:42,675 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:42,675 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,036 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,036 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,344 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,344 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,487 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,487 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,712 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,712 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,897 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:43,897 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,214 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,214 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,349 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,349 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,563 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,563 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,790 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,790 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,994 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:44,994 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:45,719 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:45,719 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:45,908 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:45,908 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:46,130 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:20:46,130 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 10:25:54,037 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:25:54,037 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:26:54,959 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CREATED_CAMPAIGN from branch:P3
+2025-12-11 10:26:54,959 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:CREATED_CAMPAIGN from branch:P3
+2025-12-11 10:26:54,972 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:26:54,972 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:29:07,485 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-11 10:29:07,485 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 3 campaigns
+2025-12-11 10:33:30,385 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:33:30,385 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:34:03,943 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SJAVA_BIG_ZULU from branch:P3
+2025-12-11 10:34:03,943 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:SJAVA_BIG_ZULU from branch:P3
+2025-12-11 10:34:03,957 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:34:03,957 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:46:03,028 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:46:03,028 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:48:57,463 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:BERGVILLE_FINEST from branch:HQ
+2025-12-11 10:48:57,463 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:BERGVILLE_FINEST from branch:HQ
+2025-12-11 10:48:57,473 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:48:57,473 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:56:08,947 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:56:08,947 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:58:10,010 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:58:10,010 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:58:47,614 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:JUST_DANCE_CAMPAIGN from branch:P3
+2025-12-11 10:58:47,614 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:JUST_DANCE_CAMPAIGN from branch:P3
+2025-12-11 10:58:47,624 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 10:58:47,624 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:14:05,117 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:14:05,117 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:34:44,060 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:34:44,060 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:35:24,590 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MNQOBI_YAZO from branch:P3
+2025-12-11 11:35:24,590 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:MNQOBI_YAZO from branch:P3
+2025-12-11 11:35:24,603 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:35:24,603 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:40:12,789 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-11 11:40:12,789 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 7 campaigns
+2025-12-11 11:40:14,025 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 11:40:14,025 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 0 campaigns
+2025-12-11 11:40:27,427 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:40:27,427 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:40:31,584 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:40:31,584 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:42:35,125 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:LIMIT_NALA from branch:HQ
+2025-12-11 11:42:35,125 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:LIMIT_NALA from branch:HQ
+2025-12-11 11:42:35,138 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 11:42:35,138 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 12:56:49,025 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 12:56:49,025 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 12:59:08,718 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ICON_AF_DATA from branch:INVTNTDBN
+2025-12-11 12:59:08,718 - als_campaign_logs - INFO - user:6 with email:Mnqobi@gmail.com created campaign:ICON_AF_DATA from branch:INVTNTDBN
+2025-12-11 12:59:08,813 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 12:59:08,813 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:26:01,468 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:26:01,468 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:41:07,976 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:41:07,976 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:50:11,308 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:50:11,308 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 13:50:20,668 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-11 13:50:20,668 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 5 campaigns
+2025-12-11 14:00:46,431 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-11 14:00:46,431 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-12 08:52:52,718 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-12 08:52:52,718 - als campaign logs - INFO - user:6 with email:Mnqobi@gmail.com retrieved 10 campaigns
+2025-12-14 15:54:33,257 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-14 15:54:33,257 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-14 16:09:31,503 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-14 16:09:31,503 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-15 07:56:01,728 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-15 07:56:01,728 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-15 08:04:27,183 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-15 08:04:27,183 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-15 08:04:53,781 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:terfdfsddfd from branch:HQ
+2025-12-15 08:04:53,781 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:terfdfsddfd from branch:HQ
+2025-12-15 08:04:53,796 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-15 08:04:53,796 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-15 09:15:31,127 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-15 09:15:31,127 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-15 09:58:54,018 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-15 09:58:54,018 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-17 14:27:42,184 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:27:42,184 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:27:42,184 - als campaign logs - ERROR - exception occurred while fetching the total number of campaigns:This result object is closed.
+Traceback (most recent call last):
+  File "C:\Users\iconaf\Documents\als_folder\als_backend_api\crud\campaigns.py", line 217, in get_total_campaigns_on_the_db
+    return result.one()
+           ~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1815, in one
+    return self._only_one_row(
+           ~~~~~~~~~~~~~~~~~~^
+        raise_for_second_row=True, raise_for_none=True, scalar=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 757, in _only_one_row
+    row: Optional[_InterimRowType[Any]] = onerow(hard_close=True)
+                                          ~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1678, in _fetchone_impl
+    return self._real_result._fetchone_impl(hard_close=hard_close)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2262, in _fetchone_impl
+    self._raise_hard_closed()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2248, in _raise_hard_closed
+    raise exc.ResourceClosedError("This result object is closed.")
+sqlalchemy.exc.ResourceClosedError: This result object is closed.
+2025-12-17 14:27:42,184 - als campaign logs - ERROR - exception occurred while fetching the total number of campaigns:This result object is closed.
+Traceback (most recent call last):
+  File "C:\Users\iconaf\Documents\als_folder\als_backend_api\crud\campaigns.py", line 217, in get_total_campaigns_on_the_db
+    return result.one()
+           ~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1815, in one
+    return self._only_one_row(
+           ~~~~~~~~~~~~~~~~~~^
+        raise_for_second_row=True, raise_for_none=True, scalar=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 757, in _only_one_row
+    row: Optional[_InterimRowType[Any]] = onerow(hard_close=True)
+                                          ~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1678, in _fetchone_impl
+    return self._real_result._fetchone_impl(hard_close=hard_close)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2262, in _fetchone_impl
+    self._raise_hard_closed()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2248, in _raise_hard_closed
+    raise exc.ResourceClosedError("This result object is closed.")
+sqlalchemy.exc.ResourceClosedError: This result object is closed.
+2025-12-17 14:28:18,112 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:28:18,112 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:28:18,112 - als campaign logs - ERROR - exception occurred while fetching the total number of campaigns:This result object is closed.
+Traceback (most recent call last):
+  File "C:\Users\iconaf\Documents\als_folder\als_backend_api\crud\campaigns.py", line 220, in get_total_campaigns_on_the_db
+    return result.one()
+           ~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1815, in one
+    return self._only_one_row(
+           ~~~~~~~~~~~~~~~~~~^
+        raise_for_second_row=True, raise_for_none=True, scalar=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 757, in _only_one_row
+    row: Optional[_InterimRowType[Any]] = onerow(hard_close=True)
+                                          ~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1678, in _fetchone_impl
+    return self._real_result._fetchone_impl(hard_close=hard_close)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2262, in _fetchone_impl
+    self._raise_hard_closed()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2248, in _raise_hard_closed
+    raise exc.ResourceClosedError("This result object is closed.")
+sqlalchemy.exc.ResourceClosedError: This result object is closed.
+2025-12-17 14:28:18,112 - als campaign logs - ERROR - exception occurred while fetching the total number of campaigns:This result object is closed.
+Traceback (most recent call last):
+  File "C:\Users\iconaf\Documents\als_folder\als_backend_api\crud\campaigns.py", line 220, in get_total_campaigns_on_the_db
+    return result.one()
+           ~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1815, in one
+    return self._only_one_row(
+           ~~~~~~~~~~~~~~~~~~^
+        raise_for_second_row=True, raise_for_none=True, scalar=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 757, in _only_one_row
+    row: Optional[_InterimRowType[Any]] = onerow(hard_close=True)
+                                          ~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 1678, in _fetchone_impl
+    return self._real_result._fetchone_impl(hard_close=hard_close)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2262, in _fetchone_impl
+    self._raise_hard_closed()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\iconaf\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\result.py", line 2248, in _raise_hard_closed
+    raise exc.ResourceClosedError("This result object is closed.")
+sqlalchemy.exc.ResourceClosedError: This result object is closed.
+2025-12-17 14:29:40,209 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:29:40,209 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:30:12,816 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:30:12,816 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:31:09,920 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:31:09,920 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:43:28,776 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:43:28,776 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:43:39,788 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:43:39,788 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:51:02,104 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-17 14:51:02,104 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-17 14:58:15,935 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 14:58:15,935 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:14:20,081 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:14:20,081 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:17:17,129 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:17:17,129 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:24:27,234 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:24:27,234 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:31:07,976 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:31:07,976 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:36:58,298 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-17 15:36:58,298 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-18 08:13:18,692 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-18 08:13:18,692 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:1 campaigns
+2025-12-18 08:14:30,167 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-18 08:14:30,167 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-18 08:18:34,234 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:mamelodi_sundowns from branch:INVTNTDBN
+2025-12-18 08:18:34,234 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:mamelodi_sundowns from branch:INVTNTDBN
+2025-12-18 08:18:34,234 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:mamelodi_sundowns from branch:INVTNTDBN
+2025-12-18 08:18:34,251 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 2 campaigns
+2025-12-18 08:18:34,251 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 2 campaigns
+2025-12-18 08:19:27,602 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:2 campaigns
+2025-12-18 08:19:27,602 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:2 campaigns
+2025-12-18 08:21:03,370 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ORLANDO_PIRATES from branch:P3
+2025-12-18 08:21:03,370 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ORLANDO_PIRATES from branch:P3
+2025-12-18 08:21:03,370 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ORLANDO_PIRATES from branch:P3
+2025-12-18 08:21:03,382 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 3 campaigns
+2025-12-18 08:21:03,382 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 3 campaigns
+2025-12-18 08:21:57,543 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:21:57,543 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:24:24,787 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:24:24,787 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:25:51,238 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:25:51,238 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:26:21,855 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:26:21,855 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:3 campaigns
+2025-12-18 08:26:24,903 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 3 campaigns
+2025-12-18 08:26:24,903 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 3 campaigns
+2025-12-18 08:26:49,081 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:Never Campaign Group from branch:P3
+2025-12-18 08:26:49,081 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:Never Campaign Group from branch:P3
+2025-12-18 08:26:49,081 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:Never Campaign Group from branch:P3
+2025-12-18 08:26:49,095 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 4 campaigns
+2025-12-18 08:26:49,095 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 4 campaigns
+2025-12-18 08:27:40,599 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:27:40,599 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:16,534 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:16,534 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:20,276 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:20,276 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:46,798 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:46,798 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:4 campaigns
+2025-12-18 08:30:48,586 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 4 campaigns
+2025-12-18 08:30:48,586 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 4 campaigns
+2025-12-18 08:36:02,908 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MNQOBI_YAZO from branch:P3
+2025-12-18 08:36:02,908 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MNQOBI_YAZO from branch:P3
+2025-12-18 08:36:02,908 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MNQOBI_YAZO from branch:P3
+2025-12-18 08:36:02,923 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 5 campaigns
+2025-12-18 08:36:02,923 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 5 campaigns
+2025-12-18 08:37:37,035 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:KAIZER CHIEFS from branch:HQ
+2025-12-18 08:37:37,035 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:KAIZER CHIEFS from branch:HQ
+2025-12-18 08:37:37,035 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:KAIZER CHIEFS from branch:HQ
+2025-12-18 08:37:37,053 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 6 campaigns
+2025-12-18 08:37:37,053 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 6 campaigns
+2025-12-18 08:39:01,507 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:NEW YORK GIANTS from branch:HQ
+2025-12-18 08:39:01,507 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:NEW YORK GIANTS from branch:HQ
+2025-12-18 08:39:01,507 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:NEW YORK GIANTS from branch:HQ
+2025-12-18 08:39:01,517 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 7 campaigns
+2025-12-18 08:39:01,517 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 7 campaigns
+2025-12-18 08:41:49,659 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ARSENAL FOOTBALL CLUB from branch:INVTNTDBN
+2025-12-18 08:41:49,659 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ARSENAL FOOTBALL CLUB from branch:INVTNTDBN
+2025-12-18 08:41:49,659 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:ARSENAL FOOTBALL CLUB from branch:INVTNTDBN
+2025-12-18 08:41:49,669 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 8 campaigns
+2025-12-18 08:41:49,669 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 8 campaigns
+2025-12-18 08:45:26,563 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:CHELSEA from branch:HQ
+2025-12-18 08:45:26,563 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:CHELSEA from branch:HQ
+2025-12-18 08:45:26,563 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:CHELSEA from branch:HQ
+2025-12-18 08:45:26,574 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 9 campaigns
+2025-12-18 08:45:26,574 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 9 campaigns
+2025-12-18 08:46:44,942 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:SPAIN from branch:P3
+2025-12-18 08:46:44,942 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:SPAIN from branch:P3
+2025-12-18 08:46:44,942 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:SPAIN from branch:P3
+2025-12-18 08:46:44,955 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:46:44,955 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:48:06,735 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:FRANCE from branch:HQ
+2025-12-18 08:48:06,735 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:FRANCE from branch:HQ
+2025-12-18 08:48:06,735 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:FRANCE from branch:HQ
+2025-12-18 08:48:06,746 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:48:06,746 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:50:57,995 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-18 08:50:57,995 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 1 campaigns
+2025-12-18 08:50:59,386 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 08:50:59,386 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 08:54:23,718 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:54:23,718 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 08:59:58,956 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 08:59:58,956 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:11:06,637 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:11:06,637 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:16,969 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:16,969 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:21,452 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:21,452 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:25,605 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:25,605 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:29,053 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:26:29,053 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:32:39,717 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:32:39,717 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:11 campaigns
+2025-12-18 09:32:42,123 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 09:32:42,123 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 09:33:13,168 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MIWAY_JOBURG from branch:P3
+2025-12-18 09:33:13,168 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MIWAY_JOBURG from branch:P3
+2025-12-18 09:33:13,168 - als_campaign_logs - INFO - user:2 with email:Peter@gmail.com created campaign:MIWAY_JOBURG from branch:P3
+2025-12-18 09:33:13,182 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 09:33:13,182 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 10:51:29,199 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 10:51:29,199 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 12:44:17,813 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 12:44:17,813 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 13:59:38,850 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 13:59:38,850 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 14:09:08,556 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 14:09:08,556 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 14:09:10,013 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 2 campaigns
+2025-12-18 14:09:10,013 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 2 campaigns
+2025-12-18 14:09:11,412 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 14:09:11,412 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 14:09:12,414 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 14:09:12,414 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 0 campaigns
+2025-12-18 14:26:41,822 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 14:26:41,822 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 14:26:57,525 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 14:26:57,525 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 14:26:58,919 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 14:26:58,919 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 15:18:50,824 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:18:50,824 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:25,783 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:25,783 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:28,462 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:28,462 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:32,335 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:32,335 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:36,372 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:36,372 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:37,434 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:37,434 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:47,577 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:47,577 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:50,394 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:50,394 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:53,408 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:53,408 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:56,347 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:56,347 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:58,435 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:33:58,435 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:02,671 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:02,671 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:03,920 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:03,920 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:05,634 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:05,634 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:28,467 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:28,467 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:46,368 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:46,368 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:54,422 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:34:54,422 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:40,598 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:40,598 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:42,344 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:42,344 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:46,435 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:46,435 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:48,537 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:48,537 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:50,414 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:50,414 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:55,474 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:55,474 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:58,528 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:35:58,528 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:02,533 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:02,533 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:04,573 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:04,573 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:06,528 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:06,528 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:10,407 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:10,407 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:14,527 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:14,527 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:16,590 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:16,590 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:19,536 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:19,536 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:21,797 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:21,797 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:34,397 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:34,397 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:35,442 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:35,442 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:38,491 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:38,491 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:40,710 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:40,710 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:56,452 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:56,452 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:59,559 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:36:59,559 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:06,699 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:06,699 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:13,415 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:13,415 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:16,958 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:16,958 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:33,441 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:33,441 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:47,372 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:37:47,372 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:46:22,515 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:46:22,515 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:46:38,575 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 15:46:38,575 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:06:14,129 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:06:14,129 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:37:14,676 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:37:14,676 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:37:28,207 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 16:37:28,207 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-18 16:38:03,776 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-18 16:38:03,776 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:08:17,693 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:08:17,693 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:08:38,742 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 04:08:38,742 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 04:10:18,057 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:10:18,057 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:31:49,840 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 04:31:49,840 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 04:31:52,294 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 04:31:52,294 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 07:56:44,926 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 07:56:44,926 - als campaign logs - INFO - user:2 with email:Peter@gmail.com fetched a total of:12 campaigns
+2025-12-19 07:56:58,741 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 07:56:58,741 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 08:02:25,243 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns
+2025-12-19 08:02:25,243 - als campaign logs - INFO - user:2 with email:Peter@gmail.com retrieved 10 campaigns

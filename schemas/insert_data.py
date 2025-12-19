@@ -5,7 +5,6 @@ import re
 
 
 class StatusedData(BaseModel):
-
     idnum: Optional[str] = None
     cell: Optional[str] = None
     date_created: Optional[str] = None
@@ -101,6 +100,8 @@ class StatusedData(BaseModel):
             return "FEMALE" if gender_digit <= 4 else "MALE"
         
         return None
+
+
 
 
 class EnrichedData(BaseModel):
@@ -219,10 +220,10 @@ class EnrichedData(BaseModel):
         return data
 
 
-
 class InsertEnrichedDataResponseModel(BaseModel):
     status: str
     elapsed_seconds: float
+
 
 
 
@@ -235,6 +236,42 @@ class InsertStatusDataResponseModel(BaseModel):
     success: bool
     details: Dict[str, TableResult]
     processing_time_sec:float=Field(...,description="Time taken to process the entire operation")
+
+class TableInsertCount(BaseModel):
+    inserted:int
+    updated:int
+
+class UploadStatusResponse(BaseModel):
+    status:str
+    total_rows_processed:int
+    table_counts:Dict[str,TableInsertCount]
+    
+    model_config={
+        "from_attributes":True
+    }
+
+
+
+class TableInsertStatusSummary(BaseModel):
+    table_num:int
+    total_rows:int
+    total_batches:int
+
+class BulkStatusResponse(BaseModel):
+    status:str
+    message:str
+    summary:Dict[int,TableInsertStatusSummary]
+
+
+class TableInsertEnrichedSummary(BaseModel):
+    table_num:int
+    table_rows:int
+    table_batches:int
+
+class BulkEnrichedResponse(BaseModel):
+    status:str
+    message:str
+    summary:Dict[int,TableInsertEnrichedSummary]
 
 
 

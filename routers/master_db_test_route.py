@@ -20,11 +20,9 @@ async def get_persons_by_rule_name(rule_name:str,master_session:AsyncSession=Dep
     result=await get_rule_by_name_db(rule_name,session)
     print("rule fetched")
     print(result)
-
     if result==None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested rule does not exist")
     stmt,params=build_dynamic_rule_engine(result[0].rule_json)
-    
     rows=await master_session.execute(stmt,params)
     result=rows.mappings().all()
     print("print the returned rows")

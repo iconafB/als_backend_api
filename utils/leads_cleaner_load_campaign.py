@@ -59,7 +59,9 @@ def clean_and_process_results(new_result: List[Dict[str, Any]]) -> Tuple[List[Di
         # Fallback for missing fore_name
 
         first_name = fore_name or last_name
+        
         if first_name is None:
+
             continue
 
         # Append directly as dictionaries
