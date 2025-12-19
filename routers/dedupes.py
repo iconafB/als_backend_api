@@ -604,8 +604,8 @@ async def submit_dedupe_return(data:SubmitDedupeReturnSchema,dedupe_file:UploadF
         #look for the campaign
         # extract value 13-digits IDs
 
-        result_count=await calculate_ids_campaign_dedupe_with_status_r(session,data.code)
-
+        result_count=await calculate_ids_campaign_dedupe_with_status_r(session,data.code)   
+        #comment
         if result_count==0:
             dedupe_logger.info(f"No results associated with the dedupe key:{data.code}")
 
