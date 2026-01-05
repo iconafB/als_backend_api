@@ -11,8 +11,10 @@ async def load_leads_for_campaign(rule_name:str,session:AsyncSession):
         result=await get_rule_by_name_db(rule_name,session)
         if result==None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested rule does not exist")
+        
         stmt,params=build_dynamic_rule_engine(result[0].rule_json)
         rows=await session.execute(stmt,params)
+        
         return rows.mappings().all()
     
     except HTTPException:
@@ -21,7 +23,6 @@ async def load_leads_for_campaign(rule_name:str,session:AsyncSession):
     except Exception as e:
         campaigns_logger.exception(f"an exception occurred while loading leads for rule name:{rule_name},{str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while loading for a campaign:{str(e)}")
-    
 
 async def filter_dnc_numbers(leads_results,dnc_list):
     dnc_set=set(dnc_list)

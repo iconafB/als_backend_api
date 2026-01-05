@@ -1,9 +1,7 @@
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Any, Optional, Tuple
 
-# -----------------------------
 # Dataclasses
-# -----------------------------
 
 @dataclass(slots=True)
 class RawRecord:
@@ -72,6 +70,7 @@ def clean_and_process_results(new_result: List[Dict[str, Any]]) -> Tuple[List[Di
             "last_name": last_name or "",
             "phone_number": cell
         })
+
         feeds_cleaning.append({
             "name": first_name,
             "surname": last_name or "",

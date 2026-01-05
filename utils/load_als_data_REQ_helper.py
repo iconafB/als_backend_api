@@ -37,6 +37,7 @@ async def load_leads_to_als_REQ(feeds: List,insert:List[Tuple[str,str,str,str,st
     
     todaysdate = datetime.today().strftime('%Y-%m-%d')
     new_feeds = [i["phone_number"] for i in feeds if i.get("phone_number")]
+    
     update_feeds = [(cell.strip(), todaysdate) for cell in new_feeds]
     #new_list_with_vendor_lead_codes=[item['vendor_lead_code'] for item in feeds]
     

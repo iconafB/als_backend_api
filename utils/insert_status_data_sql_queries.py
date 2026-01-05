@@ -4,8 +4,6 @@ INFO_STATUS_SQL= """"
     ON CONFLICT (cell) DO UPDATE SET created_at = EXCLUDED.created_at, salary = EXCLUDED.salary, status = EXCLUDED.status WHERE info_tbl.cell = EXCLUDED.cell and ((info_tbl.id = EXCLUDED.id) OR (info_tbl.fore_name = EXCLUDED.fore_name or info_tbl.last_name = EXCLUDED.last_name));
     """
 
-
-
 LOCATION_STATUS_SQL= """ 
         INSERT INTO location_tbl(cell, line_one, line_two, suburb, city, postal_code) 
         VALUES (%s, %s, %s, %s, %s, %s) ON CONFLICT (cell) DO NOTHING

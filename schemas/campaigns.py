@@ -5,6 +5,7 @@ class CreateCampaignResponse(BaseModel):
     camp_code:str
     campaign_name:str
     branch:str
+    
     model_config={
         "from_attributes":True
     }

@@ -5,14 +5,15 @@ from datetime import datetime
 
 #store the audit id, number of records,records processed and created_at date, this table tracks the dma
 
-class dma_audit_id_table(SQLModel,table=True):
-    id:int=Field(primary_key=True,nullable=False)
+class dma_audit_id_tbl(SQLModel,table=True):
+    id:int | None=Field(primary_key=True,nullable=False)
     audit_id:str=Field(nullable=False,default=None,index=True)
     number_of_records:int=Field(nullable=False,default=None)
     notification_email:str=Field(nullable=False,default=None,index=True)
-    is_processed:bool=Field(nullable=True,default=False)
-    is_sent_to_dedago:bool=Field(nullable=False,default=None)
-    created_at:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False,default=None)
+    camp_code:str=Field(nullable=False,foreign_key="campaign_tbl.camp_code")
+    dedupe_status:str=Field(nullable=False,default="Dedupe Incomplete")
+    is_processed:bool=Field(nullable=False,default=False)
+    created_at:datetime=Field(sa_column_kwargs={"server_default":func.now()},nullable=False,default=None)
 
 
 
@@ -31,6 +32,7 @@ class dma_records_table(SQLModel,table=True):
 #need to add list name here to fetch it easily and populate the right tables
 #need to know when do we first use this table
 #have an that is a primary key and of serial type
+
 
 #The branch code and camapign code can also go to the list tracker table and be removed from this table
 class dma_validation_data(SQLModel,table=True):

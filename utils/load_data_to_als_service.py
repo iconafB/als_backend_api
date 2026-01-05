@@ -4,8 +4,12 @@ import asyncio
 from settings.Settings import get_settings
 from typing import Annotated
 from fastapi import Depends
+from utils.logger import define_logger
+
+dedago_logger=define_logger("als_load_campaign_logs","logs/dedago_logger_route.log")
 
 class LoadALSClass:
+
     STATUS_LIST = ["BLACKL", "DEC", "INV", "LB", "NDNE", "NEW", "NI", "PTH", "QTR", "SALE", "SENT"]
     BRANCH_LISTS = {
         "INVTNTDBN": [100, 108],
@@ -68,20 +72,28 @@ class LoadALSClass:
                     headers=headers
                 )
                 response.raise_for_status()
+
                 return {"status_code": response.status_code, "list_id": response.json().get("list_id")}
             
             except (httpx.RequestError, httpx.HTTPStatusError) as e:
                 if attempt == retries:
-                    return {"error": f"Failed after {retries} attempts: {str(e)}"}
+                    dedago_logger.info(f"status code:{response.status_code},response message:{response.json()}")
+                    dedago_logger.exception(f"maximum number of retries reached for the dedago service:{e}")
+                    #this is crazy
+
+                    return {"status_code":response.status_code,"list_id":None}
+                
                 # exponential backoff
                 await asyncio.sleep(backoff_factor * (2 ** (attempt - 1)))
 
     async def close(self):
         """Close the HTTP client if it was internally created."""
+
         await self.http_client.aclose()
 
 
 async def get_als_service():
+
     service=LoadALSClass()
     try:
         yield service

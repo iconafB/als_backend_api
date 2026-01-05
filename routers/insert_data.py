@@ -1,4 +1,4 @@
-from fastapi import APIRouter,status as http_status,Depends,Query,HTTPException,UploadFile
+from fastapi import APIRouter,status as http_status,Depends,Query,HTTPException,UploadFile,File
 from fastapi.responses import StreamingResponse
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio.session import AsyncSession
@@ -6,6 +6,8 @@ import os
 import time
 import pandas as pd
 import re,io,csv
+import tempfile,os,shutil
+
 from pathlib import Path
 from typing import List,Dict
 from utils.logger import define_logger
@@ -14,19 +16,20 @@ from utils.auth import get_current_active_user
 from schemas.insert_data import StatusedData,EnrichedData,UploadStatusResponse,TableInsertCount
 from schemas.status_data_routes import InsertStatusDataResponse,InsertEnrichedDataResponse
 from database.master_db_connect import get_async_session
+from database.master_database_test import get_async_master_test_session
+
+from utils.load_data_to_info_table import load_excel_into_info_tbl
+
 from utils.insert_enriched_data_helpers import  insert_table_by_count,insert_vendor_list,FIELD_INDEX,get_enriched_tuple,table_enriched_map
-
 from schemas.insert_data import InsertEnrichedDataResponseModel,InsertStatusDataResponseModel,TableResult,BulkStatusResponse,TableInsertStatusSummary,BulkEnrichedResponse,TableInsertEnrichedSummary
-
 from utils.insert_enriched_data_sql_queries import INFO_TBL_ENRICHED,CONTACT_TBL_SQL,FINANCE_TBL_SQL,CAR_TBL_SQL,EMPLOYMENT_TBL_SQL,LOCATION_TBL_SQL
-
 from utils.insert_status_data_helper import get_status_tuple,insert_vendor_list_status,statused_data_generator_file,table_tuple_generator
 from utils.status_data import get_status_tuple_filed_map,table_map
-
 from utils.insert_status_data_sql_queries import INFO_STATUS_SQL,LOCATION_STATUS_SQL,CONTACT_STATUS_SQL,EMPLOYMENT_STATUS_SQL,CAR_STATUS_SQL,FINANCE_STATUS_SQL
 
 
 BATCH_SIZE=10000
+
 status_data_logger=define_logger("als_status_logger_logs","logs/status_data.log")
 
 insert_data_router=APIRouter(tags=["Data Insertion"],prefix="/insert-data")
@@ -235,9 +238,6 @@ async def insert_enriched_data(filename:str=Query(...,description="Provide the n
         raise HTTPException(status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while inserting enriched data")
 
 
-
-
-
 # @insert_data_router.post("/als/insert_enriched_data",description="Provide the file name for enriched data",status_code=http_status.HTTP_200_OK,response_model=InsertEnrichedDataResponseModel)
 
 # async def insert_enriched_data(filename: str = Query(...,description="Filename is the name of the excel file within the server with an enrinched data"), session: AsyncSession = Depends(get_async_session)):
@@ -282,4 +282,37 @@ async def insert_enriched_data(filename:str=Query(...,description="Provide the n
 #     return InsertEnrichedDataResponseModel(status="Data Inserted Success Fully",elapsed_seconds= elapsed)
 
 
+@insert_data_router.post("/load-info-table",status_code=http_status.HTTP_200_OK,description="Load info table with Ashil's data")
 
+async def load_info_table(file:UploadFile=File(...),session:AsyncSession=Depends(get_async_master_test_session),user=Depends(get_current_active_user)):
+    
+    if not file.filename.lower().endswith((".xlsx",".xlsm")):
+            raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Bad file format")
+    
+    tmp_path=None
+
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+
+            tmp_path = tmp.name
+
+            await file.seek(0)
+            with open(tmp_path, "wb") as out:
+                shutil.copyfileobj(file.file, out)
+
+        inserted = await load_excel_into_info_tbl(session, tmp_path, batch_size=5000)
+
+        return {"success": True, "inserted": inserted}
+        
+    
+    except Exception as e:
+
+        return True
+    
+    finally:
+        try:
+            file.file.close()
+        except Exception:
+            pass
+        if tmp_path and os.path.exists(tmp_path):
+            os.remove(tmp_path)

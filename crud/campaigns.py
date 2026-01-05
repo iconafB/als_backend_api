@@ -2,6 +2,7 @@ from fastapi import HTTPException,status
 from sqlmodel import select
 from sqlalchemy import func,or_
 from sqlmodel.ext.asyncio.session import AsyncSession
+
 from typing import List,Annotated,Tuple,Dict,Optional
 from models.campaigns_table import campaign_tbl
 from schemas.campaigns import CreateCampaign,UpdateCampaignName,CreateCampaignResponse,InfiniteResponseSchema,CampaignsTotal
@@ -13,7 +14,7 @@ from crud.rule_engine_db import get_rule_by_name_db
 from utils.check_spec_levels_helper import spec_level_query_builder
 #create campaign on the master db
 
-campaigns_logger=define_logger("als campaign logs","logs/campaigns_route.log")
+campaigns_logger=define_logger("als_campaign_logs","logs/campaigns_route.log")
 
 #create campaign
 
@@ -86,6 +87,7 @@ async def get_all_campaigns_by_branch_db(branch:str,session:AsyncSession,user,pa
     paginated_campaigns=campaigns[start:end]
     results=[CreateCampaignResponse.model_validate(c) for c in paginated_campaigns]
     campaigns_logger.info(f"user:{user.id} with email:{user.email} retrieve campaigns for branch:{branch}")
+    
     return {
         "total":total,
         "page":page,
@@ -94,23 +96,24 @@ async def get_all_campaigns_by_branch_db(branch:str,session:AsyncSession,user,pa
     }
 
 async def get_all_campaigns_db(session:AsyncSession,page:int,page_size:int,user)->List[CreateCampaignResponse]:
-    campaigns_query=await session.exec(select(campaign_tbl))
-    campaigns=campaigns_query.all()
-    total=len(campaigns)
-    #pagination calculations
-    start=(page - 1)*page_size
-    end=start + page_size
-    paginated_campaigns=campaigns[start:end]
-    results=[CreateCampaignResponse.model_validate(c) for c in paginated_campaigns]
+    
+    total = await session.scalar(select(func.count()).select_from(campaign_tbl))
+    #pagination
+    offset=(page - 1)*page_size
+    stmt=(select(campaign_tbl).order_by(campaign_tbl.pk.desc()).offset(offset).limit(page_size))
 
-    campaigns_logger.info(f"user:{user.id} with email:{user.email} retrieved {len(results)} campaigns")
+    campaigns=(await session.exec(stmt)).all()
 
+    results=[CreateCampaignResponse.model_validate(c) for c in campaigns]
+
+    campaigns_logger.info(f"user:{user.id} with email:{user.email} retrieved page {page} of campaigns")
     return {
         "total":total,
         "page":page,
         "page_size":page_size,
         "results":results
     }
+
 
 
 async def get_all_campaigns_infinite_scroll_db(
@@ -239,3 +242,32 @@ async def get_spec_level_campaign_name_db(rule_name:str,session:AsyncSession,use
     except Exception as e:
         campaigns_logger.exception(f"An exception occurred while fetching the spec level for campaign rule name:{rule_name}, {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while checking the specification level for campaign rule:{rule_name}")
+    
+
+async def search_campaigns_from_db(session:AsyncSession,page:int,page_size:int,campaign_name:Optional[str]=None,branch:Optional[str]=None,camp_code:Optional[str]=None):
+    
+    try:
+        filters=[]
+        if campaign_name and campaign_name.strip():
+            filters.append(campaign_tbl.campaign_name.ilike(f"%{campaign_name.strip()}%"))
+        if branch and branch.strip():
+            filters.append(campaign_tbl.branch.ilike(f"%{branch.strip()}%"))
+        if camp_code and camp_code.strip():
+            filters.append(campaign_tbl.camp_code.ilike(f"%{camp_code.strip()}%"))
+        total = await session.scalar(select(func.count()).select_from(campaign_tbl).where(*filters))
+        offset=(page-1)*page_size
+        stmt=(select(campaign_tbl).where(*filters).offset(offset).limit(page_size))
+        campaigns=(await session.exec(stmt)).all()
+        results=[CreateCampaignResponse.model_validate(c) for c in campaigns]
+
+        return {
+            "total":total,
+            "page":page,
+            "page_size":page_size,
+            "results":results
+        }
+    
+    
+    except Exception as e:
+        campaigns_logger.exception(f"an exception occurred while searching the campaigns table:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while searching the campaigns table")

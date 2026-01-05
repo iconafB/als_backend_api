@@ -14,7 +14,7 @@ import urllib3
 #from utils.emails_service import send_email
 import pandas as pd
 #update the audit id on this table to avoid processing already used ids
-from models.dma_service import dma_audit_id_table
+from models.dma_service import dma_audit_id_tbl
 from models.dma_service import dma_validation_data
 from database.database import get_session
 from utils.logger import define_logger
@@ -155,7 +155,7 @@ class DMA_Class():
 
         try:
             #read data from the audit id table where the values read are not yet processed
-            audit_id_stmt=select(dma_audit_id_table.audit_id,dma_audit_id_table.number_of_records).where(dma_audit_id_table.is_processed==False)
+            audit_id_stmt=select(dma_audit_id_tbl.audit_id,dma_audit_id_tbl.number_of_records)
             #audit id results
             results=session.exec(audit_id_stmt).all()
             #check if this for loop works fine
@@ -170,7 +170,7 @@ class DMA_Class():
                 if isinstance(status_response,list):
                     #You now have the numbers to processed with zeros append,no update the audit id table
                     #fetch the audit id to update
-                    update_audit_stmt=select(dma_audit_id_table).where(dma_audit_id_table.audit_id==audit_id)
+                    update_audit_stmt=select(dma_audit_id_tbl).where(dma_audit_id_tbl.audit_id==audit_id)
                     
                     update_session_result=session.exec(update_audit_stmt).first()
                     
@@ -216,7 +216,7 @@ class DMA_Class():
             
             #Fetch the audit id table entry that matches the given audit id ,use it to update the is processed flag to true meaning records for that audit id have been processed
 
-            audit_id_table_query=select(dma_audit_id_table).where(dma_audit_id_table.audit_id==audit_id)
+            audit_id_table_query=select(dma_audit_id_tbl).where(dma_audit_id_tbl.audit_id==audit_id)
             
             #fetch 
             execute_audit_id_table=session.exec(audit_id_table_query).first()

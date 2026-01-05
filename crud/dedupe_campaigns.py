@@ -547,12 +547,13 @@ async def create_manual_dedupe_key(session:AsyncSession,rule_name:str,dedupe_key
         await session.commit()
         await session.refresh(record)
         dedupe_logger.info(f"manual dedupe key:{dedupe_key} committed to the db by user:{user.id} with email:{user.email}")
-        
         return record
     
-    except Exception:
-        dedupe_logger.exception("An exception occurred while committing dedupe key to the table")
+    except HTTPException:
         raise
+    except Exception as e:
+        dedupe_logger.exception(f"An exception occurred while committing dedupe key to the table:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An exception occurred while creating a dedupe key")
 
 
 
@@ -636,6 +637,7 @@ async def search_id_number_history_db(id_number:str,page:int,page_size:int,sessi
         query = query.limit(page_size).offset(offset)
         result = await session.execute(query)
         records = result.scalars().all()
+
         if not records:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No records found for this id number:{id_number}")  
         
@@ -648,6 +650,7 @@ async def search_id_number_history_db(id_number:str,page:int,page_size:int,sessi
             total_pages=total_pages,
             records=records
         )
+    
     except HTTPException:
         raise
     except Exception as e:
@@ -657,6 +660,7 @@ async def search_id_number_history_db(id_number:str,page:int,page_size:int,sessi
 
 
 async def search_dedupe_campaign_by_campaign_name_db(campaign_name:str,page:int,page_size:int,session:AsyncSession)->PaginatedResultsResponse:
+    
     try:
         #calculate the offset based on the page number and page size
         offset=(page-1)*page_size
@@ -689,3 +693,5 @@ async def search_dedupe_campaign_by_campaign_name_db(campaign_name:str,page:int,
     except Exception as e:
         dedupe_logger.exception(f"an exception occurred while fetching all records associated:{campaign_name}:{str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while fetch records for campaign:{campaign_name}")
+    
+

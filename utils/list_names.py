@@ -47,11 +47,11 @@ async def get_list_names(camp_code: str, session: AsyncSession) -> str:
         list_name = f"{camp_code}_{date_str}_{index}CS"
 
         return list_name
+    
 
     except Exception as e:
         load_list_names_logger.error(f"Error generating list_name: {str(e)}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Error occurred while fetching list name",
-        )
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="Error occurred while fetching list name")
+    
+
     

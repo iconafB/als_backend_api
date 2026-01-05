@@ -41,7 +41,7 @@ async def fetch_all_campaign_rules(page:int=Query(1,ge=1,description="Value shou
     
 #search for a campaign rule
 @campaign_rule_router.get("/search",status_code=status.HTTP_200_OK,description="Search for  campaign rule using a rule name,salary, andderived income")
-async def search_for_campaign_rule(page:int=Query(1,ge=1,description="Current page number for pagination(starts at 1)"),page_size:int=Query(20,ge=1,le=100,description="Number of records per page"),rule_name:str=Query(None,description="Search for a campaign rule using the rule name or campaign code"),salary:int=Query(None,description="Search for a campaign rule using the salary"),derived_income:int=Query(None,description="Search for campaign rule using the derived income"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def search_for_campaign_rule(page:int=Query(1,ge=1,description="Current page number for pagination(starts at 1)"),page_size:int=Query(10,ge=1,le=100,description="Number of records per page"),rule_name:str=Query(None,description="Search for a campaign rule using the rule name or campaign code"),salary:int=Query(None,description="Search for a campaign rule using the salary"),derived_income:int=Query(None,description="Search for campaign rule using the derived income"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
     print("enter the search route")
     return await search_for_a_campaign_rule_db(page,page_size,session,user,rule_name,salary,derived_income,sort_by="created_at",sort_order="desc")
 

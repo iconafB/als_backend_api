@@ -24,7 +24,6 @@ async def add_dedupe_list_helper(session:AsyncSession,tuple_list:list[tuple],bat
         insert_data_to_info_tbl=text(INSERT_INTO_INFO_TABLE_QUERY)
         await session.execute(insert_data_to_campaign_dedupe_tbl,campaign_dedupe_list)
         await session.execute(insert_data_to_info_tbl,info_table_list)
-        await session.commit()
         #update counters
         end_batch=time.perf_counter()
         batch_times.append(end_batch - start_batch)

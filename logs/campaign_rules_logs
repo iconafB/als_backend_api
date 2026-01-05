@@ -19286,3 +19286,445 @@ ValueError: Duplicate entry: (camp_code=AFC, rule_code=8) must be unique.
 2025-12-19 07:56:48,553 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:2
 2025-12-19 08:02:26,831 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
 2025-12-19 08:02:26,831 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 13:58:49,109 - als campaign rules - INFO - user:3 with email:arrows@gmail.com retrieved records for campaign rules:10
+2026-01-02 13:58:49,109 - als campaign rules - INFO - user:3 with email:arrows@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:03:34,695 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:03:34,695 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:03:45,374 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:03:45,374 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:03:47,238 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:2
+2026-01-02 14:03:47,238 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:2
+2026-01-02 14:04:46,848 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:04:46,848 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:05:54,199 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:05:54,199 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:05:57,471 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:2
+2026-01-02 14:05:57,471 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:2
+2026-01-02 14:07:09,954 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:07:09,954 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 12 rules
+2026-01-02 14:09:00,844 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:09:00,844 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:12:07,781 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:GOLDEN_ARR2
+2026-01-02 14:12:07,781 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:GOLDEN_ARR2
+2026-01-02 14:12:48,801 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:12:48,801 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:24,718 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:24,718 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:43,893 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:13
+2026-01-02 14:13:43,893 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:13
+2026-01-02 14:13:43,962 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:43,962 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:48,014 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:13:48,014 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:18:29,756 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:18:29,756 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:23:19,700 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 14:23:19,700 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 14:26:46,570 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:26:46,570 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:26:49,680 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:26:49,680 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:28:39,645 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 14:28:39,645 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 14:28:41,378 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:28:41,378 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 14:30:42,473 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:30:42,473 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:30:46,001 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 14:30:46,001 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:3
+2026-01-02 17:52:25,677 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 17:52:25,677 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 13 rules
+2026-01-02 18:10:10,091 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:KAIZER_CHIEFS_2
+2026-01-02 18:10:10,091 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:KAIZER_CHIEFS_2
+2026-01-02 18:10:13,057 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 18:10:13,057 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 18:10:18,017 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 18:10:18,017 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 18:10:24,818 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:4
+2026-01-02 18:10:24,818 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:4
+2026-01-02 18:10:30,731 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:14
+2026-01-02 18:10:30,731 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:14
+2026-01-02 18:10:30,786 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 18:10:30,786 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:28:46,807 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 14 rules
+2026-01-02 19:28:46,807 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 14 rules
+2026-01-02 19:30:11,680 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:UKZN_2
+2026-01-02 19:30:11,680 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:UKZN_2
+2026-01-02 19:30:18,252 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:30:18,252 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:35:53,758 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:DUT_2
+2026-01-02 19:35:53,758 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:DUT_2
+2026-01-02 19:36:20,777 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:36:20,777 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:36:47,653 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:36:47,653 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:37:18,673 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:37:18,673 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:37:31,249 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:37:31,249 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:37:35,394 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:37:35,394 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:45:07,273 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:45:07,273 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:6
+2026-01-02 19:45:08,404 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 19:45:08,404 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:00:41,795 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 16 rules
+2026-01-02 20:00:41,795 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 16 rules
+2026-01-02 20:03:40,836 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:DUT_ENG_3
+2026-01-02 20:03:40,836 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:DUT_ENG_3
+2026-01-02 20:05:12,501 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:05:12,501 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:06:38,549 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:KINGS_OF_AFRICA
+2026-01-02 20:06:38,549 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:KINGS_OF_AFRICA
+2026-01-02 20:07:31,977 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:07:31,977 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:07:35,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-02 20:07:35,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-02 20:08:31,632 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:08:31,632 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:08:37,197 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:18
+2026-01-02 20:08:37,197 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:18
+2026-01-02 20:08:37,241 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:08:37,241 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:08:40,279 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:18
+2026-01-02 20:08:40,279 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:18
+2026-01-02 20:08:40,319 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:08:40,319 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:12:29,070 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 17 rules
+2026-01-02 20:12:29,070 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 17 rules
+2026-01-02 20:12:52,745 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 17 rules
+2026-01-02 20:12:52,745 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 17 rules
+2026-01-02 20:15:16,971 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:AL_AHLY
+2026-01-02 20:15:16,971 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:AL_AHLY
+2026-01-02 20:16:09,649 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:09,649 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:19,855 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:19,855 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:24,656 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:19
+2026-01-02 20:16:24,656 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:19
+2026-01-02 20:16:24,711 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:24,711 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:27,193 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:19
+2026-01-02 20:16:27,193 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:19
+2026-01-02 20:16:27,247 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:16:27,247 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:18:50,373 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:AL_AHLY
+2026-01-02 20:18:50,373 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:AL_AHLY
+2026-01-02 20:18:54,546 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:18:54,546 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:20:27,062 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-02 20:20:27,062 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-02 20:23:25,352 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-02 20:23:25,352 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-02 20:25:31,923 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 20:25:31,923 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-02 21:29:27,684 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-02 21:29:27,684 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 09:44:07,063 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 09:44:07,063 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 09:46:48,062 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 09:46:48,062 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 09:53:15,930 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 09:53:15,930 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 10:04:05,932 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 10:04:05,932 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:09:51,582 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:09:51,582 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:09:58,300 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 15:09:58,300 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 15:28:59,046 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:28:59,046 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:36:31,751 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:36:31,751 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:40:29,762 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:40:29,762 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:50:20,418 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:50:20,418 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:55:56,101 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 15:55:56,101 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:06:50,770 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:06:50,770 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:08:30,393 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:08:30,393 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:15:42,517 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:15:42,517 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:15:46,287 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:15:46,287 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:18:30,967 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:18:30,967 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:27:14,679 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:27:14,679 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:27:15,522 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:27:15,522 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:41:12,449 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:41:12,449 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:42:11,890 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:42:11,890 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:42:16,541 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:42:16,541 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:44:05,620 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:44:05,620 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:44:21,094 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:18
+2026-01-03 16:44:21,094 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:18
+2026-01-03 16:48:03,906 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:48:03,906 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:51:46,992 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:51:46,992 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 16:52:06,312 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:52:06,312 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:52:07,916 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:52:07,916 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 16:57:19,961 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 16:57:19,961 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:01:22,879 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 17:01:22,879 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 17:02:36,638 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:02:36,638 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:16:23,947 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:16:23,947 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:16:30,882 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:16:30,882 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:25:18,669 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:25:18,669 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:40:32,026 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:40:32,026 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:40:36,326 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:40:36,326 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:40:58,825 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:40:58,825 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:41:01,035 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:41:01,035 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 17:47:50,720 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:47:50,720 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:53:58,318 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 17:53:58,318 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 19:02:04,590 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 19:02:04,590 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 19:02:21,503 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 19:02:21,503 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-03 19:02:23,278 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 19:02:23,278 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-03 20:34:32,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-03 20:34:32,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 09:30:21,141 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 09:30:21,141 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 09:30:35,487 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 09:30:35,487 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 09:35:38,955 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 09:35:38,955 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 09:39:14,703 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 09:39:14,703 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 10:08:12,298 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 10:08:12,298 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 11:53:09,335 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 11:53:09,335 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 12:18:15,927 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 12:18:15,927 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:14:35,585 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:14:35,585 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:14:47,255 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:14:47,255 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:17:12,958 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:17:12,958 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:18:30,307 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:18:30,307 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:33:21,837 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:33:21,837 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:45:10,271 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:45:10,271 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 17:45:14,058 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:45:14,058 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 17:45:20,804 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 17:45:20,804 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:11:52,557 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:11:52,557 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:14:39,871 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:14:39,871 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:15:52,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:15:52,340 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:24:08,243 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:24:08,243 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:24:12,181 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:24:12,181 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:30:27,099 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:30:27,099 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:30:33,218 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:30:33,218 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:36:31,658 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:36:31,658 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:36:34,118 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:36:34,118 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:43:25,088 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:43:25,088 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:48:27,226 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:48:27,226 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:49:20,264 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:49:20,264 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:55:31,333 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:55:31,333 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 18:56:58,658 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:56:58,658 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 18:57:53,472 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 18:57:53,472 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:00:40,172 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:00:40,172 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:05:10,275 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 19:05:10,275 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-04 19:05:45,025 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:05:45,025 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:07:24,143 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:07:24,143 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:16:10,202 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:16:10,202 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 19:18:24,822 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:18:24,822 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:53:23,896 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 19:53:23,896 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:26:20,118 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:26:20,118 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:47:57,482 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:47:57,482 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:52:57,802 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 21:52:57,802 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 22:04:53,764 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 22:04:53,764 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 22:05:03,975 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 22:05:03,975 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 22:18:14,592 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 22:18:14,592 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-04 22:21:14,145 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-04 22:21:14,145 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:06:16,726 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:06:16,726 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:09:32,828 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:09:32,828 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:12:59,100 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:12:59,100 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:13:15,467 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:13:15,467 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:14:24,680 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:14:24,680 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:15:31,336 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:15:31,336 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:21:26,562 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:21:26,562 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:24:31,889 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-05 08:24:31,889 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:8
+2026-01-05 08:25:25,860 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:25:25,860 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 18 rules
+2026-01-05 08:27:11,385 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:27:11,385 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:29:50,396 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TELE_GIANTS
+2026-01-05 08:29:50,396 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TELE_GIANTS
+2026-01-05 08:30:00,377 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:30:00,377 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:01,293 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:ICNONF_DNCER
+2026-01-05 08:34:01,293 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:ICNONF_DNCER
+2026-01-05 08:34:10,295 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:10,295 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:14,181 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:14,181 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:32,415 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:32,415 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:53,529 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:22
+2026-01-05 08:34:53,529 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:22
+2026-01-05 08:34:53,578 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:53,578 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:56,615 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:22
+2026-01-05 08:34:56,615 - als campaign rules - INFO - user:2 with email Peter@gmail.com deleted rule with rule code:22
+2026-01-05 08:34:56,661 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:34:56,661 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:36:22,628 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 08:36:22,628 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 08:37:19,757 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:37:19,757 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:37:31,094 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 08:37:31,094 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 08:47:20,333 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:47:20,333 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 08:50:36,690 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 08:50:36,690 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 09:05:38,267 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:05:38,267 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:05:42,336 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:42,336 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:50,503 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:1
+2026-01-05 09:05:50,503 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:1
+2026-01-05 09:05:50,566 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:50,566 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:55,770 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:2
+2026-01-05 09:05:55,770 - als campaign rules - INFO - user:2 with email:Peter@gmail.com deactivaed campaign rule:2
+2026-01-05 09:05:55,813 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:55,813 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:58,836 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:05:58,836 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:06:01,006 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:06:01,006 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:9
+2026-01-05 09:06:26,161 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:06:26,161 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:16:08,031 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 09:16:08,031 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 09:16:11,840 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:16:11,840 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:27:43,129 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 09:27:43,129 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 19 rules
+2026-01-05 09:28:22,618 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:28:22,618 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:37:42,639 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:37:42,639 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:44:39,668 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TIM
+2026-01-05 09:44:39,668 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TIM
+2026-01-05 09:48:38,640 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:48:38,640 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:49:38,831 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:49:38,831 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:58:44,359 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:58:44,359 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 09:58:51,083 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 09:58:51,083 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:11:27,436 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:11:27,436 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:11:29,789 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:11:29,789 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:22:49,277 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:22:49,277 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:22:50,013 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:22:50,013 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:25:35,755 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:25:35,755 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:32:14,305 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:32:14,305 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:32:20,013 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:32:20,013 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 20 rules
+2026-01-05 10:33:19,705 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:FINAL_TEST
+2026-01-05 10:33:19,705 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:FINAL_TEST
+2026-01-05 10:33:45,463 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:33:45,463 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:33:50,758 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:33:50,758 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:33:55,217 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:33:55,217 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:38:50,821 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TEST_CAMP1
+2026-01-05 10:38:50,821 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TEST_CAMP1
+2026-01-05 10:39:31,191 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:39:31,191 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:41:14,836 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TEST#45
+2026-01-05 10:41:14,836 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:TEST#45
+2026-01-05 10:41:17,465 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:41:17,465 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:42:27,590 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:LIMIT_T2
+2026-01-05 10:42:27,590 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:LIMIT_T2
+2026-01-05 10:42:29,323 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:42:29,323 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:42:45,841 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:42:45,841 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:49:33,420 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:FRULE_56
+2026-01-05 10:49:33,420 - als campaign rules - INFO - user :2 with email: Peter@gmail.com created campaign rule:FRULE_56
+2026-01-05 10:49:36,494 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:49:36,494 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:49:42,684 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:49:42,684 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:56:43,223 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 25 rules
+2026-01-05 10:56:43,223 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved a total of 25 rules
+2026-01-05 10:56:50,335 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10
+2026-01-05 10:56:50,335 - als campaign rules - INFO - user:2 with email:Peter@gmail.com retrieved records for campaign rules:10

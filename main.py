@@ -14,6 +14,7 @@ from routers.dedupes import dedupe_routes
 from routers.campaign_rules import campaign_rule_router
 from routers.black_list import black_router
 from routers.pings import ping_router
+from routers.dma_services_route import dma_service_router
 from routers.leads_route import leads_router
 from routers.insert_data import insert_data_router
 from routers.practice_rule import practice_rule_router
@@ -100,19 +101,20 @@ async def health_check():
 
 app.include_router(auth_router)
 app.include_router(campaigns_router)
-app.include_router(dnc_router)
-
 app.include_router(dedupe_routes)
 app.include_router(campaign_rule_router)
+app.include_router(dma_service_router)
+app.include_router(insert_data_router)
+app.include_router(data_extraction_router)
 #this should go baba loading should be automatic
 app.include_router(black_router)
 app.include_router(ping_router)
 app.include_router(leads_router)
+app.include_router(dnc_router)
 app.include_router(practice_rule_router)
-app.include_router(insert_data_router)
 app.include_router(practice_router)
 
-app.include_router(data_extraction_router)
+
 
 """ 
 @app.on_event("startup")

@@ -15,11 +15,9 @@ from typing import List,Optional
 from sqlalchemy.exc import IntegrityError
 from models.rules_table import rules_tbl
 from models.campaign_rules_table import campaign_rule_tbl
-
 from crud.campaigns import (get_campaign_by_code_db)
 from models.campaigns_table import campaign_tbl
 from models.campaign_rules_table import campaign_rule_tbl
-
 from schemas.campaign_rules import RuleCreate,AssignCampaignRuleToCampaign,AssignCampaignRuleResponse,CreateCampaignRuleResponse,PaginatedCampaignRules
 from schemas.rules_schema import RuleSchema,ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse,DeactivateRuleResponseModel,ActivateCampaignRuleResponse,GetCampaignRuleResponse,UpdateCampaignRule,UpdatingSalarySchema,UpdatingDerivedIncomeSchema,UpdateAgeSchema,GetAllCampaignRulesResponse,ActivateRuleResponseModel,UpdateNumberOfLeads,DeleteCampaignRuleResponse,CampaignRulesTotal
 from utils.campaign_rules_helper import extract_numeric_rule
@@ -278,7 +276,6 @@ async def get_all_campaign_rules_db(page:int,page_size:int,session:AsyncSession,
 
     try:
         total=await session.scalar(select(func.count()).select_from(rules_tbl))
-
         offset=(page - 1)*page_size
         #always sort by the latest record created 
         sort_column=rules_tbl.created_at.desc()
@@ -347,6 +344,7 @@ async def search_for_a_campaign_rule_db(page: int,page_size: int,session: AsyncS
             )
 
         if derived_income is not None:
+
             query = query.where(
                 or_(
                     rules_tbl.rule_json["derived_income"]["value"].as_float() == derived_income,
@@ -368,11 +366,17 @@ async def search_for_a_campaign_rule_db(page: int,page_size: int,session: AsyncS
             query = query.order_by(sort_col.desc())
 
         total = await session.scalar(select(func.count()).select_from(query.subquery()))
+
         offset = (page - 1) * page_size
+
         query = query.offset(offset).limit(page_size)
+
         result = await session.exec(query)
+        
         rows = result.all()
         rules_list = []
+
+
         for r in rows:
             data = r.rule_json or {}
 
@@ -682,7 +686,6 @@ async def remove_campaign_rule_db(rule_code:int,session:AsyncSession,user)->Dele
         if not result:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No rule found with rule_code:{rule_code}")
         if result.is_active==True:
-            print("print the test before raising an exception")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"The request rule cannot be deleted since it is still active and potentially assigned to a campaign")
         await session.delete(result)
         await session.commit()

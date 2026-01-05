@@ -5,12 +5,14 @@ import json
 from settings.Settings import get_settings
 import httpx
 from typing import Annotated
-from models.dma_service import dma_audit_id_table
+from models.dma_service import dma_audit_id_tbl
 from utils.logger import define_logger
 import urllib3
 import asyncio
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-dma_logger=define_logger("dmasa","logs/dma.log")
+
+
+dma_logger=define_logger("dmasa_logs","logs/dma.log")
 
 class DMAClassHelper:
     
@@ -23,19 +25,16 @@ class DMAClassHelper:
         self.read_dmasa_dedupe_status=get_settings().read_dmasa_dedupe_status
         self.read_dedupe_output_url=get_settings().read_dmasa_output_url
         
-        self.client=httpx.AsyncClient(
-            verify=False,
-            timeout=httpx.Timeout(30.0, connect=10.0),  # sane defaults
+        self.client=httpx.AsyncClient(verify=False,timeout=httpx.Timeout(30.0, connect=10.0),  # sane defaults
             limits=httpx.Limits(max_keepalive_connections=20, max_connections=100),
             )
         
     async def close(self):
-        """Call this on app shutdown"""
+        #Call this on app shutdown
         await self.client.aclose()
-    
+    # This works, final tests passed
     async def check_credits(self):
         try:
-
             params_values={'API_Key':self.dmasa_api_key,'MemberID':self.dmasa_member_id}
 
             resp = await self.client.get(self.check_credits_dmasa_url, params=params_values)
@@ -43,18 +42,22 @@ class DMAClassHelper:
             data = resp.json()
             return data['Credits'] 
         
-        
         except httpx.HTTPStatusError as exc:
            dma_logger.error(f"DMASA credit check failed [{exc.response.status_code}]: {exc.response.text}")
            raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail="Failed to connect to DMASA credit check service")
         
         except (KeyError, ValueError, httpx.RequestError) as exc:
             dma_logger.error(f"Invalid response from DMASA credits: {exc}")
+
             raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail="Invalid response from DMASA service")
         
-    async def upload_data_for_dedupe(self,data,session:AsyncSession):
+    async def upload_data_for_dedupe(self,data,session:AsyncSession,camp_code:str):
+
         #convert the data to numbers which is a list of numbers
+
         #construct the payload using the above methods
+
+        campaign_code=camp_code
 
         payload={
             "API_KEY":self.dmasa_api_key,
@@ -64,17 +67,9 @@ class DMAClassHelper:
             "NotificationEmail":self.notification_email
         }
         
-        headers={
-            'Content-Type':'application/json'
-        }
-
         try:
-          
-            resp = await self.client.post(
-                self.submit_dedupes_dmasa_url,
-                json=payload,
-                timeout=httpx.Timeout(540.0)  # 90 minutes
-            )
+
+            resp = await self.client.post(self.submit_dedupes_dmasa_url,json=payload,timeout=httpx.Timeout(540.0))  # 9 minutes
             resp.raise_for_status()
             result = resp.json()
 
@@ -89,20 +84,20 @@ class DMAClassHelper:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"DMASA rejected data: {errors}")
             
             audit_id = result['DedupeAuditId']
+
             records_processed = result['RecordsProcessed']
+
             # Create and save audit record
-            audit_record = dma_audit_id_table(
+            audit_record = dma_audit_id_tbl(
                 audit_id=audit_id,
                 number_of_records=records_processed,
                 notification_email=self.notification_email,
-                is_processed=False,
-                is_sent_to_dedago=False
+                camp_code=campaign_code
             )
 
             session.add(audit_record)
             await session.commit()
             await session.refresh(audit_record)
-
             dma_logger.info(f"DMASA upload successful | AuditID: {audit_id} | Records: {records_processed}")
 
             return audit_record.audit_id
@@ -118,7 +113,7 @@ class DMAClassHelper:
     async def check_dedupe_status(self,audit_id,session:AsyncSession):
 
         try:
-            record_query=await session.execute(select(dma_audit_id_table).where(dma_audit_id_table.audit_id==audit_id))
+            record_query=await session.execute(select(dma_audit_id_tbl).where(dma_audit_id_tbl.audit_id==audit_id))
             record=record_query.scalars().one_or_none()
 
             if not record:
@@ -149,22 +144,16 @@ class DMAClassHelper:
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="Internal error while checking dedupe status")
          
     
-    async def read_dedupe_output(self,audit_id,session:AsyncSession):
+    async def read_dedupe_output(self,dma_audit_id):
         try:
-            result = await session.execute(select(dma_audit_id_table).where(dma_audit_id_table.audit_id == audit_id))
+            #check if the database has that audit id
+            # result = await session.execute(select(dma_audit_id_tbl).where(dma_audit_id_tbl.audit_id == audit_id))
 
-            if not result.scalars().one_or_none():
-                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Audit ID not found")
-            
-            url = (
-                f"{self.read_dedupe_output_url}"
-                f"?MemberID={self.dmasa_member_id}"
-                f"&API_Key={self.dmasa_api_key}"
-                f"&AuditId={audit_id}"
-                )
-            
+            # if not result.scalars().one_or_none():
+            #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Audit ID not found")
             # response=requests.get(url=url,verify=False,timeout=540)
-            resp = await self.client.get(url, timeout=300.0)
+
+            resp = await self.client.get(self.read_dedupe_output_url,params={"MemberID": self.dmasa_member_id,"API_Key": self.dmasa_api_key,"AuditId": dma_audit_id}, timeout=300.0)
             resp.raise_for_status()
             result = resp.json()
 
@@ -173,34 +162,44 @@ class DMAClassHelper:
             #result = response.json()
 
             errors = result.get("Errors", [])
+
             if errors:
-                dma_logger.error(f"DMASA read output errors for {audit_id}: {errors}")
+                dma_logger.error(f"DMASA read output errors for {dma_audit_id}: {errors}")
                 raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE,detail=f"DMASA returned errors: {errors}")
             
-           # Handle possible key variations
-            return (result.get("ReadOutput") or result.get("Output")or result.get("ReadOuput"))
+           # Handle all possible key variations
+            return (result.get("ReadOutput") or result.get("Output") or result.get("ReadOuput"))
             
         except httpx.RequestError as exc:
             #need better return or exception propagation
-
-            dma_logger.error(f"Failed to read dedupe output for {audit_id}: {exc}")
-
+            dma_logger.error(f"Failed to read dedupe output for {dma_audit_id}: {exc}")
             raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail="Failed to retrieve dedupe results from DMASA")
+        
+        except ValueError as valueError:
+            dma_logger.exception(f"A value error exception occurred while reading the dedupe records:{valueError}")
+            raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail=f"An error occurred on the dmasa api")
             
         except Exception as exc:
-            dma_logger.exception(f"Error reading dedupe output for {audit_id}: {exc}")
+            dma_logger.exception(f"Error reading dedupe output for {dma_audit_id}: {exc}")
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="Internal error while reading dedupe results")
+    
+    #This method wait for a maximum of 25 seconds wait for the dedupe to be ready
+    async def wait_for_download_to_be_ready(self,session:AsyncSession,audit_id,max_retries=5,delay=5):
 
-
-    async def wait_for_download_to_be_ready(self,session:AsyncSession,audit_id,max_retries=20,delay=30):
         for _ in range(max_retries):
+
             dedupe_status=await self.check_dedupe_status(audit_id,session)
+
             if dedupe_status in ('Download Ready', 'Dedupe Complete'):
                 return True
             await asyncio.sleep(delay)
+        
         return False
+    
 
-#Factory function for dependency injection,fool
+
+#Factory function for dependency injection
+
 async def get_dmasa_service_helper():
     service = DMAClassHelper()
     try:

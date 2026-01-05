@@ -30,11 +30,13 @@ class AddDedupeListResponse(BaseModel):
 
 class SubmitDedupeReturnResponse(BaseModel):
        success:bool
-       number_of_updated_ids_with_return_status:int
-       number_of_retrieved_pending_ids_from_campaign_dedupe_table:int
-       number_of_deleted_pending_ids_from_campaign_dedupe_table:int
-       number_of_updated_ids_from_info_tbl:int
-       number_of_deleted_pending_ids_with_status_code_u:int
+       number_of_records_from_campaign_dedupe_table_with_mathing_dedupe_code:int
+       number_of_update_campaign_dedupe_table_with_return_status_with_id_numbers:int
+       number_of_records_with_status_process_from_campaign_dedupe_table:int
+       number_of_deleted_records_from_campaign_dedupe_table:int
+       number_of_records_updated_on_the_info_table:int
+       number_of_records_deleted_with_status_updated_on_the_campaign_dedupe_table:int
+
 
 
 class AddManualDedupeResponse(BaseModel):

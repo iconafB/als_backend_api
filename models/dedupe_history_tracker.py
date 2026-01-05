@@ -11,7 +11,6 @@ class ClientStatus(str,Enum):
 
  
 class Dedupe_History_Tracker(SQLModel,table=True):
-
     pk:int | None=Field(default=None,primary_key=True)
     id:str=Field(nullable=False,foreign_key="info_tbl.id")
     cell:str=Field(nullable=False,foreign_key="info_tbl.cell")

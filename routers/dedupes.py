@@ -1,7 +1,6 @@
 from fastapi import APIRouter,HTTPException,Depends,UploadFile,File,Query
 from fastapi import status as http_status
-from sqlmodel import Session,select,func
-from typing import Annotated,List
+from typing import Annotated
 import openpyxl
 import random
 from io import BytesIO
@@ -18,21 +17,15 @@ from models.campaigns import Deduped_Campaigns,dedupe_campaigns_tbl
 from models.dedupe_keys_table import manual_dedupe_key_tbl
 from models.campaign_dedupe import Campaign_Dedupe
 from database.master_db_connect import get_async_session
-from crud.dedupe_campaign_rules import get_single_dedupe_campaign_rule_by_rule_name
-from crud.dedupe_campaigns import (get_deduped_campaign,get_leads_from_db_for_dedupe_campaign_for_TEBBDY_TERDDY,get_leads_from_db_for_dedupe_campaign_for_TEFWFDY_and_TLEFHQD,get_leads_for_DITFCS_DIFFWT_TELEFFWN,get_leads_for_campaigns_list,get_leads_for_TELEAGNI_TELEBDNI_TELEDDNI_with_derived_income_and_limit,get_leads_for_OMLIFE,get_leads_for_MIWAYHKT,get_leads_for_DIFFWT,get_leads_for_DIAGTE,get_leads_for_AGTEDI,get_leads_for_DITFCS,get_leads_for_CRISPIP3,get_leads_for_TELEFFWN_with_gender_derived_income_and_limit,get_dedupe_campaigns_aggregated_count_db,search_cell_number_history_db,search_id_number_history_db,search_dedupe_campaign_by_campaign_name_db)
-from crud.campaign_rules import (get_rule_by_rule_code_db,get_campaign_rule_by_rule_name_db)
+from crud.dedupe_campaigns import (get_dedupe_campaigns_aggregated_count_db,search_cell_number_history_db,search_id_number_history_db,search_dedupe_campaign_by_campaign_name_db)
+from crud.campaign_rules import (get_campaign_rule_by_rule_name_db)
 from crud.campaigns import get_active_campaign_to_load
 from models.information_table import info_tbl
 from models.campaigns import manual_dedupe_keys
 from models.dedupe_history_tracker import Dedupe_History_Tracker
-from crud.dedupe_campaigns import bulk_upsert_update_info_tbl_in_batches,select_code_from_campaign_dedupe_table
-from schemas.dedupe_campaigns import CreateDedupeCampaign,SubmitDedupeReturnSchema,ManualDedupeListReturn,CreateDedupeCampaign,DeleteCamapignSchema,UpdateDedupeCampaign
+from schemas.dedupe_campaigns import SubmitDedupeReturnSchema,DeleteCamapignSchema,UpdateDedupeCampaign
 from schemas.dedupes import AddDedupeListResponse,SubmitDedupeReturnResponse,AddManualDedupeResponse,InsertDataDedupeTracker,PaginatedResultsResponse,PaginatedAggregatedDedupeResult
-from database.database import get_session
 from utils.auth import get_current_user,get_current_active_user
-#from utils.status_data import get_status_tuple,insert_data_into_finance_table,insert_data_into_location_table,insert_data_into_contact_table,insert_data_into_employment_table,insert_data_into_car_table
-from utils.campaigns import build_dynamic_dedupe_main_query,build_dynamic_query,build_dynamic_query_finance_tbl
-
 from utils.logger import define_logger
 from utils.add_dedupe_list_helpers import add_dedupe_list_helper
 from utils.dedupes.submit_return_helpers import update_campaign_dedupe_status,fetch_delete_update_pending_campaign_ids,calculate_ids_campaign_dedupe_with_status_r
@@ -43,9 +36,8 @@ from schemas.dedupes import DataInsertionSchema
 from schemas.status_data_routes import InsertStatusDataResponse,InsertEnrichedDataResponse
 from crud.dedupe_campaigns import create_manual_dedupe_key
 
+
 dedupe_logger=define_logger("als_dedupe_campaign_logs","logs/dedupe_route.log")
-
-
 dedupe_routes=APIRouter(tags=["Dedupes"],prefix="/dedupes")
 
 # #dedupe campaign crud
@@ -223,7 +215,6 @@ async def add_dedupes_manually(campaign_name:str=Query(description="Please provi
             await session.commit()
 
             dedupe_logger.info(f"user:{user.id} with email:{user.email} uploaded a deduped file for campaign:{campaign_name}")
-
             return {"message":f"file with name:{file.filename} for campaign:{campaign_name} uploaded successfully"}
 
     except Exception as e:
@@ -259,7 +250,6 @@ async def add_dedupe_list(camp_code:str,session:AsyncSession=Depends(get_async_s
             raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND,detail=f"campaign rule with rule name:{campaign_rule} does not exist")
         #now we have the actual list here,
         results=await load_leads_for_campaign(campaign_rule.rule_name,session)
-
         #get leads length
         leads_length=len(results)
         if leads_length==0:
@@ -286,6 +276,7 @@ async def add_dedupe_list(camp_code:str,session:AsyncSession=Depends(get_async_s
         #insert the add dedupe list into the db
         insert_result=await add_dedupe_list_helper(session,list_to_insert_to_db,batch_size=1000)
 
+
         if '/' in filename:
             new_string_name=filename.replace("/","-")
             print("print")
@@ -299,6 +290,8 @@ async def add_dedupe_list(camp_code:str,session:AsyncSession=Depends(get_async_s
         df=pd.DataFrame(converted_list)
         #convert the dataframe to an excel file
         df.to_excel(new_string_name + '.xlsx',index=False)
+        await session.commit()
+
         dedupe_logger.info(f"user:{user.id} with email:{user.email} added a dedupe list")
         return AddDedupeListResponse(FileName=new_string_name + '.txt',TotalRecordsInserted=insert_result["total_inserted"],TotalBatches=insert_result["total_batches"],TotalBatchedTime=insert_result["batch_times"],TotalTime=insert_result["total_time"])
         #
@@ -591,38 +584,35 @@ async def add_dedupe_list(camp_code:str,session:AsyncSession=Depends(get_async_s
 async def submit_dedupe_return(data:SubmitDedupeReturnSchema,dedupe_file:UploadFile=File(...,description="File prepared for manual dedupe"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
     try:
         id_pattern=re.compile(r"^\d{13}$")
-
         file_contents=await dedupe_file.read()
-
         if not file_contents:
             dedupe_logger.info(f"user {user.id} with email:{user.email} uploaded an empty file")
             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Empty file uploaded")
-        #search for the code/key on the table where's store
-
-
         text=file_contents.decode("utf-8",errors="strict")
-        #look for the campaign
-        # extract value 13-digits IDs
 
-        result_count=await calculate_ids_campaign_dedupe_with_status_r(session,data.code)   
-        #comment
+        result_count=await calculate_ids_campaign_dedupe_with_status_r(session,data.dedupe_code)
+
         if result_count==0:
-            dedupe_logger.info(f"No results associated with the dedupe key:{data.code}")
-
+            dedupe_logger.info(f"No results associated with the dedupe key:{data.dedupe_code}")
             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"No results associated with the dedupe key:{data.code}")
         
-        list_contents=[line for line in text.splitlines() if id_pattern.match(line)]
-        #this is a tuple may cause extreme errors
-        db_list=tuple(list_contents)
+        dedupe_ids=[line for line in text.splitlines() if id_pattern.match(line)] 
+        updated_count=await update_campaign_dedupe_status(dedupe_ids,data.dedupe_code,session,user)
+        results=await fetch_delete_update_pending_campaign_ids(data.dedupe_code,session,user)
+        await session.commit()
 
-        #update the campaign_dedupe 
-        updated_count=await update_campaign_dedupe_status(db_list,data.code,session,user)
-
-        results=await fetch_delete_update_pending_campaign_ids(data.code,session,user)
-        
-        return SubmitDedupeReturnResponse(success=True,updated_ids_with_return_status=updated_count,retrieved_pending_ids_from_campaign_dedupe_table=results['retrieved_pending_ids_from_campaign_dedupe_table'],deleted_pending_ids_from_campaign_dedupe_table=results["deleted_ids_from_campaign_dedupe_table"],updated_ids_from_info_tbl=results["updated_ids_from_info_tbl"],deleted_pending_ids_with_status_code_u=results["deleted_stmt_from_campaign_dedupe"])
+        return SubmitDedupeReturnResponse(success=True,
+                                          number_of_records_from_campaign_dedupe_table_with_mathing_dedupe_code=result_count,
+                                          update_campaign_dedupe_table_with_return_status_with_id_numbers=updated_count,
+                                          number_of_records_with_status_process_from_campaign_dedupe_table=results["retrieved_pending_ids"],
+                                          number_of_deleted_records_from_campaign_dedupe_table=results["deleted_ids_from_campaign_dedupe_table"],
+                                          number_of_records_updated_on_the_info_table=results["updated_ids_from_info_tbl"],
+                                          number_of_records_deleted_with_status_updated_on_the_campaign_dedupe_table=results["deleted_stmt_from_campaign_dedupe"]
+                                         )
     
 
+
+    
     except Exception as e:
         dedupe_logger.exception(f"an internal server error occurred while submitting dedupe by:{user.id} with email:{user.email} {e}")
         raise HTTPException(status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while submitting dedupe with dedupe key:{data.code}")
@@ -631,24 +621,29 @@ async def submit_dedupe_return(data:SubmitDedupeReturnSchema,dedupe_file:UploadF
 @dedupe_routes.post("/add-manual-dedupe-list2",status_code=http_status.HTTP_201_CREATED,response_model=AddManualDedupeResponse)
 
 async def add_manual_dedupe_list2(filename:Annotated[UploadFile,File(description="Upload excel file with cell numbers")],camp_code:str=Query(description="Campaign Code"),user=Depends(get_current_active_user),session:AsyncSession=Depends(get_async_session)): 
+    
     try:
         #read the file safely
         file_content=await filename.read()
         if not file_content:
+            dedupe_logger.info(f"an empty file was uploaded")
             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Empty file uploaded")
         #validate the id number and cell number
         za_id_pattern=re.compile(r"^\d{13}$")
+
         za_cell_pattern=re.compile(r"^0[678]\d{8}$")
         #check the file format
+        #this could have been in a method for clean reading
+
         try:
             wb=openpyxl.load_workbook(BytesIO(file_content),read_only=True)
         except Exception as e:
             dedupe_logger.exception(f"Error occurred while reading from the workbook",e)
             raise HTTPException(status_code=http_status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"the file uploaded is not a valid or readable Excel workbook (.xlsx)") 
-        
         rows=[]
 
         try:
+
             for sheet in wb.worksheets:
                 #skip header row
                 for id_num,cell_num in sheet.iter_rows(min_row=2,max_col=2,values_only=True):
@@ -665,12 +660,12 @@ async def add_manual_dedupe_list2(filename:Annotated[UploadFile,File(description
 
         finally:
             wb.close()
-
         if not rows:
             dedupe_logger.info(f"An error occurred while loading data into the rows list")
             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"No data could be extracted")
         
         suffix=''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4))
+
         key=filename.filename + suffix
         #data to insert in the campaign_dedupe table
         data=[(r[0],r[1],camp_code,'P',key) for r in rows]
@@ -680,15 +675,17 @@ async def add_manual_dedupe_list2(filename:Annotated[UploadFile,File(description
         #insert into the info_tbl
         info_tbl_data=[(r[1],'DEDUPE') for r in rows]
 
-        inserted_rows_on_info_tbl=await  insert_manual_dedupe_info_tbl(session,info_tbl_data,user)
-
+        inserted_rows_on_info_tbl=await insert_manual_dedupe_info_tbl(session,info_tbl_data,user)
         #store the dedupe key somewhere
         dedupe_key=await create_manual_dedupe_key(session,rule_name=camp_code,dedupe_key=key,number_of_leads=len(data),user=user)
+        #commit everything in one transaction fool
+        await session.commit()
+        dedupe_logger.info(f"user:{user.id} with email:{user.email} inserted {inserted_rows_campaign_dedupe_table} records into the campaign_dedupe table and inserted:{inserted_rows_on_info_tbl}")
 
         return AddManualDedupeResponse(success=True,campaign_dedupe_records=inserted_rows_campaign_dedupe_table,info_table_records=inserted_rows_on_info_tbl,key=dedupe_key.dedupe_key)
     
     except HTTPException:
-        raise
+        raise 
 
     except Exception as e:
         dedupe_logger.exception(f"An internal server error while adding manual dedupe:{e}")
