@@ -1,12 +1,14 @@
 from pydantic import BaseModel,EmailStr
 from sqlmodel import SQLModel,Field
+from typing import Optional
 
+class RegisterUser(BaseModel):
+    email:EmailStr
+    password:str
+    first_name:str
+    last_name:str
+    is_admin:bool=False
 
-class RegisterUser(SQLModel):
-    email:EmailStr=Field(min_length=3,max_length=100)
-    password:str=Field(max_length=40)
-    first_name:str=Field(max_length=100)
-    last_name:str=Field(max_length=100)
 
 class GetUserResponse(BaseModel):
     email:str
@@ -40,4 +42,12 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username:int | None=None
+
+
+class CurrentlyLoggedInUser(BaseModel):
+    user_id:int
+    email:EmailStr
+    first_name:str
+    last_name:str
+    is_admin:bool
     

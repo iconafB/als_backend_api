@@ -1,5 +1,5 @@
-from sqlalchemy import func
-from sqlmodel import SQLModel,Field,Relationship
+from sqlalchemy import Column,String,DateTime,Float,Text,Index
+from sqlmodel import SQLModel,Field
 from typing import Optional,List,TYPE_CHECKING
 from datetime import datetime
 
@@ -15,23 +15,32 @@ if TYPE_CHECKING:
     from models.ping_table import ping_tbl
     from models.lead_history_table import lead_history_tbl
 
-class info_tbl(SQLModel,table=True):
-    pk:Optional[int]=Field(primary_key=True,default=None)
-    cell:str=Field(default=None,index=True,unique=True)
-    id:str=Field(default=None,unique=True,index=True)
-    title:Optional[str]=None
-    fore_name:Optional[str]=None
-    last_name:Optional[str]=None
-    date_of_birth: Optional[str]=None
-    race:Optional[str]=None
-    gender:Optional[str]=None
-    marital_status:Optional[str]=None
-    salary:Optional[float]=None
-    status:Optional[str]=None
-    derived_income:Optional[float]=None
-    typedata:Optional[str]=None
-    last_used:Optional[datetime]=None
-    extra_info:Optional[str]=None
+class info_tbl(SQLModel, table=True):
+    
+    __tablename__ = "info_tbl"
+    info_pk: Optional[int] = Field(default=None, primary_key=True)
+    # cell is your stable unique key
+    cell: str = Field(primary_key=True,nullable=False)
+    # allow NULLs -> fixes the NotNullViolationError
+    id: Optional[str] = Field(default=None,sa_column=Column(String(13), nullable=True,index=True,unique=True))  # SA ID is 13 digits
+    title: Optional[str] = Field(default=None, sa_column=Column(String(50), nullable=True))
+    fore_name: Optional[str] = Field(default=None, sa_column=Column(String(120), nullable=True))
+    last_name: Optional[str] = Field(default=None, sa_column=Column(String(120), nullable=True))
+    date_of_birth: Optional[str] = Field(default=None, sa_column=Column(String(10), nullable=True))
+    created_at: Optional[str] = Field(default=None, sa_column=Column(String(25), nullable=True))
+    race: Optional[str] = Field(default=None, sa_column=Column(String(80), nullable=True))
+    gender: Optional[str] = Field(default=None, sa_column=Column(String(20), nullable=True))
+    marital_status: Optional[str] = Field(default=None, sa_column=Column(String(40), nullable=True))
+    salary: Optional[float] = Field(default=None, sa_column=Column(Float, nullable=True))
+    status: Optional[str] = Field(default=None, sa_column=Column(String(120), nullable=True))
+    derived_income: Optional[float] = Field(default=None, sa_column=Column(Float, nullable=True))
+    typedata: Optional[str] = Field(default=None, sa_column=Column(String(40), nullable=True))
+    last_used: Optional[datetime] = Field(default=None, sa_column=Column(DateTime(timezone=True), nullable=True))
+    extra_info: Optional[str] = Field(default=None, sa_column=Column(Text, nullable=True))
+    ping_status: Optional[str] = Field(default=None,sa_column=Column(Text,nullable=True))
+    ping_date: Optional[str]=Field(default=None,sa_column=Column(DateTime,nullable=True))
+    norm_cell: str = Field(sa_column=Column(String(10), nullable=False,index=True,unique=True))
+
 
     # finance:location_tbl=Relationship(back_populates="info_location")
     # contact:contact_tbl=Relationship(back_populates="info_contact")

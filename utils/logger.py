@@ -1,42 +1,51 @@
 import logging
-import pathlib
-
+from pathlib import Path
 from logging.handlers import RotatingFileHandler
 
 
-def define_logger(name:str,log_file:str=None)->logging.Logger:
+def define_logger(name: str, log_file: str | None = None) -> logging.Logger:
     """
-        log handler for console and file logs
+    Log handler for console and file logs.
+    Automatically recreates log directories if missing.
+    Prevents duplicate handlers on reload.
     """
-    # create the logger
-    logger=logging.getLogger(name)
-    #set the logger level
+
+    logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    #Create  file handler and set level
-    file_handler=logging.FileHandler(log_file)
-    file_handler.setLevel(logging.INFO)
-    #create console handler and set level
-    console_handler=logging.StreamHandler()
+
+    # 🔒 Prevent duplicate handlers (uvicorn reload / multiprocessing)
+    if logger.handlers:
+        return logger
+
+    # ---------- FILE HANDLER ----------
+    if log_file:
+        log_path = Path(log_file)
+
+        # ✅ recreate logs folder if deleted
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+
+        file_handler = RotatingFileHandler(
+            log_path,
+            maxBytes=5 * 1024 * 1024,  # 5MB
+            backupCount=5,
+            encoding="utf-8"
+        )
+        file_handler.setLevel(logging.INFO)
+
+        file_formatter = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
+        file_handler.setFormatter(file_formatter)
+        logger.addHandler(file_handler)
+
+    # ---------- CONSOLE HANDLER ----------
+    console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    #Create console handler and set level
-    #Create log formatters
-    file_formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-    
-    #console formatter
+
     console_formatter = logging.Formatter(
-        '%(levelname)s - %(message)s'
+        "%(levelname)s - %(message)s"
     )
-    #add formatters to handlers
-    #file formatter
-    file_handler.setFormatter(file_formatter)
-    #console formatter
     console_handler.setFormatter(console_formatter)
-    #add handlers to the logger
-    logger.addHandler(file_handler)
     logger.addHandler(console_handler)
-    #return the logger
+
     return logger
-
-

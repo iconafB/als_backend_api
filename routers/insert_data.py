@@ -2,31 +2,56 @@ from fastapi import APIRouter,status as http_status,Depends,Query,HTTPException,
 from fastapi.responses import StreamingResponse
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio.session import AsyncSession
+from sqlalchemy import text, and_, or_
+from sqlalchemy.dialects.postgresql import insert
+
 import os
 import time
 import pandas as pd
 import re,io,csv
 import tempfile,os,shutil
-
 from pathlib import Path
 from typing import List,Dict
 from utils.logger import define_logger
-from utils.status_data import insert_data_into_finance_table,insert_data_into_location_table,insert_data_into_employment_table,insert_data_into_car_table,insert_data_into_contact_table
+#from utils.status_data import insert_data_into_finance_table,insert_data_into_location_table,insert_data_into_employment_table,insert_data_into_car_table,insert_data_into_contact_table
 from utils.auth import get_current_active_user
 from schemas.insert_data import StatusedData,EnrichedData,UploadStatusResponse,TableInsertCount
 from schemas.status_data_routes import InsertStatusDataResponse,InsertEnrichedDataResponse
 from database.master_db_connect import get_async_session
-from database.master_database_test import get_async_master_test_session
+from models.information_table import info_tbl
+from models.contact_table import contact_tbl
+from models.location_table import location_tbl
+from models.employment_table import employment_tbl
+from models.car_table import car_tbl
+from models.finance_table import finance_tbl
 
 from utils.load_data_to_info_table import load_excel_into_info_tbl
 
+from utils.data_insertion.insert_status_data import chunked,build_contact_upsert_stmt,build_info_upsert_stmt,build_do_nothing_stmt
+
+from utils.data_insertion.file_name_resolver import resolve_file_path
+
 from utils.insert_enriched_data_helpers import  insert_table_by_count,insert_vendor_list,FIELD_INDEX,get_enriched_tuple,table_enriched_map
-from schemas.insert_data import InsertEnrichedDataResponseModel,InsertStatusDataResponseModel,TableResult,BulkStatusResponse,TableInsertStatusSummary,BulkEnrichedResponse,TableInsertEnrichedSummary
+from schemas.insert_data import InsertEnrichedDataResponseModel,InsertStatusDataResponseModel,TableResult,BulkStatusResponse,TableInsertStatusSummary,BulkEnrichedResponse,TableInsertEnrichedSummary,InsertStatusDataResponse
 from utils.insert_enriched_data_sql_queries import INFO_TBL_ENRICHED,CONTACT_TBL_SQL,FINANCE_TBL_SQL,CAR_TBL_SQL,EMPLOYMENT_TBL_SQL,LOCATION_TBL_SQL
 from utils.insert_status_data_helper import get_status_tuple,insert_vendor_list_status,statused_data_generator_file,table_tuple_generator
 from utils.status_data import get_status_tuple_filed_map,table_map
 from utils.insert_status_data_sql_queries import INFO_STATUS_SQL,LOCATION_STATUS_SQL,CONTACT_STATUS_SQL,EMPLOYMENT_STATUS_SQL,CAR_STATUS_SQL,FINANCE_STATUS_SQL
+from database.master_database_prod import get_async_master_prod_session
 
+
+def copy_sql(tmp_table: str) -> str:
+    return f"""
+    COPY {tmp_table} (
+      cell, idnum, name, surname, date_of_birth, date_created, gender, salary, status, typedata,
+      line_one, line_two, suburb, city, postal_code,
+      email,
+      company, job,
+      make, model,
+      bank, bal
+    )
+    FROM STDIN WITH (FORMAT csv, HEADER true);
+    """
 
 BATCH_SIZE=10000
 
@@ -36,10 +61,18 @@ insert_data_router=APIRouter(tags=["Data Insertion"],prefix="/insert-data")
 
 
 
+def show_bad_line(path: str, bad_line_no: int):
+    with open(path, "r", encoding="utf-8", errors="replace") as f:
+        for i, line in enumerate(f, start=1):
+            if i == bad_line_no:
+                print(f"\n--- LINE {i} ---\n{line}\n-------------\n")
+                break
+
+
 @insert_data_router.post("/status_data",status_code=http_status.HTTP_200_OK,description="Insert status data by providing the status data file name",response_model=BulkStatusResponse)
 # #return the time taken for the queries, number of leads affected
-
-async def insert_status_data(filename:str=Query(...,description="Provided the name of the filename with status data"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def insert_status_data(filename:str=Query(...,description="Provided the name of the filename with status data"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
+    
     summary={}
     try:
         delta_time_1=time.time()
@@ -47,6 +80,8 @@ async def insert_status_data(filename:str=Query(...,description="Provided the na
         status_data=[]
         #read a csv file that already exist on the server using the query parameter filename
         #check if the file exists
+       
+
         if not os.path.exists(filename):
             raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND,detail=f"filename:{filename} does not exist on this system")
         
@@ -57,19 +92,20 @@ async def insert_status_data(filename:str=Query(...,description="Provided the na
         #append the uploaded list into the status data array
         status_data=status_data + csv_list
         #read the total number of leads
-        leads_total=len(status_data)
+        #leads_total=len(status_data)
         #seconds passed
         delta_time2=time.time()
         #total time difference
         total_time=delta_time2 - delta_time_1
         #rows list 
+
         rows=[]
 
         status_data=['0'+ str(row[15]) for row in status_data]
-
+        
         for row in status_data:
-            cell=row[15]
 
+            cell=row[15]
             if re.match(r'^\d{10}$', str(cell)):
 
                 if row[1] is not None:
@@ -77,16 +113,16 @@ async def insert_status_data(filename:str=Query(...,description="Provided the na
                 #test the id number if its has 13 characters
 
                 idnum=str(row[3])
-                salary=str(row[2])
-                name = row[6]
-                surname = row[7]
-                address1 = row[9]
-                address2 = row[10]
-                suburb = row[11]
-                city = row[12]
-                postal = row[13]
-                email = row[16]
-                status = row[17]
+                salary=str(row[1])
+                name = row[4]
+                surname = row[5]
+                address1 = row[6]
+                address2 = row[7]
+                suburb = row[8]
+                city = row[9]
+                postal = row[10]
+                email = row[12]
+                status = row[13]
                 dob = idnum
                 gender = idnum
                 date_created=date_created_old
@@ -124,19 +160,17 @@ async def insert_status_data(filename:str=Query(...,description="Provided the na
         status_data_logger.info(f"{len(rows)} updated on finance, car , location, employment, and finance table(e)")
         #commit once after all tables
         await session.commit()
+        
         return BulkStatusResponse(status="success",message="All table updated successfully",summary=summary)
+    
     except Exception as e:
         await session.rollback()
         status_data_logger.exception(f"an internal server error occurred while inserting status data:%s",{e})
         raise HTTPException(status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"{str(e)}")
 
 
-
-
-
 @insert_data_router.post("/enriched_data",status_code=http_status.HTTP_200_OK,response_model=BulkEnrichedResponse)
-
-async def insert_enriched_data(filename:str=Query(...,description="Provide the name for excel filename with status data"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def insert_enriched_data(filename:str=Query(...,description="Provide the name for excel filename with status data"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     
     summary={}
     
@@ -284,7 +318,7 @@ async def insert_enriched_data(filename:str=Query(...,description="Provide the n
 
 @insert_data_router.post("/load-info-table",status_code=http_status.HTTP_200_OK,description="Load info table with Ashil's data")
 
-async def load_info_table(file:UploadFile=File(...),session:AsyncSession=Depends(get_async_master_test_session),user=Depends(get_current_active_user)):
+async def load_info_table(file:UploadFile=File(...),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     
     if not file.filename.lower().endswith((".xlsx",".xlsm")):
             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Bad file format")
@@ -316,3 +350,231 @@ async def load_info_table(file:UploadFile=File(...),session:AsyncSession=Depends
             pass
         if tmp_path and os.path.exists(tmp_path):
             os.remove(tmp_path)
+
+# @insert_data_router.post("/insert-new-data")
+
+# async def upload_data_to_database_using(file:UploadFile=File(...),session:AsyncSession=Depends(get_async_master_prod_session)):
+#     if not file.filename.lower('.csv'):
+#             raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"An exception occurred while uploading a .csv file")
+        
+#     data=await file.read()
+#     if not data:
+#         raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Empty file uploaded")
+
+#     try:
+#         await session.execute(text("""
+#             CREATE TEMP TABLE staging_ashil_import_tmp
+#             (LIKE staging_ashil_import INCLUDING ALL)
+#             ON COMMIT DROP;
+#         """))
+#         conn = await session.connection()
+#         raw = await conn.get_raw_connection()
+#         asyncpg_conn = raw.driver_connection
+#         await asyncpg_conn.copy_in(
+#             copy_sql("staging_ashil_import_tmp"),
+#             data
+#         )
+#         await session.execute(INFO_UPSERT)
+#         await session.execute(LOCATION_INSERT)
+#         await session.execute(CONTACT_UPSERT)
+#         await session.execute(EMPLOYMENT_INSERT)
+#         await session.execute(CAR_INSERT)
+#         await session.execute(FINANCE_INSERT)
+#         await session.commit()
+
+#         return {
+#             "message": "Import completed successfully",
+#             "strategy": "COPY + set-based SQL",
+#         }
+#     except Exception as e:
+#         return False
+    
+
+
+@insert_data_router.post("/insert-new-status-data-fast",status_code=http_status.HTTP_200_OK,description="insert status data production grade",response_model=InsertStatusDataResponse)
+
+async def insert_status_data_production(filename:str,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
+    started = time.time()
+    # Resolve file relative to main.py directory
+    file_path=resolve_file_path(filename)
+   
+    if not file_path.exists() or not file_path.is_file():
+
+        raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND,detail=f"File not found: {file_path.name}")
+    
+    CSV_CHUNK_SIZE = 5000   # rows read at a time from CSV
+
+    DB_BATCH_SIZE = 2000    # rows per DB execute call
+
+    # Build SQL statements ONCE, you will clean up later
+    info_stmt=build_info_upsert_stmt(info_tbl)
+    
+    location_stmt=insert(location_tbl.__table__).on_conflict_do_nothing(index_elements=[location_tbl.__table__.c.cell])
+    contact_ins=insert(contact_tbl.__table__)
+    contact_stmt=contact_ins.on_conflict_do_update(index_elements=[contact_tbl.__table__.c.cell],set_={"email":contact_ins.excluded.email},where=(contact_tbl.__table__.c.cell == contact_ins.excluded.cell),)
+    employment_stmt = insert(employment_tbl.__table__).on_conflict_do_nothing(index_elements=[employment_tbl.__table__.c.cell])
+    car_stmt = insert(car_tbl.__table__).on_conflict_do_nothing(index_elements=[car_tbl.__table__.c.cell])
+    finance_stmt = insert(finance_tbl.__table__).on_conflict_do_nothing(index_elements=[finance_tbl.__table__.c.cell])
+    
+    rows_seen=0
+    rows_valid=0
+
+    try:
+
+        for df in pd.read_csv(file_path,chunksize=CSV_CHUNK_SIZE):
+
+            rows_seen+=len(df)
+
+            cleaned_rows:list[dict]=[]
+
+            #build cleaned_rows for chunks
+
+            for row in df.values.tolist():
+                cell="0"+str(row[11])
+
+                if not re.match(r"^\d{10}$", str(cell)):
+                    continue
+
+                date_created_old=None
+
+                if row[0] is not None:
+                    try:
+                        date_created_old=str(row[0]).split("")[0]
+                    except Exception:
+                        date_created_old=None
+                idnum=str(row[2]) if row[2] is not None else None
+                
+
+                payload={
+                    "idnum":idnum,
+                    "cell":cell,
+                    "created_at":date_created_old,
+                    "salary":row[1],
+                    "name":row[4],
+                    "surname":row[5],
+                    "address1":row[6],
+                    "address2":row[7],
+                    "suburb":row[8],
+                    "city":row[9],
+                    "postal": str(row[10]) if row[10] is not None else None,
+                    "email": row[12],
+                    "status": row[13],
+                    "dob": idnum,
+                    "gender": idnum,
+                    "company": row[14],
+                    "job": str(row[15]) if row[15] is not None else None,
+                    "make": row[17],
+                    "model": row[16],
+                    "bank": row[18],
+                    "bal": row[19],
+                    }
+                
+
+                try:
+                    cleaned_rows.append(StatusedData(**payload).model_dump())
+
+                except Exception:
+                    continue
+
+                #check the list before continuing
+                if not cleaned_rows:
+                    continue
+                rows_valid+=len(cleaned_rows)
+
+                info_vals=[
+                     {
+                    "cell": r["cell"],
+                    "id": r["idnum"],
+                    "fore_name": r["name"],
+                    "last_name": r["surname"],
+                    "date_of_birth": r["dob"],
+                    "created_at": r["created_at"], 
+                    "gender": r["gender"],
+                    "salary": r["salary"],
+                    "status": r["status"],
+                    "typedata": "Status",
+                }
+                    for r in cleaned_rows
+                ]
+
+                location_vals = [
+                {
+                    "cell": r["cell"],
+                    "line_one": r["address1"],
+                    "line_two": r["address2"],
+                    "suburb": r["suburb"],
+                    "city": r["city"],
+                    "postal_code": r["postal"],
+                }
+                    for r in cleaned_rows
+                ]
+
+                contact_vals = [
+                    {"cell": r["cell"], "email": r["email"]}
+                    for r in cleaned_rows
+                    if r.get("email") is not None
+                ]
+
+                employment_vals = [
+                    {"cell": r["cell"], "company": r["company"], "job": r["job"]}
+                    for r in cleaned_rows
+                    if r.get("company") is not None or r.get("job") is not None
+                    ]
+                
+                finance_vals = [
+                    {"cell": r["cell"], "bank": r["bank"], "bal": r["bal"]}
+                    for r in cleaned_rows
+                    if r.get("bank") is not None or r.get("bal") is not None
+                    ]
+                
+                car_vals = [
+                {"cell": r["cell"], "make": r["make"], "model": r["model"]}
+                for r in cleaned_rows
+                if r.get("car") is not None or r.get("model") is not None
+                ]
+                
+                for batch in chunked(info_vals,DB_BATCH_SIZE):
+                    await session.execute(info_stmt,batch)
+
+                for batch in chunked(location_vals,DB_BATCH_SIZE):
+                    await session.execute(location_stmt,batch)
+
+                if contact_vals:
+
+                    for batch in chunked(contact_vals,DB_BATCH_SIZE):
+                        await session.execute(contact_stmt,batch)
+
+                if employment_vals:
+                    for batch in chunked(employment_vals,DB_BATCH_SIZE):
+                        await session.execute(employment_stmt,batch)
+                if car_vals:
+                    for batch in chunked(car_vals,DB_BATCH_SIZE):
+                        await session.execute(car_stmt,batch)
+                if  finance_vals:
+                    for batch in chunked(finance_vals,DB_BATCH_SIZE):
+                        await session.execute(finance_stmt,batch)
+                #commit per chunk
+                await session.commit()
+
+        
+        elapsed_time=time.time() - started
+        status_data_logger.info(f"{rows_valid}/{rows_seen} rows processed into nfo/location/contact/employment/car/finance table(s)")
+        
+        return InsertStatusDataResponse(
+            success=True,
+            file=file_path.name,
+            rows_seen=rows_seen,
+            rows_valid=rows_valid,
+            seconds=round(elapsed_time, 3),
+            rows_per_second=round(rows_valid / max(elapsed_time, 0.001), 2),
+        )
+    
+    except HTTPException:
+        raise
+
+    except Exception:
+        await session.rollback()
+        status_data_logger.exception(f"an exception occurred while uploading status data")
+        raise HTTPException(status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while uploading status data")
+    
+

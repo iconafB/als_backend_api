@@ -50,6 +50,7 @@ class DMA_Class():
         }
         
         credits_response=requests.get(url=base_url,params=params_values,verify=False,timeout=10)
+
         return credits_response
     
     #extract values from a file 
@@ -204,8 +205,6 @@ class DMA_Class():
         except Exception as e:
             session.rollback()
             dma_logger.error(f"{str(e)}")
-
-
 
     def check_status_and_return_records(self,audit_id,number_of_records,session:Session=Depends(get_session)):
         

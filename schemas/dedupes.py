@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 from models.dedupe_history_tracker import ClientStatus
 from datetime import datetime
 from typing import Optional,List
@@ -75,6 +75,16 @@ class PaginatedResultsResponse(BaseModel):
           orm_mode=True
 
 
+
+
+class DedupeCampaign(BaseModel):
+     campaign_name:str
+     aggregate_count:int
+
+class DedupeCampaignResponse(BaseModel):
+     campaign_name:str
+     aggregate_count:int
+
 class CampaignAggregatedInformation(BaseModel):
      campaign_name:str
      record_count:int
@@ -90,6 +100,32 @@ class PaginatedAggregatedDedupeResult(BaseModel):
 
      class Config:
           orm_mode=True
+
+
+class ManualDedupeUploadResponse(BaseModel):
+     success:bool=Field(...,description="Whether the upload completed successfully")
+     key: Optional[str] = Field(None, description="Batch key/code generated for this upload")
+     rows_inserted: int = Field(0, description="Number of valid rows processed from the Excel file")
+     message: Optional[str] = Field(None, description="Human-readable message (useful for errors or empty files)")
+     class Config:
+          
+          orm_mode=True
+
+class SubmitDedupeReturnResponse(BaseModel):
+     success:bool
+     campaign_name:str
+     dedupe_code:str
+     total_lines_in_file:int
+     valid_ids_processed:int
+     removed_ids_count:int
+     message:Optional[str]=None
+     processed_at:datetime
+
+     class Config:
+          orm_mode=True
+
+
+
 
 
 

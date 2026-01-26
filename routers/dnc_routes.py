@@ -2,11 +2,13 @@ from fastapi import APIRouter,status,Depends,HTTPException,BackgroundTasks,Uploa
 import pandas as pd
 import re
 import io
+from aiomysql import Connection
 import polars as pl
 from utils.auth import get_current_user
 from utils.logger import define_logger
 from schemas.dnc_schemas import DNCNumberResponse
 from utils.dnc_util import send_dnc_list_to_db
+from database.master_database_prod import get_async_master_prod_session
 
 dnc_logger=define_logger("als dnc logs","logs/dnc_route.log")
 
@@ -34,12 +36,14 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
     
     try:
         filename=(file.filename or "").strip().lower()
+
         if not filename:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Empty file names are not allowed")
         contents:bytes=await file.read()
         file_size=len(contents)
         #list_contents=pd.DataFrame(contents.splitlines()).values.tolist()
         #dnc_list=[str(item[0]) for item in list_contents if re.match('^\d{10}$',str(item[0]))]
+
         dnc_list=[]
 
         if file_size<=SMALL_FILE_THRESHOLD:
@@ -49,6 +53,7 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
                 dnc_list=[num for num in _extract_numbers(text.splitlines())]
             
             elif filename.endswith(".csv"):
+
                 df=pd.read_csv(io.StringIO(contents.decode("utf-8")),header=None,dtype=str)
                 dnc_list=list(_extract_numbers(df.iloc[:,0]))
 
@@ -79,6 +84,7 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
                 except Exception as e:
                     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Invalid CSV format:{str(e)}")
             elif filename.endswith((".xls", ".xlsx")):
+
                 bio=io.BytesIO(contents)
                 try:
                     with pd.ExcelFile(bio,engine="openpyxl") as excel_file:
@@ -93,14 +99,19 @@ async def add_to_dnc(bg_tasks:BackgroundTasks,camp_code:str=Query(...,descriptio
             
         
         if len(dnc_list)>0:
+
             process_status=True
             result=str(len(dnc_list)) + 'records added to the dnc'
+            
             bg_tasks.add_task(send_dnc_list_to_db,dnc_list,camp_code)
+
         
         else:
             process_status=False
             result='No valid 10-digit records were added to the dnc'
         dnc_logger.info(f"user:{user.id} with email:{user.email} added {len(dnc_list)} numbers to the dnc list")
+        
+        
         return DNCNumberResponse(status=process_status,message=result)
     
     except HTTPException:

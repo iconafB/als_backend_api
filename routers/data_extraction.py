@@ -6,16 +6,14 @@ from io import StringIO
 import csv
 import datetime
 from sqlmodel.ext.asyncio.session import AsyncSession
-from database.master_database_test import get_async_master_test_session
+from database.master_database_prod import get_async_master_prod_session
 
 data_extraction_router=APIRouter(prefix="/export",tags=["Export Data"])
 
 chunk_size = 1000  # number of rows per flush
 
 @data_extraction_router.get("/data/txt",status_code=status.HTTP_200_OK,description="Download data in text files")
-
-async def download_data_into_text_file(session:AsyncSession=Depends(get_async_master_test_session)):
-    
+async def download_data_into_text_file(session:AsyncSession=Depends(get_async_master_prod_session)):
     filename = f"data_export_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.txt"
     async def txt_stream():
         buffer=StringIO()
@@ -65,10 +63,9 @@ async def download_data_into_text_file(session:AsyncSession=Depends(get_async_ma
         }
     )
 
-
-
 @data_extraction_router.get("/data/csv",status_code=status.HTTP_200_OK,description="Download full data as CSV file")
-async def download_data_into_csv_file(session: AsyncSession = Depends(get_async_master_test_session)):
+async def download_data_into_csv_file(session: AsyncSession = Depends(get_async_master_prod_session)):
+
     filename = f"data_export_{datetime.datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.csv"
     async def csv_stream():
         buffer = StringIO()

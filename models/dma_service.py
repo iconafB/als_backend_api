@@ -6,7 +6,7 @@ from datetime import datetime
 #store the audit id, number of records,records processed and created_at date, this table tracks the dma
 
 class dma_audit_id_tbl(SQLModel,table=True):
-    id:int | None=Field(primary_key=True,nullable=False)
+    pk:int | None=Field(primary_key=True,nullable=False)
     audit_id:str=Field(nullable=False,default=None,index=True)
     number_of_records:int=Field(nullable=False,default=None)
     notification_email:str=Field(nullable=False,default=None,index=True)
@@ -46,9 +46,6 @@ class dma_validation_data(SQLModel,table=True):
     branch:str=Field(nullable=False,default=None)
     #campaign code
     camp_code:str=Field(nullable=False,default=None)
-    #these values should not be here since
-    # list_name:str=Field(nullable=False,default=None)
-    # list_id:str=Field(nullable=True,default=None)
     #This field can be initially set to False up until the dma returns than updated accordingly to True or False
     opted_out:bool=Field(nullable=True,default=None) 
     created_at:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False,default=None)

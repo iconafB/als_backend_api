@@ -21,7 +21,7 @@ class NumericCondition(BaseModel):
         "less_than", "less_than_equal",
         "greater_than", "greater_than_equal",
         "between"
-    ]
+    ]="equal"
     
     value: Optional[float] = None
     lower: Optional[float] = None
@@ -34,6 +34,7 @@ class NumericCondition(BaseModel):
         value = values.get("value")
         lower = values.get("lower")
         upper = values.get("upper")
+
         if op == "between":
             if lower is None or upper is None:
                 raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"Operator requires both lower and upper values")
@@ -70,20 +71,26 @@ class LastUsedCondition(BaseModel):
 class RecordsLoadedCondition(BaseModel):
     Operator:Literal["equal"]
     value:int
+
     @model_validator(mode="before")
     def validate_value_type(cls, values):
         value = values.get("value")
         if not isinstance(value, int):
             raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"Invalid type for 'value'. Expected 'int', got '{type(value).__name__}'.")
-        
         return values
-
     
+
+    @classmethod
+    def from_condition(cls,condition:dict):
+        return cls.model_validate(condition)
+
+
 #checked
 
 class TypeDataCondition(BaseModel):
 
     operator: Literal["equal","not_equal"]
+
     value: Literal["Status","Enriched","None"]
 
     @model_validator(mode="before")
@@ -111,6 +118,7 @@ class TypeDataCondition(BaseModel):
 class GenderCondition(BaseModel):
     operator: Literal["equal","not_equal"]
     value: Literal["MALE","FEMALE","BOTH"]
+
     @model_validator(mode="before")
     def validate_gender(cls,values):
         #Allowed keys
@@ -136,6 +144,7 @@ class GenderCondition(BaseModel):
 
 #checked
 class IsActiveCondition(BaseModel):
+
     operator: Literal["equal"]
     value: Literal[True]
 
@@ -152,6 +161,7 @@ class AgeCondition(BaseModel):
     upper: Optional[int] = None
 
     @model_validator(mode="before")
+
     def check_age_range(cls, values):
         
         op = values.get("operator")
@@ -184,10 +194,11 @@ class AgeCondition(BaseModel):
 
 
 class RuleSchema(BaseModel):
-    salary:NumericCondition
+
+    salary:Optional[NumericCondition]=None
     gender:Optional[GenderCondition]=None
     typedata:Optional[TypeDataCondition]=None
-    is_active:IsActiveCondition
+    is_active:IsActiveCondition=IsActiveCondition(operator="equal",value=True)
     age:Optional[AgeCondition]=None
     derived_income:Optional[NumericCondition]=None
     is_deduped:Optional[bool]=False
@@ -233,10 +244,23 @@ class LastUsedConditionResponse(BaseModel):
     def from_condition(cls, condition: dict):
         return cls(value=condition.get("value"))
     
-class RecordsLoadedConditionResponse(LastUsedConditionResponse):
-    pass
+class RecordsLoadedConditionResponse(BaseModel):
+    
+    Operator: Literal["equal"]="equal"
+    value:int=5000
 
+    @model_validator(mode="before")
+    def validate_value_type(cls,values):
+        value = values.get("value", 5000)
+        if not isinstance(value, int):
+            raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail=f"Invalid type for 'value'. Expected 'int', got '{type(value).__name__}'.")
+        return values
+    @classmethod
+    def from_condition(cls,condition:dict):
+        return cls.model_validate(condition)
+    
 # Top-level response model
+
 
 class RuleResponseModel(BaseModel):
     rule_code: int

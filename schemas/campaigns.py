@@ -5,7 +5,7 @@ class CreateCampaignResponse(BaseModel):
     camp_code:str
     campaign_name:str
     branch:str
-    
+    is_new:bool
     model_config={
         "from_attributes":True
     }
@@ -34,6 +34,7 @@ class CreateCampaign(BaseModel):
     branch:str
     camp_code:str
     campaign_name:str
+    is_new:bool=True
 
 
 

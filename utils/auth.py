@@ -1,22 +1,21 @@
 from fastapi import HTTPException,Depends,status
 from sqlmodel import Session,select
-from fastapi.security import OAuth2PasswordBearer,OAuth2PasswordRequestForm,SecurityScopes
+from fastapi.security import OAuth2PasswordBearer,OAuth2PasswordRequestForm,SecurityScopes,HTTPBasic,HTTPBasicCredentials
 from passlib.context import CryptContext
 from typing import Annotated
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import datetime,timedelta,timezone
 import jwt
+import secrets
 from jwt.exceptions import InvalidTokenError
 from settings.Settings import get_settings
-from models.users import users_table
-from database.master_db_connect import get_async_session
-
+from models.users import users_tbl
+from database.master_database_prod import get_async_master_prod_session
 from schemas.auth import TokenData
-
 pwd_context=CryptContext(schemes=["bcrypt"],deprecated="auto")
 
+security=HTTPBasic()
 oauth_scheme=OAuth2PasswordBearer(tokenUrl='auth/login')
-
 #hash password
 def hash_password(password):
     return pwd_context.hash(password)
@@ -52,24 +51,29 @@ def verify_token(token:str,credentials_exception):
     return id
 
 #get current user
+
 async def get_current_user(token:Annotated[str,Depends(oauth_scheme)]):
-    
+
     credential_exception=HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail=f"Could not validate credentials",headers={"WWW-Authenticate": "Bearer"})
+
     try:
-        #nonsense replication of code verify token method would do easily
         payload=jwt.decode(token,get_settings().SECRET_KEY,algorithms=get_settings().ALGORITHM)
         user_id=payload['user_id']
+
         if user_id==None:
+            print(f"print user id:{user_id}")
             raise credential_exception
+        
     except InvalidTokenError:
         raise credential_exception
     return user_id
 
-async def get_current_active_user(current_user:Annotated[int,Depends(get_current_user)],session:AsyncSession=Depends(get_async_session)):
+async def get_current_active_user(current_user:Annotated[int,Depends(get_current_user)],session:AsyncSession=Depends(get_async_master_prod_session)):
     credential_exception=HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail=f"Invalid credentials",headers={"WWW-Authenticate": "Bearer"})
+ 
     if current_user==None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Invalid Credentials")
-    user_query=select(users_table).where(users_table.id==current_user)
+    user_query=select(users_tbl).where(users_tbl.id==current_user)
     #exceute the query and get user data
     result_user=await session.exec(user_query)
     user=result_user.first()
@@ -77,5 +81,15 @@ async def get_current_active_user(current_user:Annotated[int,Depends(get_current
     if user==None:
         raise credential_exception
     return user
+
+
+def require_docs_auth(creds:HTTPBasicCredentials=Depends(security)):
+    settings=get_settings()
+    user_ok=secrets.compare_digest(creds.username,settings.ADMIN_USERNAME)
+    pass_ok=secrets.compare_digest(creds.password,settings.ADMIN_PASSWORD)
+    if not (user_ok and pass_ok):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail=f"Unauthorized",headers={"WWW-Authenticate":"Basic"})
+    
+    return True
 
 

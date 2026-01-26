@@ -1,0 +1,332 @@
+2026-01-21 09:06:01,901 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:09:04,776 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:10:02,677 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:11:35,606 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:15:20,238 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:24:13,938 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:27:04,566 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:28:45,753 - dmasa_logs - ERROR - DMASA rejected upload: [{'Error': 'Please ensure that all Inputs are Provided'}]
+2026-01-21 09:38:14,328 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471745 | Records: 0
+2026-01-21 09:38:15,639 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471745
+2026-01-21 09:38:22,156 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471745
+2026-01-21 09:38:28,665 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471745
+2026-01-21 09:38:35,362 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471745
+2026-01-21 09:38:41,974 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471745
+2026-01-21 09:50:11,955 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471747 | Records: 0
+2026-01-21 09:50:13,121 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471747
+2026-01-21 09:50:19,676 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471747
+2026-01-21 09:50:26,159 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471747
+2026-01-21 09:50:32,586 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471747
+2026-01-21 09:50:39,089 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471747
+2026-01-21 10:35:28,497 - dmasa_logs - ERROR - Invalid DMASA upload response: 'TotalRecords'
+2026-01-21 10:38:16,260 - dmasa_logs - ERROR - Invalid DMASA upload response: 'TotalRecords'
+2026-01-21 10:40:22,548 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471780 | Records: 0
+2026-01-21 10:40:23,727 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471780
+2026-01-21 10:40:30,172 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471780
+2026-01-21 10:40:36,835 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471780
+2026-01-21 10:40:43,228 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471780
+2026-01-21 10:40:49,635 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471780
+2026-01-21 10:48:57,417 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471782 | Records: 0
+2026-01-21 10:48:58,868 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471782
+2026-01-21 10:49:05,494 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471782
+2026-01-21 10:49:11,909 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471782
+2026-01-21 10:49:18,299 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471782
+2026-01-21 10:49:24,736 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471782
+2026-01-21 10:57:10,210 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471785 | Records: 0
+2026-01-21 10:57:11,441 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471785
+2026-01-21 10:57:17,823 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471785
+2026-01-21 10:57:24,213 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471785
+2026-01-21 10:57:30,548 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471785
+2026-01-21 10:57:36,913 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471785
+2026-01-21 11:00:36,344 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471786 | Records: 0
+2026-01-21 11:00:37,478 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471786
+2026-01-21 11:00:43,942 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471786
+2026-01-21 11:00:50,356 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471786
+2026-01-21 11:00:56,768 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471786
+2026-01-21 11:01:03,160 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471786
+2026-01-21 11:05:57,732 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471788 | Records: 0
+2026-01-21 11:05:58,894 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471788
+2026-01-21 11:06:05,438 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471788
+2026-01-21 11:06:11,895 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471788
+2026-01-21 11:06:18,257 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471788
+2026-01-21 11:06:24,639 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471788
+2026-01-21 11:12:32,577 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471790 | Records: 0
+2026-01-21 11:12:33,820 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471790
+2026-01-21 11:12:40,230 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471790
+2026-01-21 11:12:46,702 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471790
+2026-01-21 11:12:53,158 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471790
+2026-01-21 11:12:59,576 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471790
+2026-01-21 11:17:37,716 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471792 | Records: 0
+2026-01-21 11:17:38,834 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471792
+2026-01-21 11:17:45,158 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471792
+2026-01-21 11:17:51,531 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471792
+2026-01-21 11:17:57,995 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471792
+2026-01-21 11:18:04,478 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471792
+2026-01-21 11:22:03,336 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471793 | Records: 0
+2026-01-21 11:22:04,426 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471793
+2026-01-21 11:22:10,804 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471793
+2026-01-21 11:22:17,168 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471793
+2026-01-21 11:22:23,545 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471793
+2026-01-21 11:22:29,998 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471793
+2026-01-21 11:24:43,102 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471795 | Records: 0
+2026-01-21 11:24:44,253 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471795
+2026-01-21 11:24:50,625 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471795
+2026-01-21 11:24:57,009 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471795
+2026-01-21 11:25:03,447 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471795
+2026-01-21 11:25:09,860 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471795
+2026-01-21 11:28:33,603 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471797 | Records: 0
+2026-01-21 11:28:35,124 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471797
+2026-01-21 11:28:41,810 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471797
+2026-01-21 11:28:48,390 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471797
+2026-01-21 11:28:54,932 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471797
+2026-01-21 11:29:01,511 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471797
+2026-01-21 11:39:50,570 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471798 | Records: 0
+2026-01-21 11:39:51,746 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471798
+2026-01-21 11:39:58,208 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471798
+2026-01-21 11:40:04,628 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471798
+2026-01-21 11:40:10,998 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471798
+2026-01-21 11:40:17,371 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471798
+2026-01-21 11:45:09,467 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471800 | Records: 0
+2026-01-21 11:45:10,679 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471800
+2026-01-21 11:45:17,184 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471800
+2026-01-21 11:45:23,617 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471800
+2026-01-21 11:45:30,033 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471800
+2026-01-21 11:45:36,461 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471800
+2026-01-21 11:47:10,595 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471801 | Records: 0
+2026-01-21 11:47:11,728 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471801
+2026-01-21 11:47:18,139 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471801
+2026-01-21 11:47:24,549 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471801
+2026-01-21 11:47:30,968 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471801
+2026-01-21 11:47:37,382 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471801
+2026-01-21 11:49:55,298 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471802 | Records: 0
+2026-01-21 11:49:56,456 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471802
+2026-01-21 11:50:02,887 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471802
+2026-01-21 11:50:09,301 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471802
+2026-01-21 11:50:15,767 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471802
+2026-01-21 11:50:22,249 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471802
+2026-01-21 11:59:46,152 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471804 | Records: 0
+2026-01-21 11:59:47,285 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471804
+2026-01-21 11:59:53,811 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471804
+2026-01-21 12:00:00,309 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471804
+2026-01-21 12:00:06,786 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471804
+2026-01-21 12:00:13,256 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471804
+2026-01-21 12:08:32,234 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471805 | Records: 0
+2026-01-21 12:08:33,755 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471805
+2026-01-21 12:08:40,563 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471805
+2026-01-21 12:08:47,280 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471805
+2026-01-21 12:08:53,955 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471805
+2026-01-21 12:09:00,589 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471805
+2026-01-21 12:15:42,067 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471806 | Records: 0
+2026-01-21 12:15:43,270 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471806
+2026-01-21 12:15:49,706 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471806
+2026-01-21 12:15:56,124 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471806
+2026-01-21 12:16:02,506 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471806
+2026-01-21 12:16:08,866 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471806
+2026-01-21 12:29:56,145 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471810 | Records: 0
+2026-01-21 12:29:57,212 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471810
+2026-01-21 12:30:08,677 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471810
+2026-01-21 12:30:20,123 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471810
+2026-01-21 12:30:31,664 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471810
+2026-01-21 12:30:43,158 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471810
+2026-01-21 12:39:59,540 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471811 | Records: 0
+2026-01-21 12:40:00,747 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471811
+2026-01-21 12:40:12,298 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471811
+2026-01-21 12:40:23,788 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471811
+2026-01-21 12:40:35,255 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471811
+2026-01-21 12:40:46,626 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471811
+2026-01-21 12:44:33,527 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471812 | Records: 0
+2026-01-21 12:44:34,735 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471812
+2026-01-21 12:44:46,272 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471812
+2026-01-21 12:44:57,688 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471812
+2026-01-21 12:45:09,149 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471812
+2026-01-21 12:45:20,499 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471812
+2026-01-21 12:49:14,327 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471813 | Records: 0
+2026-01-21 12:49:15,474 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471813
+2026-01-21 12:49:27,012 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471813
+2026-01-21 12:49:38,430 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471813
+2026-01-21 12:49:49,791 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471813
+2026-01-21 12:50:01,147 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471813
+2026-01-21 12:53:31,017 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471815 | Records: 0
+2026-01-21 12:53:32,232 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471815
+2026-01-21 12:53:43,753 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471815
+2026-01-21 12:53:55,258 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471815
+2026-01-21 12:54:06,686 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471815
+2026-01-21 12:54:18,201 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471815
+2026-01-21 12:58:31,268 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471816 | Records: 0
+2026-01-21 12:58:32,670 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471816
+2026-01-21 12:58:44,444 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471816
+2026-01-21 12:58:55,969 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471816
+2026-01-21 12:59:07,571 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471816
+2026-01-21 12:59:19,045 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471816
+2026-01-21 13:07:37,353 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471818 | Records: 0
+2026-01-21 13:07:38,593 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471818
+2026-01-21 13:07:49,997 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471818
+2026-01-21 13:08:01,354 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471818
+2026-01-21 13:08:12,714 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471818
+2026-01-21 13:08:24,138 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471818
+2026-01-21 14:26:23,055 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471827 | Records: 0
+2026-01-21 14:26:24,347 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471827
+2026-01-21 14:26:35,850 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471827
+2026-01-21 14:26:47,215 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471827
+2026-01-21 14:26:58,644 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471827
+2026-01-21 14:27:10,058 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471827
+2026-01-21 15:47:59,218 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471974 | Records: 0
+2026-01-21 15:48:00,307 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471974
+2026-01-21 15:48:11,935 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471974
+2026-01-21 15:48:23,394 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471974
+2026-01-21 15:48:35,077 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471974
+2026-01-21 15:48:46,859 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471974
+2026-01-21 15:54:11,056 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471977 | Records: 0
+2026-01-21 15:54:12,334 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471977
+2026-01-21 15:54:23,826 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471977
+2026-01-21 15:54:35,213 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471977
+2026-01-21 15:54:46,882 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471977
+2026-01-21 15:54:58,373 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471977
+2026-01-21 15:56:35,968 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471978 | Records: 0
+2026-01-21 15:56:37,140 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471978
+2026-01-21 15:56:48,649 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471978
+2026-01-21 15:57:00,063 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471978
+2026-01-21 15:57:11,566 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471978
+2026-01-21 15:57:22,999 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471978
+2026-01-21 15:58:53,617 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9471980 | Records: 0
+2026-01-21 15:58:55,209 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471980
+2026-01-21 15:59:01,974 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471980
+2026-01-21 15:59:08,644 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471980
+2026-01-21 15:59:15,303 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471980
+2026-01-21 15:59:21,784 - dmasa_logs - INFO - Dedupe complete for AuditID: 9471980
+2026-01-22 01:34:54,314 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473148 | Records: 0
+2026-01-22 01:34:55,208 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473148
+2026-01-22 01:35:01,534 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473148
+2026-01-22 01:35:07,779 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473148
+2026-01-22 01:35:14,195 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473148
+2026-01-22 01:35:20,482 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473148
+2026-01-22 02:02:01,309 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473149 | Records: 0
+2026-01-22 02:02:02,174 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473149
+2026-01-22 02:02:08,520 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473149
+2026-01-22 02:02:14,821 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473149
+2026-01-22 02:02:21,109 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473149
+2026-01-22 02:02:27,388 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473149
+2026-01-22 02:04:21,503 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473150 | Records: 0
+2026-01-22 02:04:22,458 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473150
+2026-01-22 02:04:28,779 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473150
+2026-01-22 02:04:35,000 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473150
+2026-01-22 02:04:41,302 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473150
+2026-01-22 02:04:47,642 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473150
+2026-01-22 02:18:03,171 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473152 | Records: 0
+2026-01-22 02:18:04,110 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473152
+2026-01-22 02:18:10,419 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473152
+2026-01-22 02:18:16,698 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473152
+2026-01-22 02:18:23,041 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473152
+2026-01-22 02:18:29,610 - dmasa_logs - INFO - Dedupe complete for AuditID: 9473152
+2026-01-22 02:39:39,069 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473153
+2026-01-22 02:41:36,925 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473154
+2026-01-22 02:47:38,233 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473156
+2026-01-22 02:51:10,019 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473157
+2026-01-22 02:52:58,078 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473158
+2026-01-22 02:55:07,632 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473159
+2026-01-22 02:59:36,358 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473160
+2026-01-22 06:35:12,448 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473161
+2026-01-22 06:49:54,422 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473162
+2026-01-22 11:47:47,344 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473209
+2026-01-22 11:52:20,053 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473210
+2026-01-22 11:56:33,061 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473212
+2026-01-22 12:05:16,615 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473216
+2026-01-22 16:57:15,642 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9473420
+2026-01-23 00:27:29,615 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476327
+2026-01-23 00:35:19,422 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476338
+2026-01-23 00:38:16,141 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476374
+2026-01-23 00:49:26,853 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476410
+2026-01-23 00:55:36,003 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476411
+2026-01-23 01:21:36,530 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476520
+2026-01-23 01:23:23,992 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476521
+2026-01-23 01:25:58,936 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476522
+2026-01-23 01:32:27,120 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476559
+2026-01-23 01:34:35,443 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476560
+2026-01-23 01:36:50,305 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476569
+2026-01-23 01:45:11,935 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476597
+2026-01-23 01:49:32,265 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476633
+2026-01-23 02:11:52,772 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476705
+2026-01-23 02:12:53,175 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476706
+2026-01-23 02:14:37,832 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476707
+2026-01-23 02:28:48,477 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476778
+2026-01-23 02:32:39,692 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476779
+2026-01-23 02:55:36,484 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476851
+2026-01-23 02:58:15,512 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476887
+2026-01-23 03:00:01,507 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476888
+2026-01-23 03:11:58,605 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9476924
+2026-01-23 06:36:41,276 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477629
+2026-01-23 06:41:22,767 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477661
+2026-01-23 06:49:09,843 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477697
+2026-01-23 08:03:46,581 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477698
+2026-01-23 08:21:14,306 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477700
+2026-01-23 08:28:58,540 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477703
+2026-01-23 08:38:10,957 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477706
+2026-01-23 08:42:56,463 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477707
+2026-01-23 08:47:43,935 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477716
+2026-01-23 08:54:05,356 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477719
+2026-01-23 08:56:35,016 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477720
+2026-01-23 09:55:21,666 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477728
+2026-01-23 10:32:43,372 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477732
+2026-01-23 10:46:01,049 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477734
+2026-01-23 11:04:18,422 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477736
+2026-01-23 11:23:57,404 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477737
+2026-01-23 11:26:06,217 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477738
+2026-01-23 11:38:26,887 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477739
+2026-01-23 11:40:20,532 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477741
+2026-01-23 11:41:52,317 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477742
+2026-01-23 11:46:24,120 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477744
+2026-01-23 11:51:11,638 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477745
+2026-01-23 12:00:47,330 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477746
+2026-01-23 12:02:11,942 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477747
+2026-01-23 12:07:50,852 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477748
+2026-01-23 12:15:43,608 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477749
+2026-01-23 12:19:47,384 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477750
+2026-01-23 12:23:09,876 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477751
+2026-01-23 12:29:59,319 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477754
+2026-01-23 12:34:13,724 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477756
+2026-01-23 14:29:13,499 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477769
+2026-01-23 15:02:28,276 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477783
+2026-01-23 15:04:27,332 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477785
+2026-01-23 15:54:53,357 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477789
+2026-01-23 15:58:10,873 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477790
+2026-01-24 09:55:01,706 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477793
+2026-01-24 12:28:47,083 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477795
+2026-01-24 12:28:49,508 - dmasa_logs - ERROR - dma errors occurred while fetch dma records:[{'Error': 'Not enough credits to download Dedupe Results'}]
+NoneType: None
+2026-01-24 17:52:19,772 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477796
+2026-01-24 19:50:04,764 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477797
+2026-01-24 19:53:45,832 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477798
+2026-01-24 19:56:45,125 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477799
+2026-01-24 19:58:12,891 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477800
+2026-01-24 20:01:54,280 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477801
+2026-01-24 20:38:08,726 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477802
+2026-01-24 20:55:29,959 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477803
+2026-01-25 07:59:21,263 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477804
+2026-01-25 08:06:59,966 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477805
+2026-01-25 08:11:27,517 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477806
+2026-01-25 08:13:25,871 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477807
+2026-01-25 09:40:22,822 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477808
+2026-01-25 09:46:10,058 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477809
+2026-01-25 10:01:06,894 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477811
+2026-01-25 10:42:16,638 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477812
+2026-01-25 13:11:30,930 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477813
+2026-01-25 13:43:58,520 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477814
+2026-01-25 13:45:59,554 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477815
+2026-01-25 13:47:50,464 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477816
+2026-01-25 13:51:52,838 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477817
+2026-01-25 13:58:05,695 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477818
+2026-01-25 14:06:03,132 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477819
+2026-01-25 14:08:33,074 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477820
+2026-01-25 14:12:07,657 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477821
+2026-01-25 14:21:16,809 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477822
+2026-01-25 14:35:24,557 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477823
+2026-01-25 14:40:23,971 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477824
+2026-01-25 14:57:55,325 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477825
+2026-01-25 15:13:10,327 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477880
+2026-01-25 15:18:06,689 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477886
+2026-01-25 15:58:52,397 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9477937
+2026-01-26 06:56:25,422 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9479809
+2026-01-26 07:13:46,062 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9479810
+2026-01-26 07:19:30,707 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9479811
+2026-01-26 07:20:33,566 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9479812
+2026-01-26 07:22:14,521 - dmasa_logs - INFO - DMASA upload successful | AuditID: 9479813

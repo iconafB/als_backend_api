@@ -5,16 +5,18 @@ from crud.dedupe_campaign_rules import (create_dedupe_campaign_rule,get_all_dedu
 from models.campaign_rules import dedupe_campaign_rules_tbl
 from schemas.campaign_rules import CreateDedupeCampaignRule
 from database.master_db_connect import get_async_session
+from database.master_database_prod import get_async_master_prod_session
 from utils.logger import define_logger
 from utils.auth import get_current_active_user
 
-dedupe_campaign_rule_logger=define_logger("als dedupe campaign rules","logs/dedupe_campaign_rules")
+dedupe_campaign_rule_logger=define_logger("als_dedupe_campaign_rules_logger","logs/dedupe_campaign_rules")
 
 dedupe_campaign_router=APIRouter(tags=["Dedupe Campaign Rules"],prefix="/dedupe_campaign_rules")
 
 @dedupe_campaign_router.post("",status_code=status.HTTP_201_CREATED,response_model=dedupe_campaign_rules_tbl,description="Create a deduped campaign")
-#create a dedupe campaign
-async def create_dedupe_campaign_rule(rule:CreateDedupeCampaignRule,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+
+async def create_dedupe_campaign_rule(rule:CreateDedupeCampaignRule,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
+    
     try:
         dedupe_campaign_rule_logger.info(f"user:{user.id} with email:{user.email} created dedupe campaign rule:{rule.rule_name}")
         return await create_dedupe_campaign_rule(rule,session)
@@ -25,7 +27,8 @@ async def create_dedupe_campaign_rule(rule:CreateDedupeCampaignRule,session:Asyn
 
 #get all dedupe campaign rules
 @dedupe_campaign_router.get("",status_code=status.HTTP_200_OK,response_model=List[dedupe_campaign_rules_tbl],description="Get All deduped Campaigns")
-async def get_all_dedupe_campaign_rules(skip:int=0,limit:int=100,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+
+async def get_all_dedupe_campaign_rules(skip:int=0,limit:int=100,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         dedupe_campaign_rule_logger.info(f"user:{user.id} with email:{user.email} retrieved deduped campaign rules")
         return await get_all_dedupe_campaign_rules(session,skip,limit)
@@ -35,7 +38,7 @@ async def get_all_dedupe_campaign_rules(skip:int=0,limit:int=100,session:AsyncSe
 
 #get all active dedupe campaign rules
 @dedupe_campaign_router.get("/active",status_code=status.HTTP_200_OK,response_model=List[dedupe_campaign_rules_tbl],description="Get all active dedupe camapign rules")
-async def get_all_active_dedupe_campaign_rules(skip:int=0,limit:int=100,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def get_all_active_dedupe_campaign_rules(skip:int=0,limit:int=100,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await get_all_active_dedupe_campaign_rules(session,skip,limit)
         dedupe_campaign_rule_logger.info(f"user:{user.id} with email:{user.email} retrieved:{len(result)}")
@@ -46,7 +49,7 @@ async def get_all_active_dedupe_campaign_rules(skip:int=0,limit:int=100,session:
     
 #get campaign by rule_name or campaign code
 @dedupe_campaign_router.get("/{rule_name}",description="Get deduped campaign by rule name or campaign code",status_code=status.HTTP_200_OK,response_model=dedupe_campaign_rules_tbl)
-async def get_deduped_campaign_rule_by_name(rule_name:str=Path(...,description="Campaign Code or Rule Name"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def get_deduped_campaign_rule_by_name(rule_name:str=Path(...,description="Campaign Code or Rule Name"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
        result=await get_deduped_campaign_rule_by_name(rule_name,session)
 
@@ -63,7 +66,7 @@ async def get_deduped_campaign_rule_by_name(rule_name:str=Path(...,description="
 
 #dedactivate the dedupe campaign rule
 @dedupe_campaign_router.patch("/{rule_name}",status_code=status.HTTP_202_ACCEPTED,description="Deactivate a campaign rule")
-async def deactivate_dedupe_campaign_rule(rule_name:str,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def deactivate_dedupe_campaign_rule(rule_name:str,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await delete_dedupe_campaign_rule_by_rule_name(rule_name,session)
 
@@ -77,8 +80,7 @@ async def deactivate_dedupe_campaign_rule(rule_name:str,session:AsyncSession=Dep
 #update dedupe campaign rule salary
 
 @dedupe_campaign_router.patch("/salary/{rule_name}",status_code=status.HTTP_200_OK,description="Update dedupe campaign rule salary using the rule name/campaign code",response_model=dedupe_campaign_rules_tbl)
-
-async def update_dedupe_campaign_rule_salary(rule_name:str=Path(...,description="provide rule name or campaign code"),salary:int=Query(...,description="Provide new salary value"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def update_dedupe_campaign_rule_salary(rule_name:str=Path(...,description="provide rule name or campaign code"),salary:int=Query(...,description="Provide new salary value"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await update_dedupe_campaign_rule_salary(rule_name,salary,session)
         if result==None:
@@ -90,7 +92,7 @@ async def update_dedupe_campaign_rule_salary(rule_name:str=Path(...,description=
 
 #update derived income
 @dedupe_campaign_router.patch("/derived_income/{rule_name}",status_code=status.HTTP_200_OK,description="Update derived income for a deduped campaign rule",response_model=dedupe_campaign_rules_tbl)
-async def update_derived_income(rule_name:str=Path(...,description="Rule name or camapign code"),derived_income:int=Query(...,description="Provide derived income value"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def update_derived_income(rule_name:str=Path(...,description="Rule name or camapign code"),derived_income:int=Query(...,description="Provide derived income value"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await update_derived_income_for_campaign_rule(rule_name,derived_income,session)
         if result==None:
@@ -102,7 +104,7 @@ async def update_derived_income(rule_name:str=Path(...,description="Rule name or
 
 #update gender for a deduped campaign rule
 @dedupe_campaign_router.patch("/gender/{rule_name}",status_code=status.HTTP_200_OK,description="Update the gender for a deduped campaign rule",response_model=dedupe_campaign_rules_tbl)
-async def update_gender_deduped_campaign(rule_name:str=Path(...,description="Rule name or campaign name"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def update_gender_deduped_campaign(rule_name:str=Path(...,description="Rule name or campaign name"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await update_gender_for_dedupe_campaign_rule(rule_name)
         if result==None:
@@ -115,8 +117,7 @@ async def update_gender_deduped_campaign(rule_name:str=Path(...,description="Rul
 
 #change dedupe campaign to generic campaign
 @dedupe_campaign_router.patch("/{rule_name}",status_code=status.HTTP_200_OK,response_model=dedupe_campaign_rules_tbl,description="Change dedupe campaign to a generic campaign")
-
-async def change_dedupe_campaign_to_generic_campaign(rule_name:str,session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def change_dedupe_campaign_to_generic_campaign(rule_name:str,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         result=await change_dedupe_campaign_to_generic_campaign(rule_name,session)
         if result==None:

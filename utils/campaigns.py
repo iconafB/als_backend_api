@@ -1,4 +1,4 @@
-from models.rules_table import rules_tbl
+from models.rules_table import new_rules_tbl
 from models.information_table import info_tbl
 from sqlalchemy import text
 from datetime import date
@@ -6,7 +6,7 @@ from typing import Dict,Any,Tuple,Optional
 from textwrap import dedent
 
 
-def build_dynamic_query(rule:rules_tbl)->tuple[str,dict]:
+def build_dynamic_query(rule:new_rules_tbl)->tuple[str,dict]:
 
     base_select_clause="""
         SELECT id,fore_name,last_name,cell 
@@ -110,7 +110,7 @@ def build_dynamic_dedupe_main_query(campaign_name:str,status:str,limit:int)->tup
 
 #dynamic query that involve information table and the finance table
 
-def build_dynamic_query_finance_tbl(rule:rules_tbl)->tuple[str,dict]:
+def build_dynamic_query_finance_tbl(rule:new_rules_tbl)->tuple[str,dict]:
 
     #First where statement
     params={}
@@ -178,7 +178,7 @@ def build_dynamic_query_finance_tbl(rule:rules_tbl)->tuple[str,dict]:
 
 #dynamically loads campaign query builder
 
-def load_campaign_query_builder(rule:rules_tbl):
+def load_campaign_query_builder(rule:new_rules_tbl):
     #where conditions to filters leads fetched
     conditions=[]
     #filtering parameters

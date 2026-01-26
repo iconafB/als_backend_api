@@ -1,41 +1,40 @@
-
 from pydantic_settings import BaseSettings,SettingsConfigDict
 from functools import lru_cache
 
 class Settings(BaseSettings):
-    
-    database_password:str
-    database_host_name:str
-    database_name:str
-    database_port:int
-    database_owner:str
+    #dev database environment variables
+    DATABASE_PASSWORD:str
+    DATABASE_HOST_NAME:str
+    DATABASE_NAME:str
+    DATABASE_PORT:int
+    DATABASE_OWNER:str
 
     #master db information
-    master_db_host_name:str
-    master_db_port_number:int
-    master_db_name:str
-    master_db_user:str
-    master_db_password:str
-    #authentication details
+    MASTER_DB_HOST_NAME:str
+    MASTER_DB_PORT:int
+    MASTER_DB_NAME:str
+    MASTER_DB_USER:str
+    MASTER_DB_PASSWORD:str
+    MASTER_DB_OWNER:str
 
+    #authentication details
     SECRET_KEY:str
     ALGORITHM:str
-    dmasa_api_key:str
-    dmasa_member_id:str
     ACCESS_TOKEN_EXPIRES_MINUTES:int
-    upload_dmasa_url:str
-    read_dmasa_dedupe_status:str
-    notification_email:str
-    check_credits_dmasa_url:str
-    
+    #dmasa environment variables
+    DMASA_API_KEY:str
+    DMASA_MEMBER_ID:str
+    UPLOAD_DMASA_URL:str
+    READ_DMASA_DEDUPE_STATUS:str
+    NOTIFICATION_EMAIL:str
+    CHECK_CREDITS_DMASA_URL:str
+    READ_DMASA_OUTPUT_URL:str
+    #dedago environment variables
     dedago_url:str
-
     INVTNTDBN_TOKEN:str
     P3_TOKEN:str
     HQ_TOKEN:str
     YORK_TOKEN:str
-
-
     #pings environment variables
     hopper_level_check_url:str
     icon_ping_url:str
@@ -43,21 +42,12 @@ class Settings(BaseSettings):
     send_pings_to_kuda_password:str
     send_pings_to_troy_url:str
     send_pings_to_troy_token:str
-
+    #pings database
     pings_db_name:str
     pings_db_user:str
     pings_db_password:str
     pings_db_port:str
     pings_db_host:str
-
-    #dma environment variables
-    dmasa_api_key:str
-    dmasa_member_id:str
-    upload_dmasa_url:str
-    check_credits_dmasa_url:str
-    read_dmasa_dedupe_status:str
-    read_dmasa_output_url:str
-    notification_email:str
 
     #mail server 
     MAIL_USERNAME:str
@@ -80,10 +70,10 @@ class Settings(BaseSettings):
     #API CREDENTIALS
     ADMIN_USERNAME:str
     ADMIN_PASSWORD:str
-    
-    
+
     #load the environment variables file
     model_config=SettingsConfigDict(env_file=".env")
+
 
 #cache the settings results
 @lru_cache

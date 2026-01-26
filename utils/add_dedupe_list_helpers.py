@@ -20,10 +20,15 @@ async def add_dedupe_list_helper(session:AsyncSession,tuple_list:list[tuple],bat
         campaign_dedupe_list=[{"id":d[0],"cell":d[1],"camp_code":d[2],"status":d[3],"key":d[4]} for d in batch]
         info_table_list=[(t[1],'DEDUPE') for t in batch]
         start_batch=time.perf_counter() # start batch timer
+        
         insert_data_to_campaign_dedupe_tbl=text(INSERT_INTO_CAMPAIGN_DEDUPE_TABLE_QUERY)
+
         insert_data_to_info_tbl=text(INSERT_INTO_INFO_TABLE_QUERY)
+
         await session.execute(insert_data_to_campaign_dedupe_tbl,campaign_dedupe_list)
+
         await session.execute(insert_data_to_info_tbl,info_table_list)
+
         #update counters
         end_batch=time.perf_counter()
         batch_times.append(end_batch - start_batch)

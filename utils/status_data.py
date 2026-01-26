@@ -20,6 +20,8 @@ def map_location_tuple_to_dic(t:Tuple)->dict:
 
     return {"cell":t[0],"line_one":t[1],"line_two":t[2],"suburb":t[3],"city":t[4],"postal_code":t[5]}
 
+
+""" 
 #execute whatever is return from these methods
 async def insert_data_into_finance_table(data:list,session:AsyncSession,user):
     total_records=len(data)
@@ -85,7 +87,6 @@ async def insert_data_into_contact_table(data:List[Tuple],session:AsyncSession,u
     total_inserted=0
     total_batches_processed=0
     try:
-
         for i in range(0,total_records,BATCH_SIZE):
             batch=data[i:i+BATCH_SIZE]
             data_dict=[{"cell":t[0],"email":t[1]} for t in batch]
@@ -205,7 +206,7 @@ async def insert_data_into_information_table(data:List[Tuple],session:AsyncSessi
 
 
 
-
+ """
 
 def get_status_tuple(dataList:list,num:int):
 

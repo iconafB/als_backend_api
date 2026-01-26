@@ -30,6 +30,7 @@ class CleaningRecord:
 
 INVALID_VALUES = {"", "Null", "null", "NULL"}
 
+
 def clean_and_process_results(new_result: List[Dict[str, Any]]) -> Tuple[List[Dict[str, str]], List[Dict[str, str]]]:
     
     feeds: List[Dict[str, str]] = []
@@ -65,10 +66,10 @@ def clean_and_process_results(new_result: List[Dict[str, Any]]) -> Tuple[List[Di
         # Append directly as dictionaries
 
         feeds.append({
-            "vendor_lead_code": id_val,
             "first_name": first_name,
             "last_name": last_name or "",
-            "phone_number": cell
+            "phone_number": cell,
+            "vendor_lead_code": id_val
         })
 
         feeds_cleaning.append({
@@ -78,4 +79,7 @@ def clean_and_process_results(new_result: List[Dict[str, Any]]) -> Tuple[List[Di
             "cell_number": cell
         })
 
+
+        print("print all the feeds immediately after cleaning")
+        print(feeds)
     return feeds, feeds_cleaning

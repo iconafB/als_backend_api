@@ -1,7 +1,8 @@
-from sqlmodel import Field,Relationship,SQLModel
+from sqlmodel import Field,SQLModel
 from typing import Optional
 from datetime import date
 from typing import TYPE_CHECKING
+from sqlalchemy import Column
 
 if TYPE_CHECKING:
     from models.contact_table import contact_tbl
@@ -11,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class lead_history_tbl(SQLModel,table=True):
-    lead_pk:Optional[int]=Field(primary_key=True,default=None)
+    lead_pk:int=Field(primary_key=True)
     cell:str=Field(nullable=False,foreign_key="info_tbl.cell",index=True)
     camp_code:str=Field(nullable=False,foreign_key="campaign_tbl.camp_code")
     date_used:Optional[date]=Field(default=None,nullable=False)

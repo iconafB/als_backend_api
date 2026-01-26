@@ -4,28 +4,24 @@ from sqlmodel import Session,select
 from typing import Annotated
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import timedelta
-from models.users import users_table
-from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse
+from models.users import users_tbl
+from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse,CurrentlyLoggedInUser
 from utils.auth import verify_password,get_current_active_user,create_access_token
-from crud.users import (create_user)
+from crud.users import (create_user,get_current_logged_in_user)
 from settings.Settings import get_settings
 from database.master_db_connect import get_async_session
+from database.master_database_prod import get_async_master_prod_session
 from utils.logger import define_logger
-auth_logger=define_logger("als auth logger","logs/auth_route.log")
-
+auth_logger=define_logger("als_auth_logger","logs/auth_route.log")
 auth_router=APIRouter(tags=["Authentication"],prefix="/auth")
 
 @auth_router.post("/register",status_code=status.HTTP_201_CREATED,response_model=RegisterUserResponse,description="Register user to the als by providing email,password, and full name")
-
-async def register_user(user:RegisterUser,session:AsyncSession=Depends(get_async_session)):
-    new_user=await create_user(user,session)
-    auth_logger.info(f"user:{new_user.email} successfully registered")
-    return new_user
+async def register_user(user:RegisterUser,session:AsyncSession=Depends(get_async_master_prod_session)):
+    return await create_user(user,session)
 
 @auth_router.post("/login",status_code=status.HTTP_200_OK,response_model=Token,description="Login to the als by providing a password and email")
-
-async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session:AsyncSession=Depends(get_async_session)):
-    login_query=select(users_table).where(users_table.email==user.username)
+async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session:AsyncSession=Depends(get_async_master_prod_session)):
+    login_query=select(users_tbl).where(users_tbl.email==user.username)
     result=await session.execute(login_query)
     login_user=result.scalar_one_or_none()
     if login_user is None:
@@ -46,9 +42,11 @@ async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session
     auth_logger.info(f"username:{user.username} successfully logged in")
     return Token(access_token=token,token_type='Bearer')
 
-
 @auth_router.get("/user",response_model=GetUserResponse)
-async def get_the_current_user(user=Depends(get_current_active_user)):
-    return user
+async def get_the_current_user(current_user=Depends(get_current_active_user)):
+    return current_user
 
+@auth_router.get("/me",status_code=status.HTTP_200_OK,response_model=CurrentlyLoggedInUser)
+async def get_currently_logged_in_user(session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
+    return await get_current_logged_in_user(session,user.id)
 

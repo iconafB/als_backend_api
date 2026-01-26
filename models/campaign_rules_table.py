@@ -12,9 +12,11 @@ if TYPE_CHECKING:
 class campaign_rule_tbl(SQLModel,table=True):
     cr_code:Optional[int]=Field(primary_key=True,nullable=False,default=None)
     camp_code:str=Field(sa_column=Column(String,ForeignKey("campaign_tbl.camp_code",ondelete="CASCADE"),nullable=False,index=True))
-    rule_code:int=Field(sa_column=Column(ForeignKey("rules_tbl.rule_code",ondelete="CASCADE"),nullable=False,unique=True,index=True))
-    date_rule_created:Optional[datetime]=Field(sa_column_kwargs={"server_default":func.now()},nullable=False)
+    rule_code:int=Field(sa_column=Column(ForeignKey("new_rules_tbl.rule_code",ondelete="CASCADE"),nullable=False,unique=True,index=True))
+    date_rule_created:datetime=Field(nullable=False)
     is_active:bool=Field(nullable=False)
+
+    
     # rules:Optional["rules_tbl"]=Relationship(back_populates="campaign_rules",sa_relationship_kwargs={"lazy":"selectin"})
 
 

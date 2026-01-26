@@ -2,38 +2,54 @@ from fastapi import HTTPException,status
 from sqlmodel import select
 from sqlalchemy import func,or_
 from sqlmodel.ext.asyncio.session import AsyncSession
-
 from typing import List,Annotated,Tuple,Dict,Optional
 from models.campaigns_table import campaign_tbl
+
 from schemas.campaigns import CreateCampaign,UpdateCampaignName,CreateCampaignResponse,InfiniteResponseSchema,CampaignsTotal
 from utils.logger import define_logger
 from models.campaigns_table import campaign_tbl
+from models.users import users_tbl
 from schemas.campaigns import CampaignSpecLevelResponse
-from models.rules_table import rules_tbl
+from models.rules_table import new_rules_tbl
 from crud.rule_engine_db import get_rule_by_name_db
 from utils.check_spec_levels_helper import spec_level_query_builder
 #create campaign on the master db
-
 campaigns_logger=define_logger("als_campaign_logs","logs/campaigns_route.log")
 
 #create campaign
 
 async def create_campaign_db(campaign:CreateCampaign,session:AsyncSession,user)->CreateCampaignResponse:
-    
-    exists=await get_campaign_by_code_db(campaign.camp_code,session,user)
-    if exists is not None:
-        return False
-    db_campaign=campaign_tbl(**campaign.model_dump())
-    session.add(db_campaign)
-    await session.commit()
-    await session.refresh(db_campaign)
-    
-    return CreateCampaignResponse.model_validate(db_campaign)
+    try:
+        #get admin to create the campaign not anyone
+        admin_check_query=select(users_tbl).where(users_tbl.id==user.id)
+        users_fecth=await session.exec(admin_check_query)
+        user=users_fecth.first()
+        if user.is_admin==False:
+            campaigns_logger.info(f"user:{user.id} with email:{user.email} attempted to create a campaign")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"user:{user.email} not permitted to create campaigns")
+        #search the user id and test the is_admin flag to see if the user is allowed to create a campaign 
+        exists=await get_campaign_by_code_db(campaign.camp_code,session,user)
+        if exists is not None:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"campaign name:{campaign.campaign_name} from branch:{campaign.branch} with campaign code:{campaign.camp_code} already exist")
+        #guard against  repeated campaign codes for clarity
+        db_campaign=campaign_tbl(camp_code=campaign.camp_code,campaign_name=campaign.campaign_name,branch=campaign.branch,is_new=campaign.is_new)
+        session.add(db_campaign)
+        await session.commit()
+        await session.refresh(db_campaign)
+        return CreateCampaignResponse.model_validate(db_campaign)
+    except HTTPException:
+        raise
+    except Exception as e:
+        await session.rollback()
+        campaigns_logger.error(f"an internal server error occurred while creating campaign:{campaign.campaign_name} with campaign code:{campaign.camp_code}:{e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while creating campaign:{campaign.campaign_name} for branch:{campaign.branch}")
+
 
 #update campaign name
 async def update_campaign_name_db(campaign_new_name:UpdateCampaignName,camp_code:str,session:AsyncSession,user)->CreateCampaignResponse|None:
     #get campaign by code
     result=await get_campaign_by_code_db(camp_code,session,user)
+    
     if result==None:
         return None
     result.campaign_name=campaign_new_name.campaign_name
@@ -68,13 +84,18 @@ async def get_campaign_by_name_db(campaign_name:str,session:AsyncSession)->Creat
         campaigns_logger.exception(f"An exception occurred:{e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred")
 
-#get campaign by campaign code
+#get campaign by campaign code, you need to catch errors ndoda
+
 async def get_campaign_by_code_db(camp_code:str,session:AsyncSession,user)->CreateCampaignResponse| None:
     campaign=await session.exec(select(campaign_tbl).where(campaign_tbl.camp_code==camp_code))
     result=campaign.first()
+    print("print the campaign found")
+    print(result)
+    
     if result is None:
         return None
     return CreateCampaignResponse.model_validate(result)
+
 
 #get all active campaigns
 async def get_all_campaigns_by_branch_db(branch:str,session:AsyncSession,user,page:int,page_size:int)->List[CreateCampaignResponse]:
@@ -95,17 +116,14 @@ async def get_all_campaigns_by_branch_db(branch:str,session:AsyncSession,user,pa
         "results":results
     }
 
+
 async def get_all_campaigns_db(session:AsyncSession,page:int,page_size:int,user)->List[CreateCampaignResponse]:
-    
     total = await session.scalar(select(func.count()).select_from(campaign_tbl))
     #pagination
     offset=(page - 1)*page_size
     stmt=(select(campaign_tbl).order_by(campaign_tbl.pk.desc()).offset(offset).limit(page_size))
-
     campaigns=(await session.exec(stmt)).all()
-
     results=[CreateCampaignResponse.model_validate(c) for c in campaigns]
-
     campaigns_logger.info(f"user:{user.id} with email:{user.email} retrieved page {page} of campaigns")
     return {
         "total":total,
@@ -113,7 +131,6 @@ async def get_all_campaigns_db(session:AsyncSession,page:int,page_size:int,user)
         "page_size":page_size,
         "results":results
     }
-
 
 
 async def get_all_campaigns_infinite_scroll_db(
@@ -200,11 +217,16 @@ async def get_all_campaigns_infinite_scroll_db(
 
 
 async def get_active_campaign_to_load(camp_code:str,session:AsyncSession):
+
+    print("enter active campaign to load")
+
     try:
-        stmt=select(rules_tbl.rule_name).where(rules_tbl.rule_name==camp_code).where(rules_tbl.is_active==True)
+        stmt=select(new_rules_tbl.rule_name).where(new_rules_tbl.rule_name==camp_code).where(new_rules_tbl.is_active==True)
         result=await session.scalar(stmt)
+
         if result is None:
             return None
+        
         return result
     except Exception as e:
         campaigns_logger.exception(f"An internal server error occurred:{e}")
@@ -236,7 +258,6 @@ async def get_spec_level_campaign_name_db(rule_name:str,session:AsyncSession,use
         #count the number of entries
         number_of_row_entries=len(rows.mappings().all())
         campaigns_logger.info(f"user:{user.id} with email:{user.email} check the specific level for rule name:{rule_name}")
-        
         return CampaignSpecLevelResponse(rule_name=rule_name,number_of_leads_available=number_of_row_entries)
     
     except Exception as e:
@@ -248,6 +269,7 @@ async def search_campaigns_from_db(session:AsyncSession,page:int,page_size:int,c
     
     try:
         filters=[]
+        
         if campaign_name and campaign_name.strip():
             filters.append(campaign_tbl.campaign_name.ilike(f"%{campaign_name.strip()}%"))
         if branch and branch.strip():
@@ -259,15 +281,13 @@ async def search_campaigns_from_db(session:AsyncSession,page:int,page_size:int,c
         stmt=(select(campaign_tbl).where(*filters).offset(offset).limit(page_size))
         campaigns=(await session.exec(stmt)).all()
         results=[CreateCampaignResponse.model_validate(c) for c in campaigns]
-
         return {
             "total":total,
             "page":page,
             "page_size":page_size,
             "results":results
         }
-    
-    
     except Exception as e:
         campaigns_logger.exception(f"an exception occurred while searching the campaigns table:{e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while searching the campaigns table")
+

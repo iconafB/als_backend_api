@@ -5,9 +5,10 @@ import re
 
 
 class StatusedData(BaseModel):
+
     idnum: Optional[str] = None
     cell: Optional[str] = None
-    date_created: Optional[str] = None
+    created_at: Optional[str] = None
     salary: Optional[float] = None
     name: Optional[str] = None
     surname: Optional[str] = None
@@ -22,7 +23,7 @@ class StatusedData(BaseModel):
     gender: Optional[str] = None
     company: Optional[str] = None
     job: Optional[str] = None
-    car: Optional[str] = None
+    make: Optional[str] = None
     model: Optional[str] = None
     bank: Optional[str] = None
     bal: Optional[float] = None
@@ -73,7 +74,7 @@ class StatusedData(BaseModel):
             return None
         return None
 
-    @field_validator("date_created", mode="before")
+    @field_validator("created_at", mode="before")
     @classmethod
     def validate_date_created(cls, value):
         if not value or not isinstance(value, str):
@@ -85,6 +86,7 @@ class StatusedData(BaseModel):
                 year = year_parts[0]
                 dt = datetime(int(year), int(month), int(day))
                 return dt.strftime("%Y-%m-%d")
+            
             else:
                 dt = datetime.strptime(value, "%Y-%m-%d")
                 return dt.strftime("%Y-%m-%d")
@@ -223,6 +225,33 @@ class EnrichedData(BaseModel):
 class InsertEnrichedDataResponseModel(BaseModel):
     status: str
     elapsed_seconds: float
+
+
+from pydantic import BaseModel, Field
+
+
+class InsertStatusDataResponse(BaseModel):
+
+    success: bool = Field(..., description="Whether the ingestion completed successfully")
+    file: str = Field(..., description="The filename that was processed")
+    rows_seen: int = Field(..., ge=0, description="Total number of rows read from the CSV")
+    rows_valid: int = Field(..., ge=0, description="Rows that passed validation and were processed")
+    seconds: float = Field(..., ge=0, description="Total runtime in seconds")
+    rows_per_second: float = Field(..., ge=0, description="rows_valid / seconds")
+
+    
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "success": True,
+                "file": "status_dump.csv",
+                "rows_seen": 90000,
+                "rows_valid": 87234,
+                "seconds": 92.417,
+                "rows_per_second": 943.7,
+            }
+        }
 
 
 

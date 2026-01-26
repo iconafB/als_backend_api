@@ -7,7 +7,8 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import List,Optional,Sequence,Dict,Tuple
 from models.campaigns import dedupe_campaigns_tbl
 from models.dedupe_history_tracker import Dedupe_History_Tracker
-from schemas.dedupes import PaginatedAggregatedDedupeResult,PaginatedResultsResponse
+from schemas.dedupes import PaginatedAggregatedDedupeResult,PaginatedResultsResponse,DedupeCampaignResponse
+
 from models.dedupe_keys_table import manual_dedupe_key_tbl
 from schemas.dedupe_campaigns import CreateDedupeCampaign
 from utils.logger import define_logger
@@ -664,21 +665,24 @@ async def search_dedupe_campaign_by_campaign_name_db(campaign_name:str,page:int,
     try:
         #calculate the offset based on the page number and page size
         offset=(page-1)*page_size
+        #search the number the number of campaigns available
+
         #Query to count the total number of records
         query_count=select([func.count()]).select_from(Dedupe_History_Tracker).where(Dedupe_History_Tracker.campaign_name.ilike(f"%{campaign_name}%"))
+
         total_count=await session.execute(query_count)
         total_count=total_count.scalar()
         #calculate total pages based on total count and page_size
         total_pages=(total_count + page_size -1) // page_size
         #query to fetch paginated results
         query=select(Dedupe_History_Tracker)
+
         if campaign_name:
             query=query.where(Dedupe_History_Tracker.campaign_name.ilike(f"%{campaign_name}%"))
 
         query=query.limit(page_size).offset(offset)
         result=await session.execute(query)
         records=result.scalars().all()
-        
         if not records:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No records found for campaign:{campaign_name}")
         
@@ -689,6 +693,8 @@ async def search_dedupe_campaign_by_campaign_name_db(campaign_name:str,page:int,
             total_pages=total_pages,
             records=records
         )
+    
+
     
     except Exception as e:
         dedupe_logger.exception(f"an exception occurred while fetching all records associated:{campaign_name}:{str(e)}")

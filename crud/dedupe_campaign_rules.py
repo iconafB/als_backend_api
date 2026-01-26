@@ -24,7 +24,6 @@ async def get_all_active_dedupe_campaign_rules(session:AsyncSession,skip:int=0,l
 #read one dedupe campaign rule
 
 async def get_single_dedupe_campaign_rule_by_rule_name(rule_name:str,session:AsyncSession)->Optional[dedupe_campaign_rules_tbl]:
-    
     result=await session.exec(select(dedupe_campaign_rules_tbl).where(dedupe_campaign_rules_tbl.rule_name==rule_name))
     if not result:
         return None
