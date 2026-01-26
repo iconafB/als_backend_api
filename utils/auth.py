@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import datetime,timedelta,timezone
 import jwt
 import secrets
-from jwt.exceptions import InvalidTokenError
+#from jwt.exceptions import InvalidTokenError
 from settings.Settings import get_settings
 from models.users import users_tbl
 from database.master_database_prod import get_async_master_prod_session
@@ -64,8 +64,10 @@ async def get_current_user(token:Annotated[str,Depends(oauth_scheme)]):
             print(f"print user id:{user_id}")
             raise credential_exception
         
-    except InvalidTokenError:
+    except jwt.exceptions.InvalidTokenError:
+        
         raise credential_exception
+    
     return user_id
 
 async def get_current_active_user(current_user:Annotated[int,Depends(get_current_user)],session:AsyncSession=Depends(get_async_master_prod_session)):
