@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.13
 
 # prevents python from writing pyc files
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -16,16 +16,15 @@ RUN apt-get update && apt-get install -y \
 
 # Install Python deps
 
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy app
 
 COPY . .
 #Make entrypoint executable
-RUN chmod +x docker/entrypoint.sh
 #EXPOSE PORT 
 
 EXPOSE 8000
 
-ENTRYPOINT [ "docker/entrypoint" ]
+CMD [ "uvicorn" ,"main:app","--reload","--port","8000"]
