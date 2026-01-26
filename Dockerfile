@@ -25,6 +25,6 @@ COPY . .
 #Make entrypoint executable
 #EXPOSE PORT 
 
-EXPOSE 8000
+EXPOSE 8005
 
-CMD [ "uvicorn" ,"main:app","--reload","--port","8000"]
+CMD [ "uvicorn" ,"main:app","--reload","--port","8005"]
