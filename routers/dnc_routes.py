@@ -2,21 +2,14 @@ from fastapi import APIRouter,status,Depends,HTTPException,BackgroundTasks,Uploa
 import pandas as pd
 import re
 import io
-from aiomysql import Connection
-import polars as pl
 from utils.auth import get_current_user
 from utils.logger import define_logger
 from schemas.dnc_schemas import DNCNumberResponse
 from utils.dnc_util import send_dnc_list_to_db
-from database.master_database_prod import get_async_master_prod_session
 
 dnc_logger=define_logger("als dnc logs","logs/dnc_route.log")
-
 SMALL_FILE_THRESHOLD = 5 * 1024 * 1024 #file threshold
-
-
 TEN_DIGIT_PATTERN = re.compile(r'^\d{10}$')
-
 dnc_router=APIRouter(tags=["DNC Enpoints"],prefix="/dnc")
 
 
