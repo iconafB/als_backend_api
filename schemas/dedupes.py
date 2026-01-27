@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel
-from pydantic import BaseModel,Field
+from pydantic import BaseModel,Field,ConfigDict
 from models.dedupe_history_tracker import ClientStatus
 from datetime import datetime
 from typing import Optional,List
@@ -60,10 +60,7 @@ class TrackerResults(BaseModel):
     client_status:ClientStatus
     dedupe_code:str
     date:Optional[datetime]
-    
-    class Config:
-         orm_mode=True
-
+    model_config = ConfigDict(from_attributes=True)
 
 class PaginatedResultsResponse(BaseModel):
      page:int
@@ -71,8 +68,7 @@ class PaginatedResultsResponse(BaseModel):
      total:int
      total_pages:int
      records:List[TrackerResults]
-     class Config:
-          orm_mode=True
+     model_config = ConfigDict(from_attributes=True)
 
 
 
@@ -88,8 +84,7 @@ class DedupeCampaignResponse(BaseModel):
 class CampaignAggregatedInformation(BaseModel):
      campaign_name:str
      record_count:int
-     class Config:
-          orm_mode=True
+     model_config = ConfigDict(from_attributes=True)
 
 class PaginatedAggregatedDedupeResult(BaseModel):
      page:int
@@ -97,9 +92,7 @@ class PaginatedAggregatedDedupeResult(BaseModel):
      total:int
      total_pages:int
      records:List[CampaignAggregatedInformation]
-
-     class Config:
-          orm_mode=True
+     model_config = ConfigDict(from_attributes=True)
 
 
 class ManualDedupeUploadResponse(BaseModel):
@@ -107,9 +100,7 @@ class ManualDedupeUploadResponse(BaseModel):
      key: Optional[str] = Field(None, description="Batch key/code generated for this upload")
      rows_inserted: int = Field(0, description="Number of valid rows processed from the Excel file")
      message: Optional[str] = Field(None, description="Human-readable message (useful for errors or empty files)")
-     class Config:
-          
-          orm_mode=True
+     model_config = ConfigDict(from_attributes=True)
 
 class SubmitDedupeReturnResponse(BaseModel):
      success:bool
@@ -120,9 +111,7 @@ class SubmitDedupeReturnResponse(BaseModel):
      removed_ids_count:int
      message:Optional[str]=None
      processed_at:datetime
-
-     class Config:
-          orm_mode=True
+     model_config = ConfigDict(from_attributes=True)
 
 
 

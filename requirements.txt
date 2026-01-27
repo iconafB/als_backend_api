@@ -36,7 +36,6 @@ idna==3.10
 isort==7.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
-jwt==1.4.0
 limits==5.6.0
 Markdown==3.9
 markdown-it-py==3.0.0
