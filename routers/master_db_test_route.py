@@ -3,7 +3,6 @@ from sqlmodel import select
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from utils.auth import get_current_active_user
 from database.master_database_prod import get_async_master_prod_session
-from database.master_db_connect import get_async_session
 from models.rules_table import new_rules_tbl,rules_tbl
 from schemas.rules_schema import CreateRule,ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse
 from utils.dynamic_sql_rule_function import build_dynamic_rule_engine
@@ -20,7 +19,7 @@ practice_router=APIRouter(prefix="/master_db_test",tags=["Master Database Test"]
 
 
 @practice_router.get("/persons_from_database/{rule_name}")
-async def get_persons_by_rule_name(rule_name:str,master_session:AsyncSession=Depends(get_async_master_prod_session),session:AsyncSession=Depends(get_async_session)):
+async def get_persons_by_rule_name(rule_name:str,master_session:AsyncSession=Depends(get_async_master_prod_session),session:AsyncSession=Depends(get_async_master_prod_session)):
     print("enter the main route")
     result=await get_rule_by_name_db(rule_name,master_session)
     if result==None:

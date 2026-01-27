@@ -4714,3 +4714,4 @@ sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.Program
 2026-01-26 09:16:26,638 - als_campaign_logs - INFO - user:11 with email:test_admin@gmail.com retrieved page 1 of campaigns
 2026-01-26 09:22:48,211 - als_campaign_logs - INFO - user:11 with email:test_admin@gmail.com retrieved page 1 of campaigns
 2026-01-26 09:22:54,360 - als_campaign_logs - INFO - user:11 with email:test_admin@gmail.com fetched a total of:565 campaigns
+2026-01-27 10:08:35,935 - als_campaign_logs - INFO - user:11 with email:test_admin@gmail.com retrieved page 1 of campaigns

@@ -1,6 +1,6 @@
 from fastapi import APIRouter,Depends,status,HTTPException,Request
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlmodel import Session,select
+from sqlmodel import select
 from typing import Annotated
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import timedelta
@@ -9,12 +9,12 @@ from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse
 from utils.auth import verify_password,get_current_active_user,create_access_token
 from crud.users import (create_user,get_current_logged_in_user)
 from settings.Settings import get_settings
-from database.master_db_connect import get_async_session
 from database.master_database_prod import get_async_master_prod_session
 from utils.logger import define_logger
-auth_logger=define_logger("als_auth_logger","logs/auth_route.log")
-auth_router=APIRouter(tags=["Authentication"],prefix="/auth")
 
+auth_logger=define_logger("als_auth_logger","logs/auth_route.log")
+
+auth_router=APIRouter(tags=["Authentication"],prefix="/auth")
 @auth_router.post("/register",status_code=status.HTTP_201_CREATED,response_model=RegisterUserResponse,description="Register user to the als by providing email,password, and full name")
 async def register_user(user:RegisterUser,session:AsyncSession=Depends(get_async_master_prod_session)):
     return await create_user(user,session)

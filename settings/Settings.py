@@ -2,13 +2,6 @@ from pydantic_settings import BaseSettings,SettingsConfigDict
 from functools import lru_cache
 
 class Settings(BaseSettings):
-    #dev database environment variables
-    DATABASE_PASSWORD:str
-    DATABASE_HOST_NAME:str
-    DATABASE_NAME:str
-    DATABASE_PORT:int
-    DATABASE_OWNER:str
-
     #master db information
     MASTER_DB_HOST_NAME:str
     MASTER_DB_PORT:int
@@ -16,7 +9,6 @@ class Settings(BaseSettings):
     MASTER_DB_USER:str
     MASTER_DB_PASSWORD:str
     MASTER_DB_OWNER:str
-
     #authentication details
     SECRET_KEY:str
     ALGORITHM:str
@@ -48,7 +40,6 @@ class Settings(BaseSettings):
     pings_db_password:str
     pings_db_port:str
     pings_db_host:str
-
     #mail server 
     MAIL_USERNAME:str
     MAIL_PASSWORD:str
@@ -59,18 +50,9 @@ class Settings(BaseSettings):
     MAIL_TLS:bool
     MAIL_SSL:bool
     USER_CREDENTIALS:bool
-
-    #MASTER DB CREDENTIALS
-    MASTER_HOST:str
-    MASTER_PORT:int
-    MASTER_PASSWORD:str
-    MASTER_USER:str
-    MASTER_OWNER:str
-
     #API CREDENTIALS
     ADMIN_USERNAME:str
     ADMIN_PASSWORD:str
-
     #load the environment variables file
     model_config=SettingsConfigDict(env_file=".env")
 
@@ -79,7 +61,4 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings()->Settings:
     return Settings()
-
-
-
 

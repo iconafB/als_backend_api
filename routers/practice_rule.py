@@ -2,8 +2,7 @@ from fastapi import APIRouter,Depends,HTTPException,status,Path
 from sqlmodel import select
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from utils.auth import get_current_active_user
-from database.master_db_connect import get_async_session
-from database.master_db_connect import get_async_session
+from database.master_database_prod import get_async_master_prod_session
 from models.rules_table import new_rules_tbl
 from schemas.rules_schema import CreateRule,ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse
 from utils.dynamic_sql_rule_function import build_dynamic_rule_engine
@@ -14,7 +13,7 @@ practice_rule_router=APIRouter(prefix="/practice-rule",tags=["Practice Rule"])
 
 @practice_rule_router.post("/rules",status_code=status.HTTP_200_OK,description="Create Rule",response_model=RuleResponseModel)
 
-async def create_rule(campaign_code:str,rule:RuleSchema,session:AsyncSession=Depends(get_async_session)):
+async def create_rule(campaign_code:str,rule:RuleSchema,session:AsyncSession=Depends(get_async_master_prod_session)):
     db_rule=new_rules_tbl(rule_name=campaign_code,status=status,rule_json=rule.model_dump())
     session.add(db_rule)
     await session.commit()
@@ -40,7 +39,7 @@ async def create_rule(campaign_code:str,rule:RuleSchema,session:AsyncSession=Dep
 
 @practice_rule_router.put("/rules/{name}",status_code=status.HTTP_200_OK,description="Update the rule name")
 
-async def update_rule(name:str,updated:RuleSchema,session:AsyncSession=Depends(get_async_session)):
+async def update_rule(name:str,updated:RuleSchema,session:AsyncSession=Depends(get_async_master_prod_session)):
     result=await get_rule_by_name_db(name,session)
     if result is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"No rule found")
@@ -49,7 +48,7 @@ async def update_rule(name:str,updated:RuleSchema,session:AsyncSession=Depends(g
     return True
 
 @practice_rule_router.get("/persons/{rule_name}")
-async def get_persons_by_rule_name(rule_name:str,session:AsyncSession=Depends(get_async_session)):
+async def get_persons_by_rule_name(rule_name:str,session:AsyncSession=Depends(get_async_master_prod_session)):
     result=await get_rule_by_name_db(rule_name,session)
     
     if result==None:
@@ -62,7 +61,7 @@ async def get_persons_by_rule_name(rule_name:str,session:AsyncSession=Depends(ge
 
 
 @practice_rule_router.post("/create-person",status_code=status.HTTP_201_CREATED,response_model=PersonCreateResponse)
-async def create_person(person:PersonCreate,session:AsyncSession=Depends(get_async_session)):
+async def create_person(person:PersonCreate,session:AsyncSession=Depends(get_async_master_prod_session)):
     return await create_person_db(person,session)
 
 

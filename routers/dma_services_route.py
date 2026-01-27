@@ -1,7 +1,6 @@
 from fastapi import APIRouter,Depends,status,Query,Path
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from typing import Optional
-from database.master_db_connect import get_async_session
 from database.master_database_prod import get_async_master_prod_session
 from utils.auth import get_current_active_user
 from schemas.dma_tracker_schema import (CreateDMARecordResponse,PaginatedDMAResponse,DeleteDMASingleRecord,DeleteRecordByAuditID,TotalDMARecordsResponse,DMACreditsResponse)
@@ -13,9 +12,9 @@ dma_service_router=APIRouter(prefix="/dma-records",tags=["dma-records-overview"]
 dma_manager=DMARecordsManagement()
 
 @dma_service_router.get("/credits",status_code=status.HTTP_200_OK,description="Check the remaining dma credits",response_model=DMACreditsResponse)
-
 async def check_dma_credits(dma_object:DMAService,user=Depends(get_current_active_user)):
     credits=await dma_object.check_credits()
+    print(type(credits))
     return DMACreditsResponse(credits=credits)
 
 

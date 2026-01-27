@@ -3,7 +3,6 @@ from typing import List,Tuple
 from utils.dynamic_sql_rule_function import build_dynamic_rule_engine
 from fastapi import Depends,HTTPException,status
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from database.master_db_connect import get_async_session
 from crud.campaign_rules import get_campaign_rule_by_rule_name_db
 from crud.rule_engine_db import get_rule_by_name_db
 

@@ -1,22 +1,17 @@
 from fastapi import APIRouter,HTTPException,status,Depends,Query,Path
-from sqlmodel import Session,select,text
-from datetime import datetime,date
-from typing import Optional
+from sqlmodel import select
+from datetime import datetime
 from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlalchemy.exc import SQLAlchemyError
 from models.rules_table import new_rules_tbl
 from models.campaigns_table import campaign_tbl
 from models.campaign_rules_table import campaign_rule_tbl
-from schemas.campaign_rules import RuleCreate,AssignCampaignRuleToCampaign,AssignCampaignRuleResponse,CampaignSpecResponse,CreateCampaignRuleResponse,ChangeCampaignRuleResponse,PaginatedCampaignRules
-from schemas.campaign_rules_input import FetchRuleResponse,UpdateCampaignRulesResponse
-from schemas.rules_schema import ResponseRuleSchema,RuleSchema,RuleResponseModel,NumericConditionResponse,AgeConditionResponse,LastUsedConditionResponse,RecordsLoadedConditionResponse,UpdateCampaignRule,UpdatingCampaignRuleResponse,DeactivateRuleResponseModel,ActivateRuleResponseModel,UpdatingSalarySchema,UpdatingDerivedIncomeSchema,UpdateAgeSchema,GetCampaignRuleResponse,GetAllCampaignRulesResponse,ChangeRuleResponse,UpdateNumberOfLeads,UpdateNumberOfLeadsResponse,DeleteCampaignRuleResponse
-from database.master_db_connect import get_async_session
-
+from schemas.campaign_rules import CampaignSpecResponse
+from schemas.campaign_rules_input import UpdateCampaignRulesResponse
+from schemas.rules_schema import RuleSchema,RuleResponseModel,UpdateCampaignRule,UpdatingCampaignRuleResponse,DeactivateRuleResponseModel,ActivateRuleResponseModel,UpdatingSalarySchema,UpdatingDerivedIncomeSchema,UpdateAgeSchema,GetCampaignRuleResponse,GetAllCampaignRulesResponse,ChangeRuleResponse,UpdateNumberOfLeads,UpdateNumberOfLeadsResponse,DeleteCampaignRuleResponse
 from database.master_database_prod import get_async_master_prod_session
-
 from utils.logger import define_logger
 from utils.auth import get_current_active_user
-from crud.campaign_rules import (create_campaign_rule_db,assign_campaign_rule_to_campaign_db,get_all_campaign_rules_db, get_rule_by_rule_code_db, get_campaign_rule_by_rule_name_db,update_campaign_name_db,deactivate_campaign_db,activate_campaign_db,update_salary_for_campaign_rule_db,update_derived_income_for_campaign_rule_db,search_for_a_campaign_rule_db,fetch_campaign_code_from_campaign_tbl_db,fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db,update_campaign_rule_and_insert_rule_code_db,insert_new_campaign_rule_on_campaign_rule_tbl_db,update_number_of_leads_db,update_campaign_rule_age_db,remove_campaign_rule_db,total_campaign_rules_db,change_rule_db)
+from crud.campaign_rules import (create_campaign_rule_db,get_all_campaign_rules_db, get_rule_by_rule_code_db, get_campaign_rule_by_rule_name_db,update_campaign_name_db,deactivate_campaign_db,activate_campaign_db,update_salary_for_campaign_rule_db,update_derived_income_for_campaign_rule_db,search_for_a_campaign_rule_db,fetch_campaign_code_from_campaign_tbl_db,fetch_rule_code_from_rules_tbl_and_campaign_rules_tbl_db,update_campaign_rule_and_insert_rule_code_db,insert_new_campaign_rule_on_campaign_rule_tbl_db,update_number_of_leads_db,update_campaign_rule_age_db,remove_campaign_rule_db,total_campaign_rules_db,change_rule_db)
 from utils.campaigns import (load_campaign_query_builder)
 from utils.campaign_rules_helper import transform_rule_json
 
@@ -210,19 +205,15 @@ async def update_salary_for_campaign_rule(salary:UpdatingSalarySchema,rule_code:
     return await update_salary_for_campaign_rule_db(rule_code,salary,session,user)
 
 @campaign_rule_router.patch("/derived_income/{rule_code}",status_code=status.HTTP_200_OK,description="Update the derived income for a campaign rule, please note that for range based derived income with operator between specify the lower limit and/or upper limit field(s),the derived_income_value should be ignored, for other types of rules only populate the derived_income_value field.")
-
 async def update_derived_income(derived_income:UpdatingDerivedIncomeSchema,rule_code:int=Path(...,description="Provide the rule code"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     return await update_derived_income_for_campaign_rule_db(rule_code,derived_income,session,user)
 
 
 @campaign_rule_router.patch("/update-age/{rule_code}",status_code=status.HTTP_200_OK,description="Update the age for a campaign rule")
-
 async def update_age_for_campaign_rule(ageSchema:UpdateAgeSchema,rule_code:int=Path(...,description="Provide the rule_code"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     return await update_campaign_rule_age_db(rule_code,ageSchema,session,user)
 
-
 @campaign_rule_router.patch("/update-leads/{rule_code}",status_code=status.HTTP_200_OK,description="Update the number of leads to load",response_model=UpdateNumberOfLeadsResponse)
-
 async def update_number_of_leads(number_of_leads:UpdateNumberOfLeads,rule_code:int=Path(...,description="Rule code for an active campaign rule"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         leads_update=await update_number_of_leads_db(session,rule_code,number_of_leads.number_of_leads,user)
@@ -234,9 +225,7 @@ async def update_number_of_leads(number_of_leads:UpdateNumberOfLeads,rule_code:i
     except Exception:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="An internal server error occurred")
 
-
 @campaign_rule_router.delete("/delete/{rule_code}",status_code=status.HTTP_202_ACCEPTED,description="Delete the campaign rule completely from the system",response_model=DeleteCampaignRuleResponse)
-
 async def delete_campaign_rule(rule_code:int,session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     return await remove_campaign_rule_db(rule_code,session,user)
 

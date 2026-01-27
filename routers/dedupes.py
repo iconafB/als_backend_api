@@ -29,7 +29,8 @@ from models.campaigns import Deduped_Campaigns,dedupe_campaigns_tbl
 from models.dedupe_keys_table import manual_dedupe_key_tbl
 
 from models.campaign_dedupe import Campaign_Dedupe
-from database.master_db_connect import get_async_session
+
+from database.master_database_prod import get_async_master_prod_session
 from crud.dedupe_campaigns import (get_dedupe_campaigns_aggregated_count_db,search_cell_number_history_db,search_id_number_history_db,search_dedupe_campaign_by_campaign_name_db)
 from crud.campaign_rules import (get_campaign_rule_by_rule_name_db)
 from crud.campaigns import get_active_campaign_to_load
@@ -48,8 +49,6 @@ from utils.auth import get_current_user,get_current_active_user
 from utils.logger import define_logger
 from utils.add_dedupe_list_helpers import add_dedupe_list_helper
 from utils.dedupes.submit_return_helpers import update_campaign_dedupe_status,fetch_delete_update_pending_campaign_ids,calculate_ids_campaign_dedupe_with_status_r
-from utils.dedupes.manual_dedupe_helpers import insert_campaign_dedupe_batch, insert_manual_dedupe_info_tbl,read_file_into_dict_list,insert_dedupe_data_in_batches
-from database.master_db_connect import get_async_session
 from database.master_database_prod import get_async_master_prod_session
 from utils.load_campaign_helpers import load_leads_for_campaign
 from schemas.dedupes import ManualDedupeUploadResponse,SubmitDedupeReturnResponse
@@ -79,7 +78,7 @@ def make_key(source_name:str)->str:
 
 @dedupe_routes.post("/add_manual_list2",status_code=http_status.HTTP_200_OK,response_model=ManualDedupeUploadResponse)
 
-async def add_manual_dedupe_list(filename:Optional[str]=None,campaign_name:Optional[str]=None,file:Optional[UploadFile]=File(None),session:AsyncSession=Depends(get_async_session)):
+async def add_manual_dedupe_list(filename:Optional[str]=None,campaign_name:Optional[str]=None,file:Optional[UploadFile]=File(None),session:AsyncSession=Depends(get_async_master_prod_session)):
     
     if not campaign_name:
         raise HTTPException(status_code=http_status.HTTP_400_BAD_REQUEST,detail=f"Missing required query parameter:{campaign_name}")
@@ -224,7 +223,7 @@ async def add_manual_dedupe_list(filename:Optional[str]=None,campaign_name:Optio
 
 @dedupe_routes.post("/submit-dedupe-to-als",status_code=http_status.HTTP_200_OK,response_model=SubmitDedupeReturnResponse)
 
-async def submit_dedupe_returned_with_code_and_campaign_name(camp_code:str,dedupe_key:str,file:UploadFile=File(...),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def submit_dedupe_returned_with_code_and_campaign_name(camp_code:str,dedupe_key:str,file:UploadFile=File(...),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     
     #guard against empty file name
     if not file.filename:
@@ -439,7 +438,7 @@ async def add_dedupe_list(camp_code:str,session:AsyncSession=Depends(get_async_m
 
 #submit dedupe return route
 @dedupe_routes.post("/submit-dedupe-return",status_code=http_status.HTTP_200_OK,description="Submit file returned from dedupe,this route make sure that only approved cell/id numbers are used for the dedupe campaign and all unapproved numbers are released from being flagged",response_model=SubmitDedupeReturnResponse)
-async def submit_dedupe_return(data:SubmitDedupeReturnSchema,dedupe_file:UploadFile=File(...,description="File prepared for manual dedupe"),session:AsyncSession=Depends(get_async_session),user=Depends(get_current_active_user)):
+async def submit_dedupe_return(data:SubmitDedupeReturnSchema,dedupe_file:UploadFile=File(...,description="File prepared for manual dedupe"),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     try:
         id_pattern=re.compile(r"^\d{13}$")
         file_contents=await dedupe_file.read()
@@ -582,3 +581,5 @@ async def get_campaign_aggregated_count(page:int=Query(1,ge=1),page_size:int=Que
 @dedupe_routes.get("/campaigns/search-campaign",status_code=http_status.HTTP_200_OK)
 async def search_dedupe_campaign(campaign_code:str=Query(...,description="Provide the campaign code to retrieve from the database"),page:int=Query(1,ge=1),page_size:int=Query(10,ge=1,le=100),session:AsyncSession=Depends(get_async_master_prod_session),user=Depends(get_current_active_user)):
     return True
+
+

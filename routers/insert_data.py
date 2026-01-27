@@ -17,7 +17,6 @@ from utils.logger import define_logger
 from utils.auth import get_current_active_user
 from schemas.insert_data import StatusedData,EnrichedData,UploadStatusResponse,TableInsertCount
 from schemas.status_data_routes import InsertStatusDataResponse,InsertEnrichedDataResponse
-from database.master_db_connect import get_async_session
 from models.information_table import info_tbl
 from models.contact_table import contact_tbl
 from models.location_table import location_tbl
@@ -271,49 +270,6 @@ async def insert_enriched_data(filename:str=Query(...,description="Provide the n
         status_data_logger.exception(f"an exception occurred while inserting enriched data:{str(e)}")
         raise HTTPException(status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while inserting enriched data")
 
-
-# @insert_data_router.post("/als/insert_enriched_data",description="Provide the file name for enriched data",status_code=http_status.HTTP_200_OK,response_model=InsertEnrichedDataResponseModel)
-
-# async def insert_enriched_data(filename: str = Query(...,description="Filename is the name of the excel file within the server with an enrinched data"), session: AsyncSession = Depends(get_async_session)):
-
-#     start_time = time.time()
-
-#     try:
-#         all_sheets = pd.read_excel(f"{filename}.xlsx", sheet_name=None, dtype=str)
-#         sheets = all_sheets.keys()
-
-#         for sheet_name in sheets:
-#             sheet = pd.read_excel(f"{filename}.xlsx", sheet_name=sheet_name, dtype=str)
-#             data_dict_list = sheet.to_dict(orient="records")
-
-#             # Validate and parse using Pydantic
-#             enriched_objects = [EnrichedData(**data) for data in data_dict_list]
-#             # Convert to tuples
-#             info_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 1)
-#             contact_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 2)
-#             finance_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 3)
-#             car_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 4)
-#             employment_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 5)
-#             location_rows = get_tuple([obj.model_dump() for obj in enriched_objects], 6)
-
-#             # Async inserts, this does not work chief, repeated code
-
-#             await insert_vendor_list(session, INFO_SQL, info_rows)
-#             await insert_vendor_list(session, CONTACT_SQL, contact_rows)
-#             await insert_vendor_list(session, FINANCE_SQL, finance_rows)
-#             await insert_vendor_list(session, CAR_SQL, car_rows)
-#             await insert_vendor_list(session, EMPLOYMENT_SQL, employment_rows)
-#             await insert_vendor_list(session, LOCATION_SQL, location_rows)
-
-#     except Exception as e:
-#         status_data_logger.exception(f"An exception occurred while inserting enriched data:{e}")
-#         raise HTTPException(status_code=500, detail="An internal server error occurred while inserting enriched data into database")
-
-#     elapsed = time.time() - start_time
-
-#     status_data_logger.info(f"enrinched data inserted successfully on the database,records uploaded:{len(enriched_objects)}")
-    
-#     return InsertEnrichedDataResponseModel(status="Data Inserted Success Fully",elapsed_seconds= elapsed)
 
 
 @insert_data_router.post("/load-info-table",status_code=http_status.HTTP_200_OK,description="Load info table with Ashil's data")

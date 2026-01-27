@@ -7,12 +7,9 @@ from datetime import datetime
 from sqlmodel import SQLModel,select,text
 from utils.pings import send_pings_to_dedago
 from utils.logger import define_logger
+from database.master_database_prod import get_async_master_prod_session
 from schemas.pings import PingStatusResponse,PingStatusPayload,PingStatusUpdateResponse,SendPingsToDedago
-from database.master_db_connect import get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
-import pandas as pd
-
-
 ping_router=APIRouter(tags=["Pings Endpoints"],prefix="/pings")
 
 pings_logger=define_logger("als pings logs","logs/pings.log")
@@ -54,7 +51,7 @@ async def submit_pings_to_dedago(file:UploadFile=File(...)):
 
 @ping_router.post("/als/leads_ping",status_code=status.HTTP_200_OK)
 
-async def update_als_ping_status(ping_status:List[PingStatusPayload],session:AsyncSession=Depends(get_async_session)):
+async def update_als_ping_status(ping_status:List[PingStatusPayload],session:AsyncSession=Depends(get_async_master_prod_session)):
     try:
         todaysdate=datetime.today().strftime("%Y-%m-%d")
         

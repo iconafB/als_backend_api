@@ -12,8 +12,6 @@ SMALL_FILE_THRESHOLD = 5 * 1024 * 1024 #file threshold
 TEN_DIGIT_PATTERN = re.compile(r'^\d{10}$')
 dnc_router=APIRouter(tags=["DNC Enpoints"],prefix="/dnc")
 
-
-
 #helper validate and extract 10-digit numbers from an iterable
 
 def _extract_numbers(iterable):
@@ -21,7 +19,6 @@ def _extract_numbers(iterable):
         val=str(raw).strip()
         if TEN_DIGIT_PATTERN.match(val):
             yield val
-
 
 @dnc_router.post("/add-blacklist",description="Add a list of numbers to blacklist locally",response_model=DNCNumberResponse)
 

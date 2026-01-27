@@ -3,10 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import get_swagger_ui_html,get_redoc_html
 from fastapi.openapi.utils import get_openapi
 from starlette.responses import JSONResponse
-import pytz 
 from contextlib import asynccontextmanager
-from apscheduler.schedulers.background import BackgroundScheduler
-
 from routers.authentication import auth_router
 from routers.health_check import health_router
 from routers.campaigns import campaigns_router
@@ -19,18 +16,18 @@ from routers.insert_data import insert_data_router
 from routers.practice_rule import practice_rule_router
 from routers.master_db_test_route import practice_router
 from routers.data_extraction import data_extraction_router
-from database.master_db_connect import init_db,master_async_engine
-from utils.security_helper import get_current_admin
+from database.master_database_prod import master_async_engine
+from sqlalchemy import text
 from utils.auth import require_docs_auth
 from schedulers.dmasa_reconcile_job import start_dmasa_scheduler
-
 #from database.database import create_db_and_tables
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
-    await init_db()
-    #await start_dmasa_scheduler()
-
+    #---startup---
+    #verify DB is reachable
+    async with master_async_engine.begin() as conn:
+        await conn.execute(text("SELECT 1"))
     yield
     #Engine disposal on shutdown
     await master_async_engine.dispose()
@@ -43,10 +40,7 @@ app=FastAPI(lifespan=lifespan,description="ALS API, ADMINISTRATORS CAN CREATE CA
 #Not best practice you need to filter the correct domain
 #add cors middleware chief
 origins=["http://localhost:5173","http://127.0.0.1:8000/auth/login","http://127.0.0.1:8000/auth/register"]
-
 app.add_middleware(CORSMiddleware,allow_origins=origins,allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
-
-
 @app.get("/openapi.json",include_in_schema=False)
 def openapi_json(_:bool=Depends(require_docs_auth)):
     return JSONResponse(get_openapi(title="ALS BACKEND API",version="1.0.0",routes=app.routes))

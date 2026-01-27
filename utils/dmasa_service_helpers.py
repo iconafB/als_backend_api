@@ -35,10 +35,16 @@ class DMAClassHelper:
 
 
     async def check_credits(self) -> int:
+        print("enter the credits calculation method")
+
         params = {"API_Key": self.dmasa_api_key, "MemberID": self.dmasa_member_id}
+
         resp = await self.client.get(self.check_credits_dmasa_url, params=params)
+        print("print the whole thing")
+        print(resp.json())
         resp.raise_for_status()
-        return resp.json().get("Credits", 0)
+        print(type(resp.json()['Credits']))
+        return resp.json()['Credits']
     
     async def upload_data_for_dedupe(self,data: str,session: AsyncSession,camp_code: str,data_type: str = "C") -> str:
 
