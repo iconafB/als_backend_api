@@ -14,7 +14,6 @@ dma_manager=DMARecordsManagement()
 @dma_service_router.get("/credits",status_code=status.HTTP_200_OK,description="Check the remaining dma credits",response_model=DMACreditsResponse)
 async def check_dma_credits(dma_object:DMAService,user=Depends(get_current_active_user)):
     credits=await dma_object.check_credits()
-    print(type(credits))
     return DMACreditsResponse(credits=credits)
 
 

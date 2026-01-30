@@ -9873,3 +9873,8 @@ AttributeError: 'ScalarResult' object has no attribute 'scalar'
 2026-01-26 09:19:16,764 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved records for campaign rules:4
 2026-01-26 09:22:54,440 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved a total of 81 rules
 2026-01-26 09:24:17,590 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved records for campaign rules:4
+2026-01-28 14:39:05,331 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved a total of 81 rules
+2026-01-28 14:39:34,614 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved records for campaign rules:4
+2026-01-28 14:46:23,648 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved a total of 81 rules
+2026-01-28 14:53:19,804 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved a total of 81 rules
+2026-01-28 14:53:28,466 - als_campaign_rules_logs - INFO - user:11 with email:test_admin@gmail.com retrieved records for campaign rules:4

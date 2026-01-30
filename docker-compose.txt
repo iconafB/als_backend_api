@@ -24,7 +24,7 @@ services:
       #database environment variables
       POSTGRES_DB:  ${MASTER_DB_NAME:-postgres}
       POSTGRES_USER:  ${MASTER_DB_OWNER:-postgres}
-      POSTGRES_PASSWORD:  ${MASTER_PASSWORD:-postgres}
+      POSTGRES_PASSWORD:  ${MASTER_DB_PASSWORD:-postgres}
     
     volumes:
       - pgdata:/var/lib/postgresql/data

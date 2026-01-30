@@ -40,19 +40,12 @@ class Settings(BaseSettings):
     pings_db_password:str
     pings_db_port:str
     pings_db_host:str
+
     #mail server 
-    MAIL_USERNAME:str
-    MAIL_PASSWORD:str
-    MAIL_FROM:str
-    MAIL_PORT:int
-    MAIL_SERVER:str
-    MAIL_FROM_NAME:str
-    MAIL_TLS:bool
-    MAIL_SSL:bool
-    USER_CREDENTIALS:bool
     #API CREDENTIALS
     ADMIN_USERNAME:str
     ADMIN_PASSWORD:str
+    
     #load the environment variables file
     model_config=SettingsConfigDict(env_file=".env")
 
