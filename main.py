@@ -39,11 +39,12 @@ app=FastAPI(lifespan=lifespan,description="ALS API, ADMINISTRATORS CAN CREATE CA
 
 #Not best practice you need to filter the correct domain
 #add cors middleware chief
-origins=["http://localhost:8006","http://102.67.139.133:3009","http://127.0.0.1:8005/auth/login","http://127.0.0.1:8005/auth/register"]
+origins=["http://localhost:8006","http://localhost:5174","http://localhost:5173","http://102.67.139.133:3009","http://127.0.0.1:8005/auth/login","http://127.0.0.1:8005/auth/register"]
 
 app.add_middleware(CORSMiddleware,allow_origins=origins,allow_credentials=True,allow_methods=["*"],allow_headers=["*"])
 @app.get("/openapi.json",include_in_schema=False)
 def openapi_json(_:bool=Depends(require_docs_auth)):
+    
     return JSONResponse(get_openapi(title="ALS BACKEND API",version="1.0.0",routes=app.routes))
 
 @app.get("/docs",include_in_schema=False)
