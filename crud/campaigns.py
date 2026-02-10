@@ -89,9 +89,6 @@ async def get_campaign_by_name_db(campaign_name:str,session:AsyncSession)->Creat
 async def get_campaign_by_code_db(camp_code:str,session:AsyncSession,user)->CreateCampaignResponse| None:
     campaign=await session.exec(select(campaign_tbl).where(campaign_tbl.camp_code==camp_code))
     result=campaign.first()
-    print("print the campaign found")
-    print(result)
-    
     if result is None:
         return None
     return CreateCampaignResponse.model_validate(result)

@@ -18,6 +18,7 @@ load_list_names_logger=define_logger("fetch_list_names","logs/load_list_names")
 async def get_list_name(camp_code:str,session:AsyncSession)->str:
 
     current_date=date.today()
+
     print(f"enter the list name method for generating list names for campaign:{camp_code}")
 
     try:
@@ -27,6 +28,7 @@ async def get_list_name(camp_code:str,session:AsyncSession)->str:
             WHERE camp_code = :camp_code
               AND date_used = :current_date
         """)
+
         result=await session.execute(stmt,{"camp_code":camp_code,"current_date":current_date})
         count_distinct=result.scalar_one()
         index=1 if count_distinct==0 else count_distinct + 1
@@ -37,7 +39,9 @@ async def get_list_name(camp_code:str,session:AsyncSession)->str:
     
     current_date_str=current_date.strftime("%Y-%m-%d")
     list_name=f"{camp_code}_{current_date_str[2:]}CS"
+    
     print(f"print the list name:{list_name}")
+
     return list_name
 
 

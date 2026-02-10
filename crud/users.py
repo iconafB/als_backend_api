@@ -59,25 +59,6 @@ async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server error occurred while logging in user")
 
 
-async def forgot_password(data:ForgotPasswordRequest,session:AsyncSession):
-    try:
-        #find the user from the database
-        user_query=await session.execute(select(users_tbl).where(users_tbl.email==data.email))
-        result=user_query.one_or_none()
-
-        if result is None:
-            auth_logger.info(f"user with:{data.email} tried to reset password")
-            raise HTTPException(status_code=status.HTTP_202_ACCEPTED,detail=f"An email will be sent with reset details")
-        
-        return True
-    except HTTPException:
-        raise
-
-    except Exception as e:
-        auth_logger.exception(f"An exception occurred while resetting a password:{str(e)}")
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"An internal server errror occurred while resetting a password")
-    
-
 
 
 async def get_current_logged_in_user(session:AsyncSession,user:int)->CurrentlyLoggedInUser:

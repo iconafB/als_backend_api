@@ -20,12 +20,11 @@ def chunked(seq:list[int],size:int):
     
 def inject_info_pk(results: list[dict], feeds: list[dict]) -> list[dict]:
     # Build lookup: id -> info_pk
+
     id_to_info_pk = {
         r["id"]: r["info_pk"]
         for r in results
     }
-
-    # Inject info_pk into feeds where vendor_lead_code matches id
 
     for feed in feeds:
         vendor_code = feed.get("vendor_lead_code")
@@ -132,10 +131,6 @@ async def load_leads_to_als_req(feeds:list[tuple],updated_feeds:list[dict],inser
     info_tbl (bulk upsert last_used)
     """
 
-
-    print("print the updated feeds")
-    print(updated_feeds)
-
     sql_insert_history=text("""
         INSERT INTO lead_history_tbl(cell, camp_code, date_used, list_name, list_id, load_type, rule_code)
         VALUES (:cell, :camp_code, :date_used, :list_name, :list_id, :load_type, :rule_code)
@@ -224,7 +219,6 @@ async def load_leads_to_als_req(feeds:list[tuple],updated_feeds:list[dict],inser
             campaigns_logger.info(f"approximately:{len(upsert_params_info_tbl)} records updated on the information table(info_tbl)")
         
         #needs attention proper error handling
-
         except Exception as e:
             campaigns_logger.exception(f"an exception occurred while updating table:{e}")
             raise 

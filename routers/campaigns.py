@@ -23,12 +23,15 @@ campaigns_logger=define_logger("als_campaign_logger","logs/campaigns_route.log")
 campaigns_router=APIRouter(tags=["Campaigns"],prefix="/campaigns")
 
 def normalize_numbers(value)->bool:
+
     if isinstance(value,bool):
         return value
     if isinstance(value,str):
         return value.strip().lower() == "true"
     
     return False
+
+
 
 def normalize_cell(value: str) -> str:
     value = str(value).strip()
@@ -60,20 +63,16 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         if find_campaign.is_new:
             #find an active campaign rule
             campaign_code=await get_active_campaign_to_load(load_campaign.camp_code,session)
-            print("print the campaign rule")
-            print(campaign_code)
             if campaign_code is None:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Campaign has not been created on the database")
             #fetch the associated rule,this works
             #fetch on the new new table, rule_name not camp_code
 
             rule=await get_campaign_rule_by_rule_name_db(campaign_code,session,user)
-            print("print the campaign rule")
-            print(rule.rule_code)
             rule_code=rule.rule_code
-            is_deduped=rule.get('is_deduped',False)
-            print("print the rule")
-            print(rule)
+
+            #is_deduped=rule.get('is_deduped',False)
+            is_deduped=False
 
             if rule is None:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"campaign rule does not exist")
@@ -82,11 +81,9 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         #loading legacy campaign rules as sql statements
         
         else:
-            print("fetch the sql rule")
             rule_name_query=await fetch_rule_sql(session,load_campaign.camp_code)
             cleaned_query=ensure_info_pk_selected(rule_name_query)
             is_deduped=False
-
             if rule_name_query is None:
                 campaigns_logger.info(f"The requested campaign:{load_campaign.camp_code} for loading does not exist")
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested campaign:{load_campaign.camp_code} for loading does not exist")
@@ -96,11 +93,9 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             cleaned_query=replace_double_quotes_with_single(build_dnc_query)
             results=await execute_built_sql_query(session,cleaned_query)
             rule_code=await get_rule_code_legacy_table_by_rule_name(load_campaign.camp_code,session)
-            print(f"print the rule code from legacy table:{rule_code}")
-            print()
-            print("print the new results")
-            print()
-            print(results)
+
+
+         
             
         #this is where we populate the dma_numbers tracker table
         if len(results)==0:
@@ -113,17 +108,12 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         #dma_list_filtered=[item['cell'] for item in results]
         #build the numbers to send for dma 
         dma_list='\n'.join([item.get("cell") for item in results if item.get("cell")])
-        print("print the cell numbers string before dma")
-        print(dma_list)
-        print()
         #send the data for dma
         #check if the dma credits are still avaliable
         credits=await dma_object.check_credits()
 
         dma_credits=int(credits)
-        print()
-        print(f"print the number of credits:{dma_credits}")
-
+        
         if len(results)>dma_credits:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Insufficient DMA credits for dedupe")
 
@@ -133,7 +123,6 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"DMA Credits have been exhausted")
         
         dma_audit_id=await dma_object.upload_data_for_dedupe(dma_list,session,load_campaign.camp_code)
-        print(f"print the dma audit id:{dma_audit_id}")
         #ready=await dma_object.wait_for_download_to_be_ready(session=session,audit_id=dma_audit_id,retries=40,delay=3)
 
         # if not ready:
@@ -141,9 +130,6 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         #raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY,detail=f"DMA returned empty output with output status:{current_status} after polling the dmasa api,records cannot be sent to dedago immediately")
 
         result=await dma_object.wait_for_readoutput_non_empty(dma_audit_id=dma_audit_id,session=session,attempts=40,delay=3,include_date=False)
-
-        print("print the return dedupe result")
-        print(result)
         #if it's true continue executing normally
 
         if not result:
@@ -168,28 +154,7 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             #build a new results array 
             relevent_numbers={item["DataEntry"] for item in opted_out}
             results=[item for item in results if item["cell"] not in relevent_numbers]
-
-        #continue processing opted_out they are safe
-
-        #if the status is true read the output
-
-        # if check_dedupe_status:
-        #     print(f"print the audit id inside the route:{dma_audit_id}")
-        #     read_dma_output=await dma_object.read_dedupe_output(dma_audit_id)
-        #     print("print what is read from dmasa inside the route")
-        #     print(read_dma_output)
-        # else:
-        #     raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=f"Campaign sent for dma but the dma api did not respond in time")
         
-        #Add zeros on the phone numbers, this works
-        print("print the payload downloaded from dmasa")
-        print()
-        # print(read_dma_output)
-        # print()
-        # print("print the returned list")
-        # print(read_dma_output)
-        # dma_cell_numbers=['0'+ str(obj['DataEntry']) for obj in read_dma_output]
-
         dma_length=len(results)
         print(f"print the length of the processed array:{dma_length}")
         
@@ -201,34 +166,20 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         #load token for a branch
         token=load_data_als.get_token(load_campaign.branch)
         payload=load_data_als.set_payload(load_campaign.branch,feeds,load_campaign.camp_code,list_name)
-        print("print the prepared payload")
-        print(payload)
-        print()
+       
 
         response=load_data_als.load_data_to_als(load_campaign.branch,load_campaign.camp_code,feeds,token,list_name)
         #get the list id from dedago
         dedago_status_code=response['status_code']
         todaysdate = date.today()
-        print("print the response from dedago")
-        print(response)
-        print(f"print the status code inside the route:{dedago_status_code}")
        
-        print(f"print the list_id inside the route:{response['list_id']}")
-
         if dedago_status_code==200:
             list_id=str(response['list_id'])
             #list of tuples
             insert=[(item['phone_number'],load_campaign.camp_code,todaysdate,list_name,list_id,'AUTOLOAD',rule_code) for item in feeds]
             campaigns_logger.info(f"dedago status code:{dedago_status_code},list_id:{list_id} for campaign:{load_campaign.camp_code} branch:{load_campaign.branch} for list name:{list_name}")
             #background task function
-            print("print the insert payload inside the route")
-            print(insert)
-            print()
-            print("print the feeds inside the route")
-            print(feeds)
-            print()
             updated_feeds=inject_info_pk(results,feeds)
-
             background_task.add_task(load_leads_to_als_req,feeds,updated_feeds,insert,is_deduped)
             
         else:

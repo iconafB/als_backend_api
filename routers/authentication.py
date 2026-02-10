@@ -7,7 +7,7 @@ from datetime import timedelta
 from models.users import users_tbl
 from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse,CurrentlyLoggedInUser
 from utils.auth import verify_password,get_current_active_user,create_access_token
-from crud.users import (create_user,get_current_logged_in_user)
+from crud.users import (create_user,get_current_logged_in_user,forgot_password_db)
 from settings.Settings import get_settings
 from database.master_database_prod import get_async_master_prod_session
 from utils.logger import define_logger
@@ -21,9 +21,11 @@ async def register_user(user:RegisterUser,session:AsyncSession=Depends(get_async
 
 @auth_router.post("/login",status_code=status.HTTP_200_OK,response_model=Token,description="Login to the als by providing a password and email")
 async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session:AsyncSession=Depends(get_async_master_prod_session)):
+    
     login_query=select(users_tbl).where(users_tbl.email==user.username)
     result=await session.execute(login_query)
     login_user=result.scalar_one_or_none()
+    
     if login_user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"User not registered")
     #return an error if the user is not found
@@ -41,6 +43,8 @@ async def login_user(user:Annotated[OAuth2PasswordRequestForm,Depends()],session
     #return the token
     auth_logger.info(f"username:{user.username} successfully logged in")
     return Token(access_token=token,token_type='Bearer')
+
+
 
 @auth_router.get("/user",response_model=GetUserResponse)
 async def get_the_current_user(current_user=Depends(get_current_active_user)):

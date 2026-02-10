@@ -55,6 +55,8 @@ def swagger_docs(_:bool=Depends(require_docs_auth)):
 def redoc(_:bool=Depends(require_docs_auth)):
     return get_redoc_html(openapi_url="/openapi.json", title="My API ReDoc")
 
+
+
 #add shutdown and startup events
 app.include_router(health_router)
 app.include_router(auth_router)
@@ -64,4 +66,4 @@ app.include_router(dnc_router)
 app.include_router(campaign_rule_router)
 app.include_router(dma_service_router)
 app.include_router(insert_data_router)
-app.include_router(practice_router)
+#app.include_router(practice_router)
