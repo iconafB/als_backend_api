@@ -251,6 +251,9 @@ class LoadALSClass:
 
         if branch == "YORK":
             custom_list_id = [100, 112]
+        elif branch == "DENEXIS":
+            custom_list_id = [100, 112]
+            
         elif branch == "INVNTDBN":
             custom_list_id = [100, 108]
         elif branch == "HQ":
