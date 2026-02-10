@@ -96,7 +96,8 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
 
 
          
-            
+        print("print the results from the db")
+        print(results)
         #this is where we populate the dma_numbers tracker table
         if len(results)==0:
             campaigns_logger.info(f"campaign:{load_campaign.camp_code} for branch:{load_campaign.branch} does not have active leads")
@@ -156,11 +157,21 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             results=[item for item in results if item["cell"] not in relevent_numbers]
         
         dma_length=len(results)
+        print("")
+        print("print results after dedupe")
+        print(results)
+        print()
         print(f"print the length of the processed array:{dma_length}")
-        
+        print()
         results_dicts = [{"id": r["id"],"fore_name": r["fore_name"],"last_name": r["last_name"],"cell": r["cell"]} for r in results ]
 
+        print("print results_dicts")
+        print(results_dicts)
+
         feeds,feeds_cleaning=clean_and_process_results(results_dicts)
+        print()
+        print("print feeds")
+        print(feeds)
         #build insert list here
         insert=[]
         #load token for a branch

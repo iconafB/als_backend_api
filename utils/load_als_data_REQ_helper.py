@@ -173,9 +173,7 @@ async def load_leads_to_als_req(feeds:list[tuple],updated_feeds:list[dict],inser
         for item in updated_feeds
         if item.get("phone_number")
     ]
-
-
-
+    
     async with async_session_maker() as session:
 
         try:
