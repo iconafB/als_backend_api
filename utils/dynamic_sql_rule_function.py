@@ -45,7 +45,7 @@ def build_dynamic_rule_engine(rule: dict,rule_name:Optional[str]=None):
     if not is_deduped:
 
         SQL = """
-        SELECT i.id,i.fore_name, i.last_name, i.cell
+        SELECT i.info_pk,i.id,i.fore_name, i.last_name, i.cell
         FROM info_tbl i
         LEFT JOIN global_dnc_numbers gdnc
         ON i.cell = gdnc.cell
