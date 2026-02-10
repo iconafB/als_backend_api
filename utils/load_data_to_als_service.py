@@ -304,8 +304,6 @@ class LoadALSClass:
             # GET OR POST??
             res = requests.request("GET",url,headers=headers,auth=(username,password),data=payload)
             print()
-            print("print the whole response")
-            print(res)
             print()
             print("print the text DEDAGO response")
             print(res.text)
