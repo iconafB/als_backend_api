@@ -7,7 +7,7 @@ from datetime import timedelta
 from models.users import users_tbl
 from schemas.auth import RegisterUser,RegisterUserResponse,Token,GetUserResponse,CurrentlyLoggedInUser
 from utils.auth import verify_password,get_current_active_user,create_access_token
-from crud.users import (create_user,get_current_logged_in_user,forgot_password_db)
+from crud.users import (create_user,get_current_logged_in_user)
 from settings.Settings import get_settings
 from database.master_database_prod import get_async_master_prod_session
 from utils.logger import define_logger
