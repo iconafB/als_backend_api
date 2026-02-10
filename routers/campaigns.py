@@ -78,6 +78,7 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"campaign rule does not exist")
             #call the helper to build the associated leads, this works, this returns everything no need for dnc filtering
             results=await load_leads_for_campaign(rule.rule_name,session,user)
+            
         #loading legacy campaign rules as sql statements
         
         else:
