@@ -1,10 +1,9 @@
 from sqlmodel import SQLModel,Field
 from typing import Optional
-from sqlalchemy import func
+from sqlalchemy import func,Column,DateTime
 from datetime import datetime
 
 class users_tbl(SQLModel,table=True):
-    
     id:Optional[int]=Field(default=None,primary_key=True)
     email:str=Field(default=None,nullable=False)
     password:str=Field(default=None,nullable=False,min_length=5)
@@ -15,8 +14,14 @@ class users_tbl(SQLModel,table=True):
     is_admin:Optional[bool]=Field(nullable=False)
     
 
-
-
+class password_reset_tokens(SQLModel,table=True):
+    
+    id:Optional[int]=Field(default=None,primary_key=True)
+    user_id:int=Field(nullable=False,foreign_key="users_tbl.id",index=True)
+    token_hash:str=Field(index=True,nullable=False)
+    expires_at:datetime=Field(sa_column=Column(DateTime(timezone=True),nullable=False))
+    used_at:Optional[datetime]=Field(default=None,sa_column=Column(DateTime(timezone=True),nullable=True))
+    created_at:datetime=Field(default=None,sa_column=Column(DateTime(timezone=True), server_default=func.now(),nullable=False))
 
 
 

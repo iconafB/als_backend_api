@@ -94,6 +94,14 @@ async def get_campaign_by_code_db(camp_code:str,session:AsyncSession,user)->Crea
     return CreateCampaignResponse.model_validate(result)
 
 
+async def get_campaign_by_code_and_branch(camp_code:str,branch:str,session:AsyncSession,user)->CreateCampaignResponse| None:
+    campaign=await session.exec(select(campaign_tbl).where(campaign_tbl.camp_code==camp_code).where(campaign_tbl.branch==branch))
+    result=campaign.first()
+    if result is None:
+        return None
+    return CreateCampaignResponse.model_validate(result)
+
+
 #get all active campaigns
 async def get_all_campaigns_by_branch_db(branch:str,session:AsyncSession,user,page:int,page_size:int)->List[CreateCampaignResponse]:
     campaigns_query=await session.exec(select(campaign_tbl).where(campaign_tbl.branch==branch))

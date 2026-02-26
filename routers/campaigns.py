@@ -10,7 +10,7 @@ from utils.list_names import get_list_name
 from utils.auth import get_current_active_user
 from utils.logger import define_logger
 from utils.load_campaign_helpers import load_leads_for_campaign
-from crud.campaigns import (create_campaign_db,get_all_campaigns_by_branch_db,get_campaign_by_code_db,update_campaign_name_db,get_active_campaign_to_load,get_all_campaigns_db,get_all_campaigns_infinite_scroll_db,get_spec_level_campaign_name_db,get_total_campaigns_on_the_db,search_campaigns_from_db)
+from crud.campaigns import (create_campaign_db,get_all_campaigns_by_branch_db,get_campaign_by_code_db,update_campaign_name_db,get_active_campaign_to_load,get_all_campaigns_db,get_all_campaigns_infinite_scroll_db,get_spec_level_campaign_name_db,get_total_campaigns_on_the_db,search_campaigns_from_db,get_campaign_by_code_and_branch)
 from crud.campaign_rules import (get_campaign_rule_by_rule_name_db,get_rule_code_legacy_table_by_rule_name,get_rule_code_from_new_table_by_rule_name)
 from utils.leads_cleaner_load_campaign import clean_and_process_results
 from utils.load_als_data_REQ_helper import load_leads_to_als_REQ,load_leads_to_als_req,inject_info_pk
@@ -57,34 +57,37 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
     try:
 
         # get the the campaign to load
-        find_campaign=await get_campaign_by_code_db(load_campaign.camp_code,session,user)
+        #find_campaign=await get_campaign_by_code_db(load_campaign.camp_code,session,user)
 
+        find_campaign=await get_campaign_by_code_and_branch(load_campaign.camp_code,load_campaign.branch,session,user)
         #load the new way
         if find_campaign.is_new:
             #find an active campaign rule
             campaign_code=await get_active_campaign_to_load(load_campaign.camp_code,session)
             if campaign_code is None:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Campaign has not been created on the database")
+            
             #fetch the associated rule,this works
             #fetch on the new new table, rule_name not camp_code
-
             rule=await get_campaign_rule_by_rule_name_db(campaign_code,session,user)
-            rule_code=rule.rule_code
 
+            rule_code=rule.rule_code
             #is_deduped=rule.get('is_deduped',False)
             is_deduped=False
-
             if rule is None:
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"campaign rule does not exist")
             #call the helper to build the associated leads, this works, this returns everything no need for dnc filtering
             results=await load_leads_for_campaign(rule.rule_name,session,user)
-            
+
         #loading legacy campaign rules as sql statements
         
         else:
             rule_name_query=await fetch_rule_sql(session,load_campaign.camp_code)
+
             cleaned_query=ensure_info_pk_selected(rule_name_query)
+
             is_deduped=False
+
             if rule_name_query is None:
                 campaigns_logger.info(f"The requested campaign:{load_campaign.camp_code} for loading does not exist")
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"The requested campaign:{load_campaign.camp_code} for loading does not exist")
@@ -94,9 +97,7 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             cleaned_query=replace_double_quotes_with_single(build_dnc_query)
             results=await execute_built_sql_query(session,cleaned_query)
             rule_code=await get_rule_code_legacy_table_by_rule_name(load_campaign.camp_code,session)
-
-
-         
+        
         print("print the results from the db")
         print(results)
         #this is where we populate the dma_numbers tracker table
@@ -190,6 +191,7 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
             #list of tuples
             insert=[(item['phone_number'],load_campaign.camp_code,todaysdate,list_name,list_id,'AUTOLOAD',rule_code) for item in feeds]
             campaigns_logger.info(f"dedago status code:{dedago_status_code},list_id:{list_id} for campaign:{load_campaign.camp_code} branch:{load_campaign.branch} for list name:{list_name}")
+            
             #background task function
             updated_feeds=inject_info_pk(results,feeds)
             background_task.add_task(load_leads_to_als_req,feeds,updated_feeds,insert,is_deduped)

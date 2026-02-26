@@ -50,4 +50,16 @@ class CurrentlyLoggedInUser(BaseModel):
     first_name:str
     last_name:str
     is_admin:bool
+
+
+#password reset schemas
+
+class PasswordResetRequestIn(BaseModel):
+    email:EmailStr
+
+#password reset confirm
+
+class PasswordResetConfirmIn(BaseModel):
+    token:str=Field(min_length=10)
+    new_password:str=Field(min_length=10, max_length=128)
     

@@ -5,7 +5,10 @@ from passlib.context import CryptContext
 from typing import Annotated
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from datetime import datetime,timedelta,timezone
+import secrets
+import hmac
 import jwt
+import hashlib
 from jwt.exceptions import InvalidTokenError
 import secrets
 from settings.Settings import get_settings
@@ -19,6 +22,7 @@ oauth_scheme=OAuth2PasswordBearer(tokenUrl='auth/login')
 #hash password
 def hash_password(password):
     return pwd_context.hash(password)
+
 
 #verify password
 def verify_password(plain_password,hashed_password):
@@ -47,7 +51,6 @@ def verify_token(token:str,credentials_exception):
     except InvalidTokenError:
         raise credentials_exception
     
-
 
 #get current user
 
@@ -83,4 +86,21 @@ def require_docs_auth(creds:HTTPBasicCredentials=Depends(security)):
     if not (user_ok and pass_ok):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail=f"Unauthorized",headers={"WWW-Authenticate":"Basic"})
     
+    return True
+
+
+#reset password functionality methods
+
+#Generate and return token
+def generate_token()->str:
+    return secrets.token_urlsafe(32)
+
+
+def hash_reset_token(token:str)->str:
+    secret=get_settings().SECRET_KEY
+    return hmac.new(secret.encode(),token.encode(),hashlib.sha256).hexdigest()
+
+#email sending 
+async def send_password_reset_email():
+    #email sending logic
     return True

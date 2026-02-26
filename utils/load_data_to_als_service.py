@@ -253,7 +253,7 @@ class LoadALSClass:
             custom_list_id = [100, 112]
         elif branch == "DENEXIS":
             custom_list_id = [100, 112]
-            
+
         elif branch == "INVNTDBN":
             custom_list_id = [100, 108]
         elif branch == "HQ":
@@ -289,20 +289,13 @@ class LoadALSClass:
         print()
         print("decode the token")
         schema,credentials=token.split(" ",1)
+        
         print(f"schema:{schema}")
         print(f"credentials:{credentials}")
+
         decoded=base64.b64decode(credentials).decode("utf-8")
         username,password=decoded.split(":",1)
-        print(f"username:{username}")
-        print(f"password:{password}")
-        print()
-        print("print the payload inside the method")
-        print(payload)
-        print()
-        print("print the headers")
-        print(headers)
-        print()
-        print(f"print the url:{url}")
+        
         try:
             # GET OR POST??
             res = requests.request("GET",url,headers=headers,auth=(username,password),data=payload)
@@ -333,9 +326,6 @@ class LoadALSClass:
                 list_id = "None"
 
         return {"status_code": res.status_code, "list_id": list_id}
-
-
-
 
 async def get_als_service():
     service=LoadALSClass()
