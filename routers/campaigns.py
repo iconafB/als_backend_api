@@ -116,6 +116,7 @@ async def load_campaign(load_campaign:LoadCampaign,dma_object:DMAService,load_da
         credits=await dma_object.check_credits()
 
         dma_credits=int(credits)
+        print(f"dma credits remaining:{dma_credits}")
         
         if len(results)>dma_credits:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=f"Insufficient DMA credits for dedupe")
