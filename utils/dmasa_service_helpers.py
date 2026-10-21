@@ -42,6 +42,8 @@ class DMAClassHelper:
     async def upload_data_for_dedupe(self,data: str,session: AsyncSession,camp_code: str,data_type: str = "C") -> str:
 
         payload = {"API_Key": self.dmasa_api_key,"Data": data,  "DataType": data_type,"MemberID": self.dmasa_member_id,"NotificationEmail": self.notification_email}
+        print("print the data submitted to dmasa")
+        print(data)
         resp = await self.client.post(self.submit_dedupes_dmasa_url,data=json.dumps(payload),timeout=540.0)
         resp.raise_for_status()
         result = resp.json()
