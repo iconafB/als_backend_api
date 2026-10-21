@@ -49,7 +49,7 @@ class DMAClassHelper:
         print("print the whole payload submitted to dmasa")
         print(payload)
         print()
-        resp = await self.client.post(self.submit_dedupes_dmasa_url,data=payload,headers={"Content-Type":"application/json","Accept":"application/json"},timeout=540.0)
+        resp = await self.client.post(self.submit_dedupes_dmasa_url,data=payload,headers={"Content-Type":"application/json"},timeout=540.0)
         resp.raise_for_status()
         result = resp.json()
         print("print the result inside the upload to dmasa method")
